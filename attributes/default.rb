@@ -3,6 +3,10 @@ default[:pelias][:basedir]                    = '/opt/pelias'
 default[:pelias][:cfg_dir]                    = '/etc/pelias'
 default[:pelias][:cfg_file]                   = 'pelias.json'
 
+# user
+default[:pelias][:user][:name]                = 'pelias'
+default[:pelias][:user][:home]                = '/home/pelias'
+
 # esclient
 default[:pelias][:esclient][:logdir]          = '/var/log/esclient'
 default[:pelias][:esclient][:keepalive]       = true
@@ -12,10 +16,6 @@ default[:pelias][:esclient][:request_timeout] = 120_000
 default[:pelias][:esclient][:max_retries]     = 10
 default[:pelias][:esclient][:dead_timeout]    = 3000
 default[:pelias][:esclient][:max_sockets]     = 20
-
-# user
-default[:pelias][:user][:name]                = 'pelias'
-default[:pelias][:user][:home]                = '/home/pelias'
 
 # api
 default[:pelias][:api][:port]                 = 3100
