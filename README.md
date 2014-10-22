@@ -3,6 +3,10 @@ README
 
 [![Circle CI](https://circleci.com/gh/pelias/pelias-vagrant.png?style=badge)](https://circleci.com/gh/pelias/pelias-vagrant)
 
+Notes
+-----
+* WORK IN PROGRESS!!!
+
 Requirements
 ------------
 * download [VirtualBox](https://www.virtualbox.org/wiki/Downloads) >= 4.3.18
