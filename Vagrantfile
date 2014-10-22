@@ -109,6 +109,9 @@ Vagrant.configure('2') do |config|
         'geonames' => {
           'index_data' => true
         },
+        'quattroshapes' => {
+          'index_data' => true
+        },
         'osm' => {
           'index_data' => true
         }

@@ -32,6 +32,16 @@ default[:pelias][:geonames][:revision]        = 'master'
 default[:pelias][:geonames][:index_data]      = false
 default[:pelias][:geonames][:timeout]         = 14_400 # 4 hours
 
+# quattroshapes
+default[:pelias][:quattroshapes][:repository] = 'https://github.com/pelias/quattroshapes-pipeline.git'
+default[:pelias][:quattroshapes][:revision]   = 'master'
+default[:pelias][:quattroshapes][:data_url]   = 'https://s3.amazonaws.com/peter.johnson/quattroshapes-simplified.tar.gz'
+default[:pelias][:quattroshapes][:file_name]  = node[:pelias][:quattroshapes][:data_url].split('/').last
+default[:pelias][:quattroshapes][:data_dir]   = "#{node[:pelias][:basedir]}/quattroshapes-data"
+default[:pelias][:quattroshapes][:index_data] = false
+default[:pelias][:quattroshapes][:types]      = %w(admin0 admin1 admin2 local_admin locality neighborhood)
+default[:pelias][:quattroshapes][:timeout]    = 86_400 # 4 hours, note that this is per type
+
 # osm
 default[:pelias][:osm][:repository]           = 'https://github.com/mapzen/pelias-openstreetmap.git'
 default[:pelias][:osm][:revision]             = 'master'
