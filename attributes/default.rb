@@ -30,13 +30,13 @@ default[:pelias][:api][:shutdown_timeout]     = 30
 default[:pelias][:geonames][:repository]      = 'https://github.com/mapzen/pelias-geonames.git'
 default[:pelias][:geonames][:revision]        = 'master'
 default[:pelias][:geonames][:index_data]      = false
-default[:pelias][:geonames][:timeout]         = 3600 # 1 hour
+default[:pelias][:geonames][:timeout]         = 14_400 # 4 hours
 
 # osm
 default[:pelias][:osm][:repository]           = 'https://github.com/mapzen/pelias-openstreetmap.git'
 default[:pelias][:osm][:revision]             = 'master'
 default[:pelias][:osm][:index_data]           = false
-default[:pelias][:osm][:timeout]              = 3600 # 1 hour
+default[:pelias][:osm][:timeout]              = 14_400 # 4 hours
 
 # schema
 default[:pelias][:index][:repository]         = 'https://github.com/pelias/schema.git'

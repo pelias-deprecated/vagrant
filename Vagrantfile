@@ -107,10 +107,10 @@ Vagrant.configure('2') do |config|
           'create_index' => true
         },
         'geonames' => {
-          'index_data' => false
+          'index_data' => true
         },
         'osm' => {
-          'index_data' => false
+          'index_data' => true
         }
       }
     }
