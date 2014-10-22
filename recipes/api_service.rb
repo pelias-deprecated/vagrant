@@ -6,7 +6,7 @@
 include_recipe 'runit::default'
 
 runit_service 'pelias-api' do
-  action          :enable
+  action          [:enable, :start]
   log             true
   default_logger  true
   sv_timeout      60

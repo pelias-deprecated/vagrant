@@ -30,11 +30,16 @@ execute 'node scripts/drop_index.js --force-yes' do
   environment('PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}")
 end
 
+# ignore failure here so that we can reprovision without having to change settings
+#   in the Vagrantfile. If the index creation really does fail, we'll just abort further
+#   downstream anyway.
+#
 execute 'node scripts/create_index.js' do
-  user    node[:pelias][:user][:name]
-  cwd     "#{node[:pelias][:basedir]}/pelias-schema/current"
-  retries 3
-  retry_delay 30
+  user            node[:pelias][:user][:name]
+  cwd             "#{node[:pelias][:basedir]}/pelias-schema/current"
+  retries         2
+  retry_delay     15
+  ignore_failure  true
   only_if { node[:pelias][:index][:create_index] == true }
   environment('PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}")
 end
