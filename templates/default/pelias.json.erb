@@ -1,0 +1,46 @@
+{
+  "esclient": {
+    "apiVersion": "<%= node[:pelias][:esclient][:api_version] %>",
+    "maxThrottle": "<%= node[:pelias][:esclient][:max_throttle] %>",
+    "keepAlive": <%= node[:pelias][:esclient][:keepalive] %>,
+    "requestTimeout": "<%= node[:pelias][:esclient][:request_timeout] %>",
+    "maxRetries": "<%= node[:pelias][:esclient][:max_retries] %>",
+    "deadTimeout": "<%= node[:pelias][:esclient][:dead_timeout] %>",
+    "maxSockets": "<%= node[:pelias][:esclient][:max_sockets] %>",
+    "hosts": [
+      {
+        "env": "dev",
+        "protocol": "http",
+        "host": "localhost",
+        "port": 9200
+      }
+    ],
+    "log": [{
+      "type": "stdio",
+      "level": [ "error", "warning" ]
+    },{
+      "type": "file",
+      "level": [ "error", "warning" ],
+      "path": "<%= node[:pelias][:esclient][:logdir] %>/esclient.log"
+    }]
+  },
+  "imports": {
+    "openstreetmap": {
+      "datapath": "<%= node[:pelias][:osm_data][:basedir] %>",
+      "leveldbpath": "<%= node[:pelias][:osm_data][:leveldb] %>",
+      "import": [{
+        "type": { "node": "osmnode", "way": "osmway" },
+        "filename": "<%= node[:pelias][:osm_data][:file] %>"
+      }]
+    }
+  },
+  "elasticsearch": {
+    "settings": {
+      "index": {
+        "number_of_replicas": "0",
+        "number_of_shards": "1",
+        "index.index_concurrency": "10"
+      }
+    }
+  }
+}

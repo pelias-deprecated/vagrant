@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd <%= node[:pelias][:api][:deploy_to] %>/current
+exec 2>&1
+exec chpst -u <%= node[:pelias][:user] %> node app.js

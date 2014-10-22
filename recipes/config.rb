@@ -1,0 +1,21 @@
+#
+# Cookbook Name:: pelias
+# Recipe:: config
+#
+
+directory node[:pelias][:cfg_dir] do
+  owner node[:pelias][:user][:name]
+  group node[:pelias][:user][:name]
+  mode  0755
+end
+
+directory node[:pelias][:esclient][:logdir] do
+  owner node[:pelias][:user][:name]
+  group node[:pelias][:user][:name]
+  mode  0755
+end
+
+template "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}" do
+  source  "#{node[:pelias][:cfg_file]}.erb"
+  mode    0644
+end
