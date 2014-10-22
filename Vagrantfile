@@ -107,7 +107,9 @@ Vagrant.configure('2') do |config|
           'create_index' => true
         },
         'geonames' => {
-          'country_code' => 'IT',
+          'country_codes' => [
+            'IT'
+          ]
           'index_data' => true
         },
         'quattroshapes' => {

@@ -17,8 +17,6 @@ deploy "#{node[:pelias][:basedir]}/pelias-geonames" do
   create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :run, 'execute[npm install pelias-geonames]', :immediately
-  # notifies :run, 'execute[download geonames]', :immediately
-  notifies :run, 'execute[load geonames]', :immediately
   only_if { node[:pelias][:geonames][:index_data] == true }
 end
 
@@ -31,24 +29,17 @@ execute 'npm install pelias-geonames' do
   only_if { node[:pelias][:geonames][:index_data] == true }
 end
 
-# execute 'download geonames' do
-#  action  :nothing
-#  user    node[:pelias][:user][:name]
-#  command "./bin/pelias-geonames -d all >#{node[:pelias][:basedir]}/logs/geonames_download.log 2>&1"
-#  cwd     "#{node[:pelias][:basedir]}/pelias-geonames/current"
-#  only_if { node[:pelias][:geonames][:index_data] == true && !File.exist?('data/allCountries.zip') }
-# end
-
-log "Commencing load of geonames into Elasticsearch. To follow along: vagrant ssh && tail -f #{node[:pelias][:basedir]}/logs/geonames.log" if node[:pelias][:geonames][:index_data] == true
-execute 'load geonames' do
-  action  :nothing
-  user    node[:pelias][:user][:name]
-  command "./bin/pelias-geonames -i #{node[:pelias][:geonames][:country_code]} >#{node[:pelias][:basedir]}/logs/geonames.log 2>&1"
-  cwd     "#{node[:pelias][:basedir]}/pelias-geonames/current"
-  timeout node[:pelias][:geonames][:timeout]
-  environment(
-    'HOME' => node[:pelias][:user][:home],
-    'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}"
-  )
-  only_if { node[:pelias][:geonames][:index_data] == true }
+node[:pelias][:geonames][:country_codes].each do |country|
+  log "Commencing load of geonames for #{country}into Elasticsearch. To follow along: vagrant ssh && tail -f #{node[:pelias][:basedir]}/logs/geonames.log" if node[:pelias][:geonames][:index_data] == true
+  execute "load geonames for #{country}" do
+    user    node[:pelias][:user][:name]
+    command "./bin/pelias-geonames -i #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.log 2>&1"
+    cwd     "#{node[:pelias][:basedir]}/pelias-geonames/current"
+    timeout node[:pelias][:geonames][:timeout]
+    environment(
+      'HOME' => node[:pelias][:user][:home],
+      'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}"
+    )
+    only_if { node[:pelias][:geonames][:index_data] == true }
+  end
 end

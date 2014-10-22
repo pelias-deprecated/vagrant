@@ -29,7 +29,7 @@ default[:pelias][:api][:shutdown_timeout]     = 30
 default[:pelias][:geonames][:repository]      = 'https://github.com/mapzen/pelias-geonames.git'
 default[:pelias][:geonames][:revision]        = 'master'
 default[:pelias][:geonames][:index_data]      = false
-default[:pelias][:geonames][:country_code]    = 'IT' # Italy
+default[:pelias][:geonames][:country_codes]   = %w(IT) # Italy
 default[:pelias][:geonames][:timeout]         = 14_400 # 4 hours
 
 # quattroshapes
