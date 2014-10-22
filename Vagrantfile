@@ -104,11 +104,11 @@ Vagrant.configure('2') do |config|
       },
       'pelias' => {
         'index' => {
-          'create_index' => false
+          'create_index' => true
         },
         'geonames' => {
           'country_code' => 'IT',
-          'index_data' => false
+          'index_data' => true
         },
         'quattroshapes' => {
           'index_data' => true
