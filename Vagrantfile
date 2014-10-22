@@ -80,7 +80,7 @@ Vagrant.configure('2') do |config|
       },
       'elasticsearch' => {
         'version' => '1.3.4',
-        'allocated_memory' => '4G',
+        'allocated_memory' => '5G',
         'custom_config' => {
           'threadpool.bulk.type'      => 'fixed',
           'threadpool.bulk.size'      => '2',
