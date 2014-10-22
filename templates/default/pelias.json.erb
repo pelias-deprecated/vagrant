@@ -40,9 +40,9 @@
   "elasticsearch": {
     "settings": {
       "index": {
-        "number_of_replicas": "0",
-        "number_of_shards": "1",
-        "index.index_concurrency": "10"
+        "number_of_replicas": "<%= node[:pelias][:index][:replicas] %>",
+        "number_of_shards": "<%= node[:pelias][:index][:shards] %>",
+        "index.index_concurrency": "<%= node[:pelias][:index][:concurrency] %>"
       }
     }
   }

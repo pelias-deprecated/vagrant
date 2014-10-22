@@ -53,6 +53,9 @@ default[:pelias][:index][:repository]         = 'https://github.com/pelias/schem
 default[:pelias][:index][:revision]           = 'master'
 default[:pelias][:index][:drop_index]         = false
 default[:pelias][:index][:create_index]       = false
+default[:pelias][:index][:replicas]           = 0
+default[:pelias][:index][:shards]             = 1
+default[:pelias][:index][:concurrency]        = 1
 
 # osm data
 default[:pelias][:osm_data][:url]             = 'https://s3.amazonaws.com/metro-extracts.mapzen.com/new-york.osm.pbf'
