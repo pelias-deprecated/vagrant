@@ -11,9 +11,8 @@ default[:pelias][:user][:home]                = '/home/pelias'
 default[:pelias][:esclient][:logdir]          = '/var/log/esclient'
 default[:pelias][:esclient][:keepalive]       = true
 default[:pelias][:esclient][:api_version]     = node[:elasticsearch][:version].split('.')[0] + '.' + node[:elasticsearch][:version].split('.')[1]
-default[:pelias][:esclient][:max_throttle]    = 200
 default[:pelias][:esclient][:request_timeout] = 120_000
-default[:pelias][:esclient][:max_retries]     = 10
+default[:pelias][:esclient][:max_retries]     = 3
 default[:pelias][:esclient][:dead_timeout]    = 3000
 default[:pelias][:esclient][:max_sockets]     = 20
 
@@ -55,7 +54,7 @@ default[:pelias][:index][:drop_index]         = false
 default[:pelias][:index][:create_index]       = false
 default[:pelias][:index][:replicas]           = 0
 default[:pelias][:index][:shards]             = 1
-default[:pelias][:index][:concurrency]        = 1
+default[:pelias][:index][:concurrency]        = 32
 
 # osm data
 default[:pelias][:osm_data][:url]             = 'https://s3.amazonaws.com/metro-extracts.mapzen.com/new-york.osm.pbf'
