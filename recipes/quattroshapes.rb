@@ -59,25 +59,3 @@ node[:pelias][:quattroshapes][:types].each do |type|
     environment('PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}")
   end
 end
-
-# snapshot
-es_host = node[:opsworks][:layers][:elasticsearch][:instances].keys.first
-stack   = node[:opsworks][:stack][:name].gsub('::', '_')
-
-execute 'create quattroshapes snapshot repo' do
-  command "curl -XPUT \"http://#{es_host}:9200/_snapshot/quattroshapes_snapshot\" -d \'{
-  \"type\": \"s3\",
-    \"settings\": {
-      \"bucket\": \"mapzen.backups-#{node[:opsworks][:instance][:region]}\",
-      \"base_path\": \"#{node[:mapzen][:environment]}/#{stack}/quattroshapes\"
-    }
-  }\'"
-  only_if { node[:pelias][:quattroshapes][:index_data] == true && node[:pelias][:worker][:snapshot_quattroshapes] == true }
-end
-
-execute 'snapshot quattroshapes' do
-  command "curl -XPUT \"http://#{es_host}:9200/_snapshot/quattroshapes_snapshot/quattroshapes_snapshot_latest?wait_for_completion=true\""
-  timeout 21_600
-  only_if { node[:pelias][:quattroshapes][:index_data] == true && node[:pelias][:worker][:snapshot_quattroshapes] == true }
-end
-
