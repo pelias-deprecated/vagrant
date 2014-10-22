@@ -30,7 +30,7 @@ execute 'npm install pelias-geonames' do
 end
 
 node[:pelias][:geonames][:country_codes].each do |country|
-  log "Commencing load of geonames for #{country}into Elasticsearch. To follow along: vagrant ssh && tail -f #{node[:pelias][:basedir]}/logs/geonames.log" if node[:pelias][:geonames][:index_data] == true
+  log "Commencing load of geonames for #{country}into Elasticsearch. To follow along: vagrant ssh && tail -f #{node[:pelias][:basedir]}/logs/geonames_#{country}.log" if node[:pelias][:geonames][:index_data] == true
   execute "load geonames for #{country}" do
     user    node[:pelias][:user][:name]
     command "./bin/pelias-geonames -i #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.log 2>&1"
