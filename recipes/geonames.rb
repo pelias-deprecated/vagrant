@@ -2,10 +2,12 @@
 # Cookbook Name:: pelias
 # Recipe:: geonames
 #
-# Copyright 2013, Mapzen
-#
-# All rights reserved - Do Not Redistribute
-#
+
+directory node[:pelias][:geonames][:data_dir] do
+  owner  node[:pelias][:user][:name]
+  group  node[:pelias][:user][:name]
+  mode   0755
+end
 
 deploy "#{node[:pelias][:basedir]}/pelias-geonames" do
   user        node[:pelias][:user][:name]
@@ -29,9 +31,12 @@ execute 'npm install pelias-geonames' do
   only_if { node[:pelias][:geonames][:index_data] == true }
 end
 
+# download and load, using the downloaded file
+#   as an additional guard against a re-load.
+#
 node[:pelias][:geonames][:country_codes].each do |country|
-  log "Commencing load of geonames for #{country}into Elasticsearch. To follow along: vagrant ssh && tail -f #{node[:pelias][:basedir]}/logs/geonames_#{country}.log" if node[:pelias][:geonames][:index_data] == true
-  execute "load geonames for #{country}" do
+  log "Commencing download of geonames for #{country}."
+  execute "download geonames for #{country}" do
     user    node[:pelias][:user][:name]
     command "./bin/pelias-geonames -i #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.log 2>&1"
     cwd     "#{node[:pelias][:basedir]}/pelias-geonames/current"
@@ -40,6 +45,20 @@ node[:pelias][:geonames][:country_codes].each do |country|
       'HOME' => node[:pelias][:user][:home],
       'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}"
     )
-    only_if { node[:pelias][:geonames][:index_data] == true }
+    notifies :run, "execute[load geonames for #{country}]", :immediately
+    only_if { node[:pelias][:geonames][:index_data] == true && !::File.exist?("#{node[:pelias][:geonames][:data_dir]}/#{country}.zip") }
+  end
+
+  log "Commencing load of geonames for #{country} into Elasticsearch. To follow along: vagrant ssh && tail -f #{node[:pelias][:basedir]}/logs/geonames_#{country}.log" if node[:pelias][:geonames][:index_data] == true
+  execute "load geonames for #{country}" do
+    action  :nothing
+    user    node[:pelias][:user][:name]
+    command "./bin/pelias-geonames -i #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.log 2>&1"
+    cwd     "#{node[:pelias][:basedir]}/pelias-geonames/current"
+    timeout node[:pelias][:geonames][:timeout]
+    environment(
+      'HOME' => node[:pelias][:user][:home],
+      'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}"
+    )
   end
 end

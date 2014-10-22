@@ -27,6 +27,7 @@ default[:pelias][:api][:shutdown_timeout]     = 30
 
 # geonames
 default[:pelias][:geonames][:repository]      = 'https://github.com/mapzen/pelias-geonames.git'
+default[:pelias][:geonames][:data_dir]        = "#{node[:pelias][:basedir]}/geonames-data"
 default[:pelias][:geonames][:revision]        = 'master'
 default[:pelias][:geonames][:index_data]      = false
 default[:pelias][:geonames][:country_codes]   = %w(IT) # Italy

@@ -24,6 +24,9 @@
     }]
   },
   "imports": {
+    "geonames": {
+      "datapath": "<%= node[:pelias][:geonames][:data_dir] %>"
+    },
     "quattroshapes": {
       "datapath": "<%= node[:pelias][:quattroshapes][:data_dir] %>"
     },

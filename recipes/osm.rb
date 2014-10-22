@@ -15,7 +15,6 @@ deploy "#{node[:pelias][:basedir]}/pelias-osm" do
   create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :run, 'execute[npm install pelias-osm]', :immediately
-  notifies :run, 'execute[load osm]', :immediately
   only_if { node[:pelias][:osm][:index_data] == true }
 end
 
@@ -28,6 +27,8 @@ execute 'npm install pelias-osm' do
   only_if { node[:pelias][:osm][:index_data] == true }
 end
 
+# triggered by the data download
+#   TODO: hash of extracts/urls to install
 log "Commencing load of OSM data into Elasticsearch. To follow along: vagrant ssh && tail -f #{node[:pelias][:basedir]}/logs/osm.log" if node[:pelias][:osm][:index_data] == true
 execute 'load osm' do
   action  :nothing
@@ -39,5 +40,4 @@ execute 'load osm' do
     'HOME' => node[:pelias][:user][:home],
     'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}"
   )
-  only_if { node[:pelias][:osm][:index_data] == true }
 end
