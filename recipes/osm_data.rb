@@ -16,6 +16,6 @@ remote_file "#{node[:pelias][:osm_data][:basedir]}/#{node[:pelias][:osm_data][:f
   source    node[:pelias][:osm_data][:url]
   mode      0644
   backup    false
-  notifies  :run, "execute[load osm]", :immediately
+  notifies  :run, 'execute[load osm]', :immediately
   only_if { node[:pelias][:osm][:index_data] == true && !::File.exist?("#{node[:pelias][:osm_data][:basedir]}/#{node[:pelias][:osm_data][:file]}") }
 end
