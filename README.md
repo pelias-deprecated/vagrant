@@ -1,6 +1,10 @@
 README
 ======
 
+Current Build Status
+--------------------
+[![Circle CI](https://circleci.com/gh/pelias/pelias-vagrant.png?style=badge)](https://circleci.com/gh/pelias/pelias-vagrant)
+
 Requirements
 ------------
 * download [VirtualBox](https://www.virtualbox.org/wiki/Downloads) >= 4.3.18
@@ -18,4 +22,4 @@ Getting Started
   * create the Elasticsearch 'pelias' index
   * load Geonames data into Elasticsearch
   * load a sample OSM extract for New York City into Elasticsearch
-  * run the Pelias API, which you can interact with locally via your browser: [http://localhost:3100/suggest?]
+  * run the Pelias API, which you can interact with locally via your browser, curl, etc thanks to the magic of port forwarding: [API](http://localhost:3100/suggest?)
