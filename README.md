@@ -22,6 +22,10 @@ Getting Started
     * required Pelias repositories
     * other system dependencies
   * create the Elasticsearch 'pelias' index
-  * load Geonames data into Elasticsearch
-  * load an OSM extract of New York City into Elasticsearch
+  * load Geonames data for Italy into Elasticsearch
+  * load an OSM extract of Florence, Italy into Elasticsearch
   * run the Pelias API server, which you can interact with locally via your browser, curl, etc thanks to the magic of port forwarding: [API](http://localhost:3100/search?input=Empire&lat=40.7903&lon=73.9597)
+
+Tweaking Things
+---------------
+* TODO

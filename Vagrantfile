@@ -104,16 +104,20 @@ Vagrant.configure('2') do |config|
       },
       'pelias' => {
         'index' => {
-          'create_index' => true
+          'create_index' => false
         },
         'geonames' => {
-          'index_data' => true
+          'country_code' => 'IT',
+          'index_data' => false
         },
         'quattroshapes' => {
           'index_data' => true
         },
         'osm' => {
           'index_data' => true
+        },
+        'osm_data' => {
+          'url' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/florence_italy.osm.pbf'
         }
       }
     }

@@ -43,7 +43,7 @@ log "Commencing load of geonames into Elasticsearch. To follow along: vagrant ss
 execute 'load geonames' do
   action  :nothing
   user    node[:pelias][:user][:name]
-  command "./bin/pelias-geonames -i all >#{node[:pelias][:basedir]}/logs/geonames.log 2>&1"
+  command "./bin/pelias-geonames -i #{node[:pelias][:geonames][:country_code]} >#{node[:pelias][:basedir]}/logs/geonames.log 2>&1"
   cwd     "#{node[:pelias][:basedir]}/pelias-geonames/current"
   timeout node[:pelias][:geonames][:timeout]
   environment(

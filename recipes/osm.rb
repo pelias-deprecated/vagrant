@@ -24,10 +24,7 @@ execute 'npm install pelias-osm' do
   user    node[:pelias][:user][:name]
   command 'npm install'
   cwd     "#{node[:pelias][:basedir]}/pelias-osm/current"
-  environment(
-    'HOME' => node[:pelias][:user][:home],
-    'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}"
-  )
+  environment('HOME' => node[:pelias][:user][:home])
   only_if { node[:pelias][:osm][:index_data] == true }
 end
 
@@ -38,5 +35,9 @@ execute 'load osm' do
   command "node index.js >#{node[:pelias][:basedir]}/logs/osm.log 2>&1"
   cwd     "#{node[:pelias][:basedir]}/pelias-osm/current"
   timeout node[:pelias][:osm][:timeout]
+  environment(
+    'HOME' => node[:pelias][:user][:home],
+    'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}"
+  )
   only_if { node[:pelias][:osm][:index_data] == true }
 end

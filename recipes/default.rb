@@ -44,5 +44,6 @@ end
 include_recipe 'pelias::config'
 include_recipe 'pelias::index'
 include_recipe 'pelias::geonames'
+include_recipe 'pelias::quattroshapes'
 include_recipe 'pelias::osm'
 include_recipe 'pelias::api'
