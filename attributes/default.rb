@@ -18,7 +18,9 @@ default[:pelias][:user][:name]                = 'pelias'
 default[:pelias][:user][:home]                = '/home/pelias'
 
 # api
-default[:pelias][:api][:deploy_to]            = "#{node[:pelias][:basedir]}/api"
+default[:pelias][:api][:port]                 = 3100
+default[:pelias][:api][:node_env]             = 'dev'
+default[:pelias][:api][:deploy_to]            = "#{node[:pelias][:basedir]}/pelias-api"
 default[:pelias][:api][:repository]           = 'https://github.com/pelias/api.git'
 default[:pelias][:api][:revision]             = 'master'
 default[:pelias][:api][:restart_wait]         = 60
