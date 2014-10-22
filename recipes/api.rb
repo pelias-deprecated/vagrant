@@ -14,11 +14,11 @@ deploy node[:pelias][:api][:deploy_to] do
   create_dirs_before_symlink %w(tmp public config deploy)
   symlink_before_migrate.clear
 
-  notifies :run,     'execute[install-api-npm]',  :immediately
+  notifies :run,     'execute[npm install pelias-api]',  :immediately
   notifies :restart, 'runit_service[pelias-api]', :delayed
 end
 
-execute 'install-api-npm' do
+execute 'npm install pelias-api' do
   action  :nothing
   command 'npm install'
   user    node[:pelias][:user][:name]

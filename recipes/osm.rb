@@ -16,6 +16,7 @@ deploy "#{node[:pelias][:basedir]}/pelias-osm" do
 
   notifies :run, 'execute[npm install pelias-osm]', :immediately
   notifies :run, 'execute[load osm]', :immediately
+  only_if { node[:pelias][:osm][:index_data] == true }
 end
 
 execute 'npm install pelias-osm' do

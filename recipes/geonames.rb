@@ -19,6 +19,7 @@ deploy "#{node[:pelias][:basedir]}/pelias-geonames" do
   notifies :run, 'execute[npm install pelias-geonames]', :immediately
   # notifies :run, 'execute[download geonames]', :immediately
   notifies :run, 'execute[load geonames]', :immediately
+  only_if { node[:pelias][:geonames][:index_data] == true }
 end
 
 execute 'npm install pelias-geonames' do
