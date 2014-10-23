@@ -70,34 +70,6 @@ Vagrant.configure('2') do |config|
   # An array of symbols representing groups of cookbook described in the Vagrantfile
   # to skip installing and copying to Vagrant's shelf.
   # config.berkshelf.except = []
-
-  config.vm.provision :chef_solo do |chef|
-    chef.json = {
-      'pelias' => {
-        'index' => {
-          'create_index' => true
-        },
-        'geonames' => {
-          'index_data' => true,
-          'country_codes' => [
-            'IT'
-          ]
-        },
-        'quattroshapes' => {
-          'index_data' => true
-        },
-        'osm' => {
-          'index_data' => true,
-          'extracts' => {
-            'rome' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/rome_italy.osm.pbf',
-            'florence' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/florence_italy.osm.pbf'
-          }
-        }
-      }
-    }
-
-    chef.run_list = [
-      'recipe[pelias::default]'
-    ]
-  end
 end
+
+load 'VagrantChef.rb'

@@ -51,5 +51,5 @@ end
   osm
   api
 ).each do |r|
-  include_recipe r
+  include_recipe "pelias::#{r}"
 end
