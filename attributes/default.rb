@@ -1,4 +1,4 @@
-include_attributes 'pelias::external'
+include_attribute 'pelias::external'
 
 # env
 default[:pelias][:basedir]                    = '/opt/pelias'
