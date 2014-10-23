@@ -31,7 +31,7 @@ Getting Started
 
 Tweaking Things
 ---------------
-* the Vagrantfile is your primary means of overriding any default values.
+* the vagrant_chef.rb file is your primary means of overriding any default values.
 * attempting to load a large set of geonames (e.g. -i all) will almost certainly result in failure. Choose only the regions you need:
   * for example, if you want to test the data in Warsaw, only load the geonames data for Poland
 * osm extracts you may want to load can be found on the [Mapzen Metro Extracts](https://mapzen.com/metro-extracts) page.
