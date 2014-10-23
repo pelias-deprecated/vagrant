@@ -2,9 +2,9 @@
 #
 
 # nodejs
-default[:nodejs][:version]            = '0.10.32'
-default[:nodejs][:checksum_linux_x64] = '621777798ed9523a4ad1c4d934f94b7bc765871d769a014a53a4f1f7bcb5d5a7'
-default[:nodejs][:dir]                = '/usr'
+default[:nodejs][:version]                    = '0.10.32'
+default[:nodejs][:checksum_linux_x64]         = '621777798ed9523a4ad1c4d934f94b7bc765871d769a014a53a4f1f7bcb5d5a7'
+default[:nodejs][:dir]                        = '/usr'
 
 # elasticsearch
 default[:elasticsearch][:version]             = '1.3.4'
