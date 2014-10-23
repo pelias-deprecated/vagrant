@@ -38,10 +38,11 @@ Getting Started
 
 Tweaking Things
 ---------------
-* the vagrant_chef.rb file is your primary means of overriding any default values.
+* the vagrant_chef.rb file is your primary means of overriding any default values
+* as an example, let's presume you want to load osm data for locations in Italy and Germany:
 
 #### geonames
-* multiple geoname countries can be loaded by editing the geonames array followed by `vagrant provision`:
+* multiple geoname countries can be loaded by editing the geonames array followed by `vagrant provision` (or `vagrant up` if you haven't yet started the instance):
 ```
   'geonames' => {
     'index_data' => true,
@@ -54,7 +55,7 @@ Tweaking Things
 
 #### osm
 * osm extracts you may want to load can be found on the [Mapzen Metro Extracts](https://mapzen.com/metro-extracts) page.
-* multiple extracts can be loaded by updating the extracts hash followed by `vagrant provision`:
+* multiple extracts can be loaded by updating the extracts hash followed by `vagrant provision` (or `vagrant up` if you haven't yet started the instance):
 ```
   'osm' => {
     'index_data' => true,
