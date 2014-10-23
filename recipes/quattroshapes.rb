@@ -29,8 +29,14 @@ remote_file 'download quattroshapes' do
   backup    false
   path      "#{node[:pelias][:basedir]}/#{node[:pelias][:quattroshapes][:file_name]}"
   source    node[:pelias][:quattroshapes][:data_url]
-  notifies  :run, 'execute[extract quattroshapes data]', :immediately
+  notifies  :run,   'execute[extract quattroshapes data]', :immediately
+  notifies  :write, 'log[log quattroshapes data load]',    :immediately
   only_if { node[:pelias][:quattroshapes][:index_data] == true }
+end
+
+log 'log quattroshapes data load' do
+  action  :nothing
+  message "Beginning load of Quattroshapes data into Elasticsearch. See #{node[:pelias][:basedir]}/logs."
 end
 
 execute 'extract quattroshapes data' do

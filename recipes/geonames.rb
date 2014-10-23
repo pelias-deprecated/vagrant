@@ -37,9 +37,15 @@ node[:pelias][:geonames][:country_codes].each do |country|
       'HOME' => node[:pelias][:user][:home],
       'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}"
     )
-    notifies :run, "execute[load geonames for #{country}]", :immediately
+    notifies :write, "log[log geonames load for #{country}]", :immediately
+    notifies :run,   "execute[load geonames for #{country}]", :immediately
     # NOTE: there's a bug here in that the download doesn't write to data_dir, so this will always run at the moment.
     only_if { node[:pelias][:geonames][:index_data] == true && !::File.exist?("#{node[:pelias][:geonames][:data_dir]}/#{country}.zip") }
+  end
+
+  log "log geonames load for #{country}" do
+    action  :nothing
+    message "Beginning load of Geonames data into Elasticsearch for #{country}. Follow along: vagrant ssh 'tail -f #{node[:pelias][:basedir]}/logs/geonames_#{country}.log"
   end
 
   execute "load geonames for #{country}" do
