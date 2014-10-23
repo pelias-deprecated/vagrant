@@ -38,6 +38,25 @@ describe 'pelias::osm' do
           variables:  { osm_data_file: "#{c}.osm.pbf" }
         )
       end
+
+      it "should download the data file #{c}.osm.pbf" do
+        expect(chef_run).to create_remote_file_if_missing("/opt/pelias/osm-data/#{c}.osm.pbf").with(
+          source: "http://#{c}.osm.pbf",
+          mode:   0644,
+          backup: false
+        )
+      end
+
+      it 'should notify to write a log message' do
+        resource = chef_run.remote_file("/opt/pelias/osm-data/#{c}.osm.pbf")
+        expect(resource).to notify('log[log osm load]').to(:write).immediately
+      end
+
+      it "should notify to load #{c} into elasticsearch" do
+        resource = chef_run.remote_file("/opt/pelias/osm-data/#{c}.osm.pbf")
+        expect(resource).to notify("execute[load osm #{c}]").to(:run).immediately
+      end
+
     end
   end
 

@@ -25,11 +25,9 @@ execute 'npm install pelias-osm' do
 end
 
 node[:pelias][:osm][:extracts].map do |name, url|
-  data_file = url.split('/').last
-  log "Data file is #{data_file}"
-
   # fail if someone tries to pull something other than
   #   a pbf data file
+  data_file = url.split('/').last
   fail if data_file !~ /\.pbf$/
 
   # unique templates for each file we need to load (ugh)
@@ -51,7 +49,7 @@ node[:pelias][:osm][:extracts].map do |name, url|
 
   log 'log osm load' do
     action  :nothing
-    message "Beginning load of OSM data into Elasticsearch for #{name}. Follow along: vagrant ssh 'tail -f #{node[:pelias][:basedir]}/logs/osm_#{name}.log"
+    message "Beginning load of OSM data into Elasticsearch for #{name}. Log: #{node[:pelias][:basedir]}/logs/osm_#{name}.log"
   end
 
   # triggered by the data download
