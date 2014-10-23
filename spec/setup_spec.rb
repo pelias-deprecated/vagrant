@@ -29,7 +29,7 @@ describe 'pelias::setup' do
   end
 
   it 'should log something else' do
-    expect(chef_run).to write_log 'Installing system dependencies'
+    expect(chef_run).to write_log 'Installing Elasticsearch'
   end
 
   it 'should restart elasticsearch' do
