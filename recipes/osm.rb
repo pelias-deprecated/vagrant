@@ -36,9 +36,7 @@ node[:pelias][:osm][:extracts].map do |name, url|
   template "#{node[:pelias][:cfg_dir]}/#{name}_#{node[:pelias][:cfg_file]}" do
     source  "#{node[:pelias][:cfg_file]}.erb"
     mode    0644
-    variables({
-      osm_data_file: data_file
-    })
+    variables(osm_data_file: data_file)
   end
 
   remote_file "#{node[:pelias][:osm][:data_dir]}/#{data_file}" do
