@@ -25,6 +25,11 @@ describe 'pelias::osm' do
       )
     end
 
+    it 'should define execute npm install pelias-osm' do
+      resource = chef_run.execute('npm install pelias-osm')
+      expect(resource).to do_nothing
+    end
+
     it 'should notify npm install' do
       resource = chef_run.deploy('/opt/pelias/pelias-osm')
       expect(resource).to notify('execute[npm install pelias-osm]').to(:run).immediately
@@ -57,6 +62,15 @@ describe 'pelias::osm' do
         expect(resource).to notify("execute[load osm #{c}]").to(:run).immediately
       end
 
+      it 'should define a log message' do
+        resource = chef_run.log('log osm load')
+        expect(resource).to do_nothing
+      end
+
+      it "should define an osm load action for #{c}" do
+        resource = chef_run.execute("load osm #{c}")
+        expect(resource).to do_nothing
+      end
     end
   end
 
