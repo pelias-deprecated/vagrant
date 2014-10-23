@@ -73,35 +73,6 @@ Vagrant.configure('2') do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.json = {
-      'nodejs' => {
-        'version' => '0.10.32',
-        'checksum_linux_x64' => '621777798ed9523a4ad1c4d934f94b7bc765871d769a014a53a4f1f7bcb5d5a7',
-        'dir' => '/usr'
-      },
-      'elasticsearch' => {
-        'version' => '1.3.4',
-        'allocated_memory' => '5G',
-        'custom_config' => {
-          'threadpool.bulk.type'      => 'fixed',
-          'threadpool.bulk.size'      => '2',
-          'threadpool.bulk.wait_time' => '3s',
-          'threadpool.bulk.queue'     => '500'
-        },
-        'plugin' => {
-          'mandatory' => [
-            'pelias-analysis'
-          ]
-        },
-        'plugins' => {
-          'pelias-analysis' => {
-            'url' => 'https://github.com/pelias/elasticsearch-plugin/blob/1.3.4/pelias-analysis.zip?raw=true'
-          }
-        }
-      },
-      'java' => {
-        'install_flavor' => 'openjdk',
-        'jdk_version' => '7'
-      },
       'pelias' => {
         'index' => {
           'create_index' => true

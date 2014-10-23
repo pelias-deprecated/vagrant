@@ -3,12 +3,16 @@
 # Recipe:: default
 #
 
+log 'Installing system dependencies'
 package 'build-essential'
 
+include_recipe 'pelias::user'
 include_recipe 'apt::default'
 include_recipe 'git::default'
 include_recipe 'java::default'
+include_recipe 'nodejs::install_from_binary'
 
+log 'Installing Elasticsearch'
 include_recipe 'elasticsearch::default'
 include_recipe 'elasticsearch::plugins'
 
@@ -18,9 +22,6 @@ service 'elasticsearch' do
   action :restart
 end
 
-include_recipe 'pelias::user'
-include_recipe 'nodejs::install_from_binary'
-
 execute 'install-bower' do
   command 'npm install bower -g'
   user    'root'
@@ -28,10 +29,11 @@ execute 'install-bower' do
 end
 
 directory node[:pelias][:basedir] do
-  action  :create
-  mode    0755
-  owner   node[:pelias][:user][:name]
-  group   node[:pelias][:user][:name]
+  action    :create
+  recursive true
+  mode      0755
+  owner     node[:pelias][:user][:name]
+  group     node[:pelias][:user][:name]
 end
 
 directory "#{node[:pelias][:basedir]}/logs" do
@@ -41,9 +43,13 @@ directory "#{node[:pelias][:basedir]}/logs" do
   group   node[:pelias][:user][:name]
 end
 
-include_recipe 'pelias::config'
-include_recipe 'pelias::index'
-include_recipe 'pelias::geonames'
-include_recipe 'pelias::quattroshapes'
-include_recipe 'pelias::osm'
-include_recipe 'pelias::api'
+%w(
+  config
+  index
+  geonames
+  quattroshapes
+  osm
+  api
+).each do |r|
+  include_recipe r
+end

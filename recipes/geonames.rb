@@ -34,21 +34,21 @@ end
 #   as an additional guard against a re-load.
 #
 node[:pelias][:geonames][:country_codes].each do |country|
-  execute "download geonames for #{country}" do
-    user    node[:pelias][:user][:name]
-    command "./bin/pelias-geonames -i #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.log 2>&1"
-    cwd     "#{node[:pelias][:basedir]}/pelias-geonames/current"
-    timeout node[:pelias][:geonames][:timeout]
-    environment(
-      'HOME' => node[:pelias][:user][:home],
-      'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}"
-    )
-    notifies :run, "execute[load geonames for #{country}]", :immediately
-    only_if { node[:pelias][:geonames][:index_data] == true && !::File.exist?("#{node[:pelias][:geonames][:data_dir]}/#{country}.zip") }
-  end
+  # execute "download geonames for #{country}" do
+  #  user    node[:pelias][:user][:name]
+  #  command "./bin/pelias-geonames -d #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.log 2>&1"
+  #  cwd     "#{node[:pelias][:basedir]}/pelias-geonames/current"
+  #  timeout node[:pelias][:geonames][:timeout]
+  #  environment(
+  #    'HOME' => node[:pelias][:user][:home],
+  #    'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}"
+  #  )
+  #  notifies :run, "execute[load geonames for #{country}]", :immediately
+  #  only_if { node[:pelias][:geonames][:index_data] == true && !::File.exist?("#{node[:pelias][:geonames][:data_dir]}/#{country}.zip") }
+  # end
 
   execute "load geonames for #{country}" do
-    action  :nothing
+    action  :run # action :nothing TODO: revert to :nothing when geonames download works
     user    node[:pelias][:user][:name]
     command "./bin/pelias-geonames -i #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.log 2>&1"
     cwd     "#{node[:pelias][:basedir]}/pelias-geonames/current"
@@ -57,5 +57,6 @@ node[:pelias][:geonames][:country_codes].each do |country|
       'HOME' => node[:pelias][:user][:home],
       'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}"
     )
+    only_if { node[:pelias][:geonames][:index_data] == true }
   end
 end

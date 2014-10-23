@@ -31,11 +31,11 @@
       "datapath": "<%= node[:pelias][:quattroshapes][:data_dir] %>"
     },
     "openstreetmap": {
-      "datapath": "<%= node[:pelias][:osm_data][:basedir] %>",
-      "leveldbpath": "<%= node[:pelias][:osm_data][:leveldb] %>",
+      "datapath": "<%= node[:pelias][:osm][:basedir] %>",
+      "leveldbpath": "<%= node[:pelias][:osm][:leveldb] %>",
       "import": [{
         "type": { "node": "osmnode", "way": "osmway" },
-        "filename": "<%= node[:pelias][:osm_data][:file] %>"
+        "filename": "<%= node[:pelias][:osm][:file] %>"
       }]
     }
   },
