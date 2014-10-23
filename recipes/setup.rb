@@ -10,7 +10,7 @@ include_recipe 'pelias::user'
 include_recipe 'apt::default'
 include_recipe 'git::default'
 include_recipe 'java::default'
-include_recipe 'nodejs::install_from_binary'
+include_recipe 'nodejs::nodejs_from_binary'
 
 log 'Installing Elasticsearch'
 include_recipe 'elasticsearch::default'
@@ -22,7 +22,7 @@ service 'elasticsearch' do
   action :restart
 end
 
-execute 'install-bower' do
+execute 'install bower' do
   command 'npm install bower -g'
   user    'root'
   not_if  'npm -g list bower'
