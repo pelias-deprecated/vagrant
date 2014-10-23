@@ -1,3 +1,5 @@
+include_attributes 'pelias::external'
+
 # env
 default[:pelias][:basedir]                    = '/opt/pelias'
 default[:pelias][:cfg_dir]                    = '/etc/pelias'
