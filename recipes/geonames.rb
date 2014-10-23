@@ -34,7 +34,6 @@ end
 #   as an additional guard against a re-load.
 #
 node[:pelias][:geonames][:country_codes].each do |country|
-  log "Commencing download of geonames for #{country}."
   execute "download geonames for #{country}" do
     user    node[:pelias][:user][:name]
     command "./bin/pelias-geonames -i #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.log 2>&1"
@@ -48,7 +47,6 @@ node[:pelias][:geonames][:country_codes].each do |country|
     only_if { node[:pelias][:geonames][:index_data] == true && !::File.exist?("#{node[:pelias][:geonames][:data_dir]}/#{country}.zip") }
   end
 
-  log "Commencing load of geonames for #{country} into Elasticsearch. To follow along: vagrant ssh \"tail -f #{node[:pelias][:basedir]}/logs/geonames_#{country}.log\"" if node[:pelias][:geonames][:index_data] == true
   execute "load geonames for #{country}" do
     action  :nothing
     user    node[:pelias][:user][:name]

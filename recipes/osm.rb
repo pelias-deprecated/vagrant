@@ -41,8 +41,6 @@ node[:pelias][:osm][:extracts].each do |name, url|
   end
 
   # triggered by the data download
-  #   TODO: hash of extracts/urls to install
-  log "Commencing load of OSM data into Elasticsearch. To follow along: vagrant ssh \"tail -f #{node[:pelias][:basedir]}/logs/osm.log\"" if node[:pelias][:osm][:index_data] == true
   execute "load osm #{name}" do
     action  :nothing
     user    node[:pelias][:user][:name]
