@@ -70,6 +70,7 @@ default[:nodejs][:checksum_linux_x64]         = '621777798ed9523a4ad1c4d934f94b7
 default[:nodejs][:dir]                        = '/usr'
 
 default[:elasticsearch][:version]             = '1.3.4'
+default[:elasticsearch][:skip_restart]        = true
 default[:elasticsearch][:allocated_memory]    = "#{(node[:memory][:total].to_i * 0.8).floor / 1024}m"
 default[:elasticsearch][:plugin][:mandatory]  = %w(pelias-analysis)
 default[:elasticsearch][:custom_config]       = {
