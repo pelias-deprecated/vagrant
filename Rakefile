@@ -16,6 +16,11 @@ task :build do
   #
   puts 'Running rubocop'.color(:blue)
   sh "rubocop #{File.dirname(sandbox)}/cookbook"
+
+  # Run specs
+  #
+  puts "\nRunning rspec".color(:blue)
+  sh "bundle exec rspec --color --format progress #{File.dirname(sandbox)}/cookbook"
 end
 
 task default: 'build'

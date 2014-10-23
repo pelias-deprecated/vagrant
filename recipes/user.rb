@@ -16,4 +16,5 @@ end
 
 user_ulimit node[:pelias][:user][:name] do
   filehandle_limit node[:pelias][:filehandle_limit]
+  not_if { node[:pelias][:user][:name] == 'root' }
 end
