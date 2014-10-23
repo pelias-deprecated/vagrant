@@ -11,6 +11,7 @@ Requirements
 ------------
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) >= 4.3.18
 * [Vagrant](https://www.vagrantup.com/downloads.html) >= 1.6.5
+* a system with ~8GB of RAM and ~60GB of free disk space
 
 Goals
 -----
@@ -38,10 +39,22 @@ Getting Started
 Tweaking Things
 ---------------
 * the vagrant_chef.rb file is your primary means of overriding any default values.
-* attempting to load a large set of geonames (e.g. -i all) will almost certainly result in failure. Choose only the regions you need:
-  * for example, if you want to test the data in Warsaw, only load the geonames data for Poland
+
+#### geonames
+* multiple geoname countries can be loaded by editing the geonames array followed by `vagrant provision`:
+```
+  'geonames' => {
+    'index_data' => true,
+    'country_codes' => [
+      'IT',
+      'DE'
+    ]
+  },
+```
+
+#### osm
 * osm extracts you may want to load can be found on the [Mapzen Metro Extracts](https://mapzen.com/metro-extracts) page.
-* multiple extracts can be loaded by updating the extracts hash:
+* multiple extracts can be loaded by updating the extracts hash followed by `vagrant provision`:
 ```
   'osm' => {
     'index_data' => true,
@@ -53,16 +66,6 @@ Tweaking Things
   }
 ```
 
-* multiple geoname countries can be loaded by editing the geonames array:
-```
-  'geonames' => {
-    'index_data' => true,
-    'country_codes' => [
-      'IT',
-      'DE'
-    ]
-  },
-```
 
 Bugs/Issues
 -----------
