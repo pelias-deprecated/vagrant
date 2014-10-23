@@ -9,7 +9,7 @@ describe 'pelias::default' do
   %w(
     setup
     config
-    index
+    schema
     geonames
     quattroshapes
     osm

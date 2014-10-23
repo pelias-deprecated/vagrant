@@ -42,9 +42,9 @@
   "elasticsearch": {
     "settings": {
       "index": {
-        "number_of_replicas": "<%= node[:pelias][:index][:replicas] %>",
-        "number_of_shards": "<%= node[:pelias][:index][:shards] %>",
-        "index.index_concurrency": "<%= node[:pelias][:index][:concurrency] %>"
+        "number_of_replicas": "<%= node[:pelias][:schema][:replicas] %>",
+        "number_of_shards": "<%= node[:pelias][:schema][:shards] %>",
+        "index.index_concurrency": "<%= node[:pelias][:schema][:concurrency] %>"
       }
     }
   }

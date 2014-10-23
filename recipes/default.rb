@@ -6,7 +6,7 @@
 %w(
   setup
   config
-  index
+  schema
   geonames
   quattroshapes
   osm

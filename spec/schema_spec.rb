@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'pelias::index' do
+describe 'pelias::schema' do
   before do
     stub_command('npm -g list bower').and_return(true)
   end
@@ -8,7 +8,7 @@ describe 'pelias::index' do
   context 'with create_index = true' do
     let(:chef_run) do
       ChefSpec::Runner.new do |node|
-        node.set[:pelias][:index][:create_index] = true
+        node.set[:pelias][:schema][:create_index] = true
       end.converge(described_recipe)
     end
 
@@ -50,8 +50,8 @@ describe 'pelias::index' do
   context 'with drop_index = true, create_index = false' do
     let(:chef_run) do
       ChefSpec::Runner.new do |node|
-        node.set[:pelias][:index][:drop_index]    = true
-        node.set[:pelias][:index][:create_index]  = false
+        node.set[:pelias][:schema][:drop_index]    = true
+        node.set[:pelias][:schema][:create_index]  = false
       end.converge(described_recipe)
     end
 

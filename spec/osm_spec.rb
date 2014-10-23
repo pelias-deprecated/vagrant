@@ -54,7 +54,7 @@ describe 'pelias::osm' do
 
       it 'should notify to write a log message' do
         resource = chef_run.remote_file("/opt/pelias/osm-data/#{c}.osm.pbf")
-        expect(resource).to notify('log[log osm load]').to(:write).immediately
+        expect(resource).to notify("log[log osm load #{c}]").to(:write).immediately
       end
 
       it "should notify to load #{c} into elasticsearch" do
@@ -63,7 +63,7 @@ describe 'pelias::osm' do
       end
 
       it 'should define a log message' do
-        resource = chef_run.log('log osm load')
+        resource = chef_run.log("log osm load #{c}")
         expect(resource).to do_nothing
       end
 

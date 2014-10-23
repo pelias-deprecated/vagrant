@@ -7,7 +7,7 @@ Vagrant.configure('2') do |config|
         'version' => '1.3.4'
       },
       'pelias' => {
-        'index' => {
+        'schema' => {
           'create_index' => true
         },
         'geonames' => {

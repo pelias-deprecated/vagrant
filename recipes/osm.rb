@@ -42,12 +42,12 @@ node[:pelias][:osm][:extracts].map do |name, url|
     source    url
     mode      0644
     backup    false
-    notifies  :write, 'log[log osm load]',         :immediately
+    notifies  :write, "log[log osm load #{name}]", :immediately
     notifies  :run,   "execute[load osm #{name}]", :immediately
     only_if { node[:pelias][:osm][:index_data] == true }
   end
 
-  log 'log osm load' do
+  log "log osm load #{name}" do
     action  :nothing
     message "Beginning load of OSM data into Elasticsearch for #{name}. Log: #{node[:pelias][:basedir]}/logs/osm_#{name}.log"
   end

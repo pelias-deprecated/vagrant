@@ -55,10 +55,10 @@ default[:pelias][:osm][:leveldb]              = "#{node[:pelias][:basedir]}/leve
 default[:pelias][:osm][:extracts]             = {}
 
 # schema
-default[:pelias][:index][:repository]         = 'https://github.com/pelias/schema.git'
-default[:pelias][:index][:revision]           = 'master'
-default[:pelias][:index][:drop_index]         = false
-default[:pelias][:index][:create_index]       = false
-default[:pelias][:index][:replicas]           = 0
-default[:pelias][:index][:shards]             = 1
-default[:pelias][:index][:concurrency]        = 32
+default[:pelias][:schema][:repository]        = 'https://github.com/pelias/schema.git'
+default[:pelias][:schema][:revision]          = 'master'
+default[:pelias][:schema][:drop_index]        = false
+default[:pelias][:schema][:create_index]      = false
+default[:pelias][:schema][:replicas]          = 0
+default[:pelias][:schema][:shards]            = 1
+default[:pelias][:schema][:concurrency]       = 32
