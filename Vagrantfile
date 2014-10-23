@@ -72,4 +72,4 @@ Vagrant.configure('2') do |config|
   # config.berkshelf.except = []
 end
 
-load 'VagrantChef.rb'
+load 'vagrant_chef.rb'
