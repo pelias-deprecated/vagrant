@@ -51,7 +51,7 @@ default[:pelias][:osm][:index_data]           = false
 default[:pelias][:osm][:timeout]              = 14_400 # 4 hours
 default[:pelias][:osm][:extracts]             = {
   'new-york' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/new-york.osm.pbf',
-  'syracuse' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/syracuse_new-york.osm.pbf'
+  'rome' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/rome_italy.osm.pbf'
 }
 
 # schema
