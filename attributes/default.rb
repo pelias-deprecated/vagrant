@@ -44,10 +44,15 @@ default[:pelias][:quattroshapes][:types]      = %w(admin0 admin1 admin2 local_ad
 default[:pelias][:quattroshapes][:timeout]    = 86_400 # 4 hours, note that this is per type
 
 # osm
+default[:pelias][:osm][:basedir]              = node[:pelias][:basedir]
 default[:pelias][:osm][:repository]           = 'https://github.com/mapzen/pelias-openstreetmap.git'
 default[:pelias][:osm][:revision]             = 'master'
 default[:pelias][:osm][:index_data]           = false
 default[:pelias][:osm][:timeout]              = 14_400 # 4 hours
+default[:pelias][:osm][:extracts]             = {
+  'new-york' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/new-york.osm.pbf',
+  'syracuse' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/syracuse_new-york.osm.pbf'
+}
 
 # schema
 default[:pelias][:index][:repository]         = 'https://github.com/pelias/schema.git'
@@ -57,8 +62,3 @@ default[:pelias][:index][:create_index]       = false
 default[:pelias][:index][:replicas]           = 0
 default[:pelias][:index][:shards]             = 1
 default[:pelias][:index][:concurrency]        = 32
-
-# osm data
-default[:pelias][:osm_data][:url]             = 'https://s3.amazonaws.com/metro-extracts.mapzen.com/new-york.osm.pbf'
-default[:pelias][:osm_data][:file]            = node[:pelias][:osm_data][:url].split('/').last
-default[:pelias][:osm_data][:basedir]         = node[:pelias][:basedir]

@@ -107,19 +107,20 @@ Vagrant.configure('2') do |config|
           'create_index' => true
         },
         'geonames' => {
+          'index_data' => true,
           'country_codes' => [
             'IT'
           ]
-          'index_data' => true
         },
         'quattroshapes' => {
           'index_data' => true
         },
         'osm' => {
-          'index_data' => true
-        },
-        'osm_data' => {
-          'url' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/florence_italy.osm.pbf'
+          'index_data' => true,
+          'extracts' => {
+            'rome' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/rome_italy.osm.pbf',
+            'florence' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/florence_italy.osm.pbf'
+          }
         }
       }
     }

@@ -28,7 +28,6 @@ execute 'npm install pelias-geonames' do
   command 'npm install'
   cwd     "#{node[:pelias][:basedir]}/pelias-geonames/current"
   environment('HOME' => node[:pelias][:user][:home])
-  only_if { node[:pelias][:geonames][:index_data] == true }
 end
 
 # download and load, using the downloaded file
@@ -49,7 +48,7 @@ node[:pelias][:geonames][:country_codes].each do |country|
     only_if { node[:pelias][:geonames][:index_data] == true && !::File.exist?("#{node[:pelias][:geonames][:data_dir]}/#{country}.zip") }
   end
 
-  log "Commencing load of geonames for #{country} into Elasticsearch. To follow along: vagrant ssh && tail -f #{node[:pelias][:basedir]}/logs/geonames_#{country}.log" if node[:pelias][:geonames][:index_data] == true
+  log "Commencing load of geonames for #{country} into Elasticsearch. To follow along: vagrant ssh \"tail -f #{node[:pelias][:basedir]}/logs/geonames_#{country}.log\"" if node[:pelias][:geonames][:index_data] == true
   execute "load geonames for #{country}" do
     action  :nothing
     user    node[:pelias][:user][:name]

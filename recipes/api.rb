@@ -3,8 +3,6 @@
 # Recipe:: api_deploy
 #
 
-# deploy
-#
 deploy node[:pelias][:api][:deploy_to] do
   user      node[:pelias][:user][:name]
   repo      node[:pelias][:api][:repository]

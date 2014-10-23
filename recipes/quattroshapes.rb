@@ -19,7 +19,6 @@ deploy "#{node[:pelias][:basedir]}/quattroshapes-pipeline" do
   create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :run, 'execute[npm install quattroshapes-pipeline]', :immediately
-  notifies :create_if_missing, 'remote_file[download quattroshapes]', :immediately
   only_if { node[:pelias][:quattroshapes][:index_data] == true }
 end
 
@@ -32,12 +31,12 @@ execute 'npm install quattroshapes-pipeline' do
 end
 
 remote_file 'download quattroshapes' do
-  action    :nothing
+  action    :create_if_missing
   backup    false
   path      "#{node[:pelias][:basedir]}/#{node[:pelias][:quattroshapes][:file_name]}"
   source    node[:pelias][:quattroshapes][:data_url]
   notifies  :run, 'execute[extract quattroshapes data]', :immediately
-  only_if { node[:pelias][:quattroshapes][:index_data] == true && !::File.exist?("#{node[:pelias][:basedir]}/#{node[:pelias][:quattroshapes][:file_name]}") }
+  only_if { node[:pelias][:quattroshapes][:index_data] == true }
 end
 
 execute 'extract quattroshapes data' do
@@ -49,12 +48,11 @@ end
 
 node[:pelias][:quattroshapes][:types].each do |type|
   execute "load quattroshapes #{type}" do
-    action      :run
+    action      :nothing
     user        node[:pelias][:user][:name]
     command     "node example/runme.js #{type} >#{node[:pelias][:basedir]}/logs/quattroshapes_#{type}.log 2>&1"
     cwd         "#{node[:pelias][:basedir]}/quattroshapes-pipeline/current"
     timeout     node[:pelias][:quattroshapes][:timeout]
-    only_if     { node[:pelias][:quattroshapes][:index_data] == true }
     subscribes  :run, 'execute[extract quattroshapes data]', :immediately
     environment('PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}")
   end
