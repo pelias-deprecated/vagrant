@@ -33,7 +33,7 @@ default[:pelias][:geonames][:data_dir]        = "#{node[:pelias][:basedir]}/geon
 default[:pelias][:geonames][:revision]        = 'master'
 default[:pelias][:geonames][:index_data]      = false
 default[:pelias][:geonames][:country_codes]   = %w(IT) # Italy
-default[:pelias][:geonames][:timeout]         = 14_400 # 4 hours
+default[:pelias][:geonames][:timeout]         = 7200 # 2 hours
 
 # quattroshapes
 default[:pelias][:quattroshapes][:repository] = 'https://github.com/pelias/quattroshapes-pipeline.git'
@@ -50,7 +50,7 @@ default[:pelias][:osm][:data_dir]             = "#{node[:pelias][:basedir]}/osm-
 default[:pelias][:osm][:repository]           = 'https://github.com/mapzen/pelias-openstreetmap.git'
 default[:pelias][:osm][:revision]             = 'master'
 default[:pelias][:osm][:index_data]           = false
-default[:pelias][:osm][:timeout]              = 14_400 # 4 hours
+default[:pelias][:osm][:timeout]              = 7200 # 2 hours
 default[:pelias][:osm][:leveldb]              = "#{node[:pelias][:basedir]}/leveldb"
 default[:pelias][:osm][:extracts]             = {}
 
