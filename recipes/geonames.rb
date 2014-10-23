@@ -3,12 +3,6 @@
 # Recipe:: geonames
 #
 
-directory node[:pelias][:geonames][:data_dir] do
-  owner  node[:pelias][:user][:name]
-  group  node[:pelias][:user][:name]
-  mode   0755
-end
-
 deploy "#{node[:pelias][:basedir]}/pelias-geonames" do
   user        node[:pelias][:user][:name]
   repository  node[:pelias][:geonames][:repository]

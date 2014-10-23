@@ -52,10 +52,7 @@ default[:pelias][:osm][:revision]             = 'master'
 default[:pelias][:osm][:index_data]           = false
 default[:pelias][:osm][:timeout]              = 14_400 # 4 hours
 default[:pelias][:osm][:leveldb]              = "#{node[:pelias][:basedir]}/leveldb"
-default[:pelias][:osm][:extracts]             = {
-  'new-york' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/new-york.osm.pbf',
-  'rome' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/rome_italy.osm.pbf'
-}
+default[:pelias][:osm][:extracts]             = {}
 
 # schema
 default[:pelias][:index][:repository]         = 'https://github.com/pelias/schema.git'

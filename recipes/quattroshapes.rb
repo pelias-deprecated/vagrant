@@ -3,12 +3,6 @@
 # Recipe:: quattroshapes
 #
 
-directory node[:pelias][:quattroshapes][:data_dir] do
-  owner  node[:pelias][:user][:name]
-  group  node[:pelias][:user][:name]
-  mode   0755
-end
-
 deploy "#{node[:pelias][:basedir]}/quattroshapes-pipeline" do
   user        node[:pelias][:user][:name]
   repository  node[:pelias][:quattroshapes][:repository]

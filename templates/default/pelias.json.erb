@@ -35,7 +35,7 @@
       "leveldbpath": "<%= node[:pelias][:osm][:leveldb] %>",
       "import": [{
         "type": { "node": "osmnode", "way": "osmway" },
-        "filename": "<%= node[:pelias][:osm][:file] %>"
+        "filename": "<%= @osm_data_file %>"
       }]
     }
   },

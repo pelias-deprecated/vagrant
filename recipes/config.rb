@@ -18,4 +18,7 @@ end
 template "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}" do
   source  "#{node[:pelias][:cfg_file]}.erb"
   mode    0644
+  variables({
+    osm_data_file: ''
+  })
 end
