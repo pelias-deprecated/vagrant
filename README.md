@@ -66,3 +66,7 @@ Bugs
 * there's an issue with geonames which will cause the load to always run unless you set `'index_data' => false` in vagrant_chef.rb explicitly
   * # NOTE: there's a bug here in that the download doesn't write to data_dir, so this will always run at the moment.
 
+TODO
+----
+* end to end testing
+* remaining specs
