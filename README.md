@@ -81,4 +81,5 @@ Bugs/Issues
 TODO
 ----
 * end to end testing
+* more graceful handling of guarding against attempt to create index if it already exists
 * remaining specs
