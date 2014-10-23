@@ -44,7 +44,7 @@ default[:pelias][:quattroshapes][:types]      = %w(admin0 admin1 admin2 local_ad
 default[:pelias][:quattroshapes][:timeout]    = 86_400 # 4 hours, note that this is per type
 
 # osm
-default[:pelias][:osm][:basedir]              = node[:pelias][:basedir]
+default[:pelias][:osm][:data_dir]             = "#{node[:pelias][:basedir]}/osm-data"
 default[:pelias][:osm][:repository]           = 'https://github.com/mapzen/pelias-openstreetmap.git'
 default[:pelias][:osm][:revision]             = 'master'
 default[:pelias][:osm][:index_data]           = false

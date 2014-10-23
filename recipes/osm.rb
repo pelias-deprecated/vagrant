@@ -3,6 +3,12 @@
 # Recipe:: osm
 #
 
+directory node[:pelias][:osm][:data_dir] do
+  owner  node[:pelias][:user][:name]
+  group  node[:pelias][:user][:name]
+  mode   0755
+end
+
 deploy "#{node[:pelias][:basedir]}/pelias-osm" do
   user        node[:pelias][:user][:name]
   repository  node[:pelias][:osm][:repository]
@@ -35,7 +41,7 @@ node[:pelias][:osm][:extracts].each do |name, url|
   node.set[:pelias][:osm][:file] = data_file
   include_recipe 'pelias::config'
 
-  remote_file "#{node[:pelias][:osm][:basedir]}/#{data_file}" do
+  remote_file "#{node[:pelias][:osm][:data_dir]}/#{data_file}" do
     action    :create_if_missing
     source    url
     mode      0644

@@ -31,7 +31,7 @@
       "datapath": "<%= node[:pelias][:quattroshapes][:data_dir] %>"
     },
     "openstreetmap": {
-      "datapath": "<%= node[:pelias][:osm][:basedir] %>",
+      "datapath": "<%= node[:pelias][:osm][:data_dir] %>",
       "leveldbpath": "<%= node[:pelias][:osm][:leveldb] %>",
       "import": [{
         "type": { "node": "osmnode", "way": "osmway" },
