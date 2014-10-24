@@ -19,7 +19,7 @@ Goals
   * learn what dependencies you'll need, what the workflow looks like and how you can mold that to your own environment and needs
 * provide a sandbox environment for people to do quick development against Pelias
 
-Getting Started
+Getting started
 ---------------
 * running `vagrant up` will:
   * boot a linux instance that you can interact with via `vagrant ssh`
@@ -36,7 +36,7 @@ Getting Started
 * `vagrant up` will bring it back online for use
 * to start from scratch: `vagrant destroy; vagrant up`
 
-Tweaking Things
+Tweaking things
 ---------------
 * the vagrant_chef.rb file is your primary means of overriding any default values
 * as an example, let's presume you want to load osm data for locations in Italy and Germany:
