@@ -74,4 +74,20 @@ describe 'pelias::osm' do
     end
   end
 
+  context 'with index_data = false' do
+    let(:chef_run) do
+      ChefSpec::Runner.new do |node|
+        node.set[:pelias][:osm][:index_data] = false
+        node.set[:pelias][:osm][:extracts] = {
+          'rome'      => 'http://rome.osm.pbf',
+          'florence'  => 'http://florence.osm.pbf'
+        }
+      end.converge(described_recipe)
+    end
+
+    it 'should not deploy pelias-osm' do
+      expect(chef_run).to_not deploy_deploy('/opt/pelias/pelias-osm')
+    end
+  end
+
 end
