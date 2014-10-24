@@ -48,6 +48,7 @@ describe 'pelias::setup' do
     /opt/pelias
     /opt/pelias/logs
     /opt/pelias/geonames-data
+    /opt/pelias/quattroshapes-data
     /opt/pelias/osm-data
     /opt/pelias/leveldb
   ).each do |dir|

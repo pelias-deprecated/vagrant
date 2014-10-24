@@ -27,7 +27,7 @@ end
 remote_file 'download quattroshapes' do
   action    :create_if_missing
   backup    false
-  path      "#{node[:pelias][:basedir]}/#{node[:pelias][:quattroshapes][:file_name]}"
+  path      "#{node[:pelias][:quattroshapes][:data_dir]}/#{node[:pelias][:quattroshapes][:file_name]}"
   source    node[:pelias][:quattroshapes][:data_url]
   notifies  :run,   'execute[extract quattroshapes data]', :immediately
   notifies  :write, 'log[log quattroshapes data load]',    :immediately
@@ -42,7 +42,7 @@ end
 execute 'extract quattroshapes data' do
   action  :nothing
   user    node[:pelias][:user][:name]
-  cwd     node[:pelias][:basedir]
+  cwd     node[:pelias][:quattroshapes][:data_dir]
   command "tar zxf #{node[:pelias][:quattroshapes][:file_name]} -C #{node[:pelias][:quattroshapes][:data_dir]} --strip-components=1"
 end
 

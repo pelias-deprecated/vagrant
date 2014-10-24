@@ -20,6 +20,11 @@ describe 'pelias::api' do
     expect(resource).to notify('execute[npm install pelias-api]').to(:run).immediately
   end
 
+  it 'should define npm install pelias-api' do
+    resource = chef_run.execute('npm install pelias-api')
+    expect(resource).to do_nothing
+  end
+
   it 'should include pelias::api_service' do
     expect(chef_run).to include_recipe 'pelias::api_service'
   end
