@@ -38,7 +38,7 @@ default[:pelias][:geonames][:timeout]         = 7200 # 2 hours
 # quattroshapes
 default[:pelias][:quattroshapes][:repository] = 'https://github.com/pelias/quattroshapes-pipeline.git'
 default[:pelias][:quattroshapes][:revision]   = 'master'
-default[:pelias][:quattroshapes][:data_url]   = 'https://s3.amazonaws.com/peter.johnson/quattroshapes-simplified.tar.gz'
+default[:pelias][:quattroshapes][:data_url]   = 'http://data.pelias.mapzen.com/quattroshapes-simplified.tar.gz'
 default[:pelias][:quattroshapes][:file_name]  = node[:pelias][:quattroshapes][:data_url].split('/').last
 default[:pelias][:quattroshapes][:data_dir]   = "#{node[:pelias][:basedir]}/quattroshapes-data"
 default[:pelias][:quattroshapes][:index_data] = false
