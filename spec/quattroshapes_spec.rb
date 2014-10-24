@@ -35,7 +35,7 @@ describe 'pelias::quattroshapes' do
       expect(chef_run).to create_remote_file_if_missing('download quattroshapes').with(
         backup: false,
         path:   '/opt/pelias/quattroshapes-data/quattroshapes-simplified.tar.gz',
-        source: 'http://data.pelias.mapzen.com/quattroshapes-simplified.tar.gz'
+        source: 'http://data.mapzen.com/quattroshapes-simplified.tar.gz'
       )
     end
 
