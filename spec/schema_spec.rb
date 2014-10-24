@@ -3,6 +3,7 @@ require 'spec_helper'
 describe 'pelias::schema' do
   before do
     stub_command('npm -g list bower').and_return(true)
+    stub_command("curl -s 'localhost:9200/_cat/indices?v' | grep pelias").and_return(false)
   end
 
   context 'with create_index = true' do
@@ -41,7 +42,6 @@ describe 'pelias::schema' do
         cwd:            '/opt/pelias/pelias-schema/current',
         retries:        1,
         retry_delay:    15,
-        ignore_failure: true,
         environment: { 'PELIAS_CONFIG' => '/etc/pelias/pelias.json' }
       )
     end
