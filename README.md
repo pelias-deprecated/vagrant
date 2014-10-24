@@ -82,3 +82,8 @@ TODO
 ----
 * end to end testing
 * remaining specs
+
+Contributing
+------------
+* yes please
+* fork, edit, add/update specs, pull request
