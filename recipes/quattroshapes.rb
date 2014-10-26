@@ -24,26 +24,19 @@ execute 'npm install quattroshapes-pipeline' do
   environment('HOME' => node[:pelias][:user][:home])
 end
 
-remote_file 'download quattroshapes' do
-  action    :create_if_missing
-  backup    false
-  path      "#{node[:pelias][:quattroshapes][:data_dir]}/#{node[:pelias][:quattroshapes][:file_name]}"
-  source    node[:pelias][:quattroshapes][:data_url]
-  notifies  :run,   'execute[extract quattroshapes data]', :immediately
-  notifies  :write, 'log[log quattroshapes data load]',    :immediately
+ark 'quattroshapes-data' do
+  action            :put
+  owner             node[:pelias][:user][:name]
+  url               node[:pelias][:quattroshapes][:data_url]
+  checksum          node[:pelias][:quattroshapes][:checksum]
+  path              node[:pelias][:basedir]
+  notifies          :write, 'log[log quattroshapes data load]', :immediately
   only_if { node[:pelias][:quattroshapes][:index_data] == true }
 end
 
 log 'log quattroshapes data load' do
   action  :nothing
   message "Beginning load of Quattroshapes data into Elasticsearch. See #{node[:pelias][:basedir]}/logs."
-end
-
-execute 'extract quattroshapes data' do
-  action  :nothing
-  user    node[:pelias][:user][:name]
-  cwd     node[:pelias][:quattroshapes][:data_dir]
-  command "tar zxf #{node[:pelias][:quattroshapes][:file_name]} -C #{node[:pelias][:quattroshapes][:data_dir]} --strip-components=1"
 end
 
 node[:pelias][:quattroshapes][:types].each do |type|
@@ -53,7 +46,7 @@ node[:pelias][:quattroshapes][:types].each do |type|
     command     "node example/runme.js #{type} >#{node[:pelias][:basedir]}/logs/quattroshapes_#{type}.log 2>&1"
     cwd         "#{node[:pelias][:basedir]}/quattroshapes-pipeline/current"
     timeout     node[:pelias][:quattroshapes][:timeout]
-    subscribes  :run, 'execute[extract quattroshapes data]', :immediately
+    subscribes  :run, 'ark[quattroshapes-data]', :immediately
     environment('PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}")
   end
 end

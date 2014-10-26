@@ -8,6 +8,7 @@ version          '0.1.0'
 
 %w(
   apt
+  ark
   git
   elasticsearch
   java
