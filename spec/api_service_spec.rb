@@ -14,4 +14,9 @@ describe 'pelias::api_service' do
       env:            { 'PELIAS_CONFIG' => '/etc/pelias/pelias.json', 'NODE_ENV' => 'dev', 'PORT' => '3100' }
     )
   end
+
+  it 'runit hack for 100% test coverage: should define a service pelias-api' do
+    resource = chef_run.service('pelias-api')
+    expect(resource).to do_nothing
+  end
 end
