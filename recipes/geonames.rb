@@ -39,8 +39,6 @@ node[:pelias][:geonames][:country_codes].each do |country|
     )
     notifies :write, "log[log geonames load for #{country}]", :immediately
     notifies :run,   "execute[load geonames for #{country}]", :immediately
-    # NOTE: there's a bug here in that the download doesn't write to data_dir, so this will always run at the moment.
-    #   https://github.com/mapzen/pelias-geonames/issues/9
     only_if { node[:pelias][:geonames][:index_data] == true && !::File.exist?("#{node[:pelias][:geonames][:data_dir]}/#{country}.zip") }
   end
 
