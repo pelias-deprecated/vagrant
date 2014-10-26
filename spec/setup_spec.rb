@@ -48,14 +48,12 @@ describe 'pelias::setup' do
     /opt/pelias
     /opt/pelias/logs
     /opt/pelias/geonames-data
-    /opt/pelias/quattroshapes-data
     /opt/pelias/osm-data
     /opt/pelias/leveldb
   ).each do |dir|
     it "it should create #{dir}" do
       expect(chef_run).to create_directory(dir).with(
         owner:  'pelias',
-        group:  'pelias',
         mode:   0755
       )
     end

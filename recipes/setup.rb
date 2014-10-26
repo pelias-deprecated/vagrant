@@ -33,39 +33,27 @@ directory node[:pelias][:basedir] do
   recursive true
   mode      0755
   owner     node[:pelias][:user][:name]
-  group     node[:pelias][:user][:name]
 end
 
 directory "#{node[:pelias][:basedir]}/logs" do
   action  :create
   mode    0755
   owner   node[:pelias][:user][:name]
-  group   node[:pelias][:user][:name]
 end
 
 # geonames
 directory node[:pelias][:geonames][:data_dir] do
   owner  node[:pelias][:user][:name]
-  group  node[:pelias][:user][:name]
-  mode   0755
-end
-
-# quattroshapes
-directory node[:pelias][:quattroshapes][:data_dir] do
-  owner  node[:pelias][:user][:name]
-  group  node[:pelias][:user][:name]
   mode   0755
 end
 
 # osm
 directory node[:pelias][:osm][:data_dir] do
   owner  node[:pelias][:user][:name]
-  group  node[:pelias][:user][:name]
   mode   0755
 end
 
 directory node[:pelias][:osm][:leveldb] do
   owner  node[:pelias][:user][:name]
-  group  node[:pelias][:user][:name]
   mode   0755
 end

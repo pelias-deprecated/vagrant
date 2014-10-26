@@ -36,7 +36,8 @@ default[:pelias][:geonames][:country_codes]   = %w(IT) # Italy
 default[:pelias][:geonames][:timeout]         = 7200 # 2 hours
 
 # quattroshapes
-default[:pelias][:quattroshapes][:data_url]   = 'http://data.mapzen.com/quattroshapes-simplified.tar.gz'
+default[:pelias][:quattroshapes][:data_url]   = 'http://data.mapzen.com/quattroshapes/quattroshapes-simplified.tar.gz'
+default[:pelias][:quattroshapes][:checksum]   = 'e89cd4cb232aaea00d14972247ac8229a74378968901af4661b8aa7fada23bcb'
 default[:pelias][:quattroshapes][:repository] = 'https://github.com/pelias/quattroshapes-pipeline.git'
 default[:pelias][:quattroshapes][:revision]   = 'master'
 default[:pelias][:quattroshapes][:file_name]  = node[:pelias][:quattroshapes][:data_url].split('/').last

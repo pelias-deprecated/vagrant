@@ -10,7 +10,6 @@ describe 'pelias::config' do
     expect(chef_run).to create_directory('/etc/pelias').with(
       recursive:  true,
       owner:      'pelias',
-      group:      'pelias',
       mode:       0755
     )
   end
@@ -19,7 +18,6 @@ describe 'pelias::config' do
     expect(chef_run).to create_directory('/var/log/esclient').with(
       recursive:  true,
       owner:      'pelias',
-      group:      'pelias',
       mode:       0755
     )
   end

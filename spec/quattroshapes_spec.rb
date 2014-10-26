@@ -31,31 +31,17 @@ describe 'pelias::quattroshapes' do
       expect(resource).to notify('execute[npm install quattroshapes-pipeline]').to(:run).immediately
     end
 
-    it 'should download quattroshapes if they do not exist' do
-      expect(chef_run).to create_remote_file_if_missing('download quattroshapes').with(
-        backup: false,
-        path:   '/opt/pelias/quattroshapes-data/quattroshapes-simplified.tar.gz',
-        source: 'http://data.mapzen.com/quattroshapes-simplified.tar.gz'
+    it 'should ark quattroshapes-data' do
+      expect(chef_run).to put_ark('quattroshapes-data').with(
+        owner:    'pelias',
+        url:      'http://data.mapzen.com/quattroshapes/quattroshapes-simplified.tar.gz',
+        checksum: 'e89cd4cb232aaea00d14972247ac8229a74378968901af4661b8aa7fada23bcb',
+        path:     '/opt/pelias'
       )
-    end
-
-    it 'should notify to write a logfile' do
-      resource = chef_run.remote_file('download quattroshapes')
-      expect(resource).to notify('log[log quattroshapes data load]').to(:write).immediately
-    end
-
-    it 'should notify to extract quattroshapes data' do
-      resource = chef_run.remote_file('download quattroshapes')
-      expect(resource).to notify('execute[extract quattroshapes data]').to(:run).immediately
     end
 
     it 'should define the log' do
       resource = chef_run.log('log quattroshapes data load')
-      expect(resource).to do_nothing
-    end
-
-    it 'should define the quattroshapes data extract' do
-      resource = chef_run.execute('extract quattroshapes data')
       expect(resource).to do_nothing
     end
 
