@@ -40,11 +40,6 @@ describe 'pelias::quattroshapes' do
       )
     end
 
-    it 'should notify to write a logfile' do
-      resource = chef_run.ark('quattroshapes-data')
-      expect(resource).to notify('log[log quattroshapes data load]').to(:write).immediately
-    end
-
     it 'should define the log' do
       resource = chef_run.log('log quattroshapes data load')
       expect(resource).to do_nothing
