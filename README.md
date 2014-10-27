@@ -17,7 +17,7 @@ Goals
 -----
 * provide, via the included Chef code, a reference for installing your own Pelias system:
   * learn what dependencies you'll need, what the workflow looks like and how you can mold that to your own environment and needs
-* provide a sandbox environment for people to do quick development against Pelias
+* provide a sandbox environment for people to do quick development against a local Pelias instance
 
 Getting started
 ---------------
