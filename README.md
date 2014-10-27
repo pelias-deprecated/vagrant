@@ -39,7 +39,7 @@ Getting started
 Tweaking things
 ---------------
 * the pelias_settings.rb file is your primary means of overriding any default values
-* as an example, let's presume you want to load osm data for locations in Italy and Germany:
+* as an example, let's suppose you want to load osm data for a location in Germany:
 
 #### geonames
 * multiple geoname countries can be loaded by editing the geonames array followed by `vagrant provision` (or `vagrant up` if you haven't yet started the instance):
@@ -47,7 +47,6 @@ Tweaking things
   'geonames' => {
     'index_data' => true,
     'country_codes' => [
-      'IT',
       'DE'
     ]
   },
@@ -60,13 +59,10 @@ Tweaking things
   'osm' => {
     'index_data' => true,
     'extracts' => {
-      'rome' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/rome_italy.osm.pbf',
-      'florence' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/florence_italy.osm.pbf',
       'munich' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/munich_germany.osm.pbf'
     }
   }
 ```
-
 
 Bugs/Issues
 -----------
