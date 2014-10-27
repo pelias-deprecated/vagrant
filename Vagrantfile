@@ -7,8 +7,8 @@ Vagrant.configure('2') do |config|
   config.vm.box_url  = 'https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box'
 
   config.vm.provider 'virtualbox' do |v|
+    v.cpus   = 2
     v.memory = 6144
-    v.cpus = 2
   end
 
   config.vm.network :private_network, ip: '33.33.33.10'
