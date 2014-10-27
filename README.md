@@ -21,8 +21,8 @@ Goals
 
 Getting started
 ---------------
-* running `vagrant up` will:
-  * boot a linux instance that you can interact with via `vagrant ssh`
+* from the repository root run `vagrant up`, which will:
+  * boot a linux instance that you can connect to via `vagrant ssh`
   * install all the dependencies required to run load and run Pelias:
     * elasticsearch
     * nodejs
@@ -38,7 +38,7 @@ Getting started
 
 Tweaking things
 ---------------
-* the vagrant_chef.rb file is your primary means of overriding any default values
+* the pelias_settings.rb file is your primary means of overriding any default values
 * as an example, let's presume you want to load osm data for locations in Italy and Germany:
 
 #### geonames
@@ -78,14 +78,13 @@ Bugs/Issues
     * # NOTE: there's a bug here in that the download doesn't write to data_dir, so this will always run at the moment.
   * unzip fail: https://github.com/mapzen/pelias-geonames/issues/1
 * quattroshapes take a long time to load ( >8 hours in this type of environment)
-  * look into breaking quattroshapes up into more easily ingested chunks: 
+  * look into breaking quattroshapes up into more easily ingested chunks
 
 TODO
 ----
 * end to end testing
-* remaining specs
 
 Contributing
 ------------
-* yes please
-* fork, edit, add/update specs, pull request
+* yes please!
+* fork, create a feature branch, make your changes, add/update specs, submit a pull request
