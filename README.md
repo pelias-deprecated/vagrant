@@ -42,7 +42,7 @@ Tweaking things
 * as an example, let's suppose you want to load osm data for a location in Germany:
 
 #### geonames
-* multiple geoname countries can be loaded by editing the geonames array followed by `vagrant provision` (or `vagrant up` if you haven't yet started the instance):
+* multiple geoname countries can be loaded by editing the geonames array:
 ```
   'geonames' => {
     'index_data' => true,
@@ -54,7 +54,7 @@ Tweaking things
 
 #### osm
 * osm extracts you may want to load can be found on the [Mapzen Metro Extracts](https://mapzen.com/metro-extracts) page.
-* multiple extracts can be loaded by updating the extracts hash followed by `vagrant provision` (or `vagrant up` if you haven't yet started the instance):
+* multiple extracts can be loaded by updating the extracts hash:
 ```
   'osm' => {
     'index_data' => true,
@@ -63,6 +63,8 @@ Tweaking things
     }
   }
 ```
+
+* now that you've edited pelias_settings.rb, run `vagrant up` to start loading data, or `vagrant provision` if you'd previously started the instance
 
 Bugs/Issues
 -----------
