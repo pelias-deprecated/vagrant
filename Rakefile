@@ -28,7 +28,7 @@ task default: 'build'
 private
 
 def prepare_sandbox(sandbox)
-  files = %w(Rakefile *.md *.rb attributes definitions files libraries providers recipes resources spec templates)
+  files = %w(Vagrantfile Rakefile *.md *.rb attributes definitions files libraries providers recipes resources spec templates)
 
   puts 'Preparing sandbox'.color(:blue)
   rm_rf sandbox
