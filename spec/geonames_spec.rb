@@ -16,7 +16,7 @@ describe 'pelias::geonames' do
     it 'should deploy pelias-geonames' do
       expect(chef_run).to deploy_deploy('/opt/pelias/pelias-geonames').with(
         user:     'pelias',
-        repo:     'https://github.com/mapzen/pelias-geonames.git',
+        repo:     'https://github.com/pelias/geonames.git',
         revision: 'master',
         migrate:  false
       )

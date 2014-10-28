@@ -19,7 +19,7 @@ describe 'pelias::osm' do
     it 'should deploy pelias-osm' do
       expect(chef_run).to deploy_deploy('/opt/pelias/pelias-osm').with(
         user:     'pelias',
-        repo:     'https://github.com/mapzen/pelias-openstreetmap.git',
+        repo:     'https://github.com/pelias/openstreetmap.git',
         revision: 'master',
         migrate:  false
       )
