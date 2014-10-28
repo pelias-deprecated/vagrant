@@ -28,7 +28,7 @@ default[:pelias][:api][:restart_wait]         = 60
 default[:pelias][:api][:shutdown_timeout]     = 30
 
 # geonames
-default[:pelias][:geonames][:repository]      = 'https://github.com/mapzen/pelias-geonames.git'
+default[:pelias][:geonames][:repository]      = 'https://github.com/pelias/geonames.git'
 default[:pelias][:geonames][:data_dir]        = "#{node[:pelias][:basedir]}/geonames-data"
 default[:pelias][:geonames][:revision]        = 'master'
 default[:pelias][:geonames][:index_data]      = false
@@ -48,7 +48,7 @@ default[:pelias][:quattroshapes][:timeout]    = 86_400 # 4 hours, note that this
 
 # osm
 default[:pelias][:osm][:data_dir]             = "#{node[:pelias][:basedir]}/osm-data"
-default[:pelias][:osm][:repository]           = 'https://github.com/mapzen/pelias-openstreetmap.git'
+default[:pelias][:osm][:repository]           = 'https://github.com/pelias/openstreetmap.git'
 default[:pelias][:osm][:revision]             = 'master'
 default[:pelias][:osm][:index_data]           = false
 default[:pelias][:osm][:timeout]              = 7200 # 2 hours

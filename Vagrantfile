@@ -9,13 +9,15 @@ Vagrant.configure('2') do |config|
   config.vm.provider 'virtualbox' do |v|
     host = RbConfig::CONFIG['host_os']
 
-    # give VM 1/2 system memory & access to all cpu cores on the host
+    # give 1/2 RAM to VM. Setting this to 4, for example,
+    #   would give 1/4 RAM to the VM.
+    mem_divisor = 2
     if host =~ /darwin/
       cpu  = `sysctl -n hw.ncpu`.to_i
-      mem  = `sysctl -n hw.memsize`.to_i / 1024 / 1024 / 2
+      mem  = `sysctl -n hw.memsize`.to_i / 1024 / 1024 / mem_divisor
     elsif host =~ /linux/
       cpu = `nproc`.to_i
-      mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / 4
+      mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / mem_divisor
     else
       cpu = 2
       mem = 2048
