@@ -9,7 +9,7 @@ default[:nodejs][:dir]                        = '/usr'
 # elasticsearch
 default[:elasticsearch][:version]             = '1.3.4'
 default[:elasticsearch][:skip_restart]        = true
-default[:elasticsearch][:allocated_memory]    = "#{(node[:memory][:total].to_i * 0.8).floor / 1024}m"
+default[:elasticsearch][:allocated_memory]    = "#{(node[:memory][:total].to_i * 0.7).floor / 1024}m"
 default[:elasticsearch][:plugin][:mandatory]  = %w(pelias-analysis)
 default[:elasticsearch][:custom_config]       = {
   'threadpool.bulk.type'      => 'fixed',
