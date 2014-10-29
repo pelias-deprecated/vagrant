@@ -16,18 +16,19 @@ log 'Installing Elasticsearch'
 include_recipe 'elasticsearch::default'
 include_recipe 'elasticsearch::plugins'
 
-# force an ES restart, since the cookbook defaults
-#   to :delayed.
-service 'elasticsearch' do
-  action :restart
+# need to start ES after the initial installation, but
+#   not after.
+file '/etc/.elasticsearch_initial_install.lock' do
+  action :nothing
 end
 
-execute 'install bower' do
-  command 'npm install bower -g'
-  user    'root'
-  not_if  'npm -g list bower'
+execute 'initial ES start' do
+  command   'service elasticsearch start'
+  not_if    { ::File.exist?('/etc/.elasticsearch_initial_install.lock') }
+  notifies  :create, 'file[/etc/.elasticsearch_initial_install.lock]', :immediately
 end
 
+# base/logs
 directory node[:pelias][:basedir] do
   action    :create
   recursive true

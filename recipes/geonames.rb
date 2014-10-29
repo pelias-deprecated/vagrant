@@ -3,6 +3,15 @@
 # Recipe:: geonames
 #
 
+# skip deploying if we don't need to
+node[:pelias][:geonames][:country_codes].each do |country|
+  download = "#{node[:pelias][:geonames][:data_dir]}/#{country}.zip"
+  if !File.exist?(download)
+    node.set[:pelias][:geonames][:shall_we_deploy] = true
+    break
+  end
+end 
+
 deploy "#{node[:pelias][:basedir]}/geonames" do
   user        node[:pelias][:user][:name]
   repository  node[:pelias][:geonames][:repository]
@@ -13,7 +22,7 @@ deploy "#{node[:pelias][:basedir]}/geonames" do
   create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :run, 'execute[npm install geonames]', :immediately
-  only_if { node[:pelias][:geonames][:index_data] == true }
+  only_if { node[:pelias][:geonames][:index_data] == true && node[:pelias][:geonames][:shall_we_deploy] == true }
 end
 
 execute 'npm install geonames' do

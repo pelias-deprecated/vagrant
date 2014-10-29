@@ -73,9 +73,6 @@ Bugs/Issues
 * due to an issue in Elasticsearch 0.3.10 cookbook, setting `default[:elasticsearch][:version]` inside the attributes file does not take effect
   * current workaround is to override the version in pelias_settings.rb
   * future fix is to move to Elasticsearch 0.3.11 when it's pushed to opscode
-* geonames
-  * there's an issue with geonames which will cause the load to always run unless you set `'index_data' => false` in vagrant_chef.rb explicitly
-    * # NOTE: there's a bug here in that the download doesn't write to data_dir, so this will always run at the moment.
 * quattroshapes take a long time to load ( >8 hours in this type of environment)
   * look into breaking quattroshapes up into more easily ingested chunks
 

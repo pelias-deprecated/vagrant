@@ -13,6 +13,7 @@ deploy "#{node[:pelias][:basedir]}/pelias-schema" do
   create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :run, 'execute[npm install pelias-schema]', :immediately
+  not_if  "curl -s 'localhost:9200/_cat/indices?v' | grep pelias"
   only_if { node[:pelias][:schema][:drop_index] == true || node[:pelias][:schema][:create_index] == true }
 end
 
