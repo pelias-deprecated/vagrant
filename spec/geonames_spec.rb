@@ -13,8 +13,8 @@ describe 'pelias::geonames' do
       end.converge(described_recipe)
     end
 
-    it 'should deploy pelias-geonames' do
-      expect(chef_run).to deploy_deploy('/opt/pelias/pelias-geonames').with(
+    it 'should deploy geonames' do
+      expect(chef_run).to deploy_deploy('/opt/pelias/geonames').with(
         user:     'pelias',
         repo:     'https://github.com/pelias/geonames.git',
         revision: 'master',
@@ -22,14 +22,14 @@ describe 'pelias::geonames' do
       )
     end
 
-    it 'should define execute npm install pelias-geonames' do
-      resource = chef_run.execute('npm install pelias-geonames')
+    it 'should define execute npm install geonames' do
+      resource = chef_run.execute('npm install geonames')
       expect(resource).to do_nothing
     end
 
     it 'should notify npm install' do
-      resource = chef_run.deploy('/opt/pelias/pelias-geonames')
-      expect(resource).to notify('execute[npm install pelias-geonames]').to(:run).immediately
+      resource = chef_run.deploy('/opt/pelias/geonames')
+      expect(resource).to notify('execute[npm install geonames]').to(:run).immediately
     end
 
     %w(IT DE).each do |c|
@@ -37,7 +37,7 @@ describe 'pelias::geonames' do
         expect(chef_run).to run_execute("download geonames for #{c}").with(
           user: 'pelias',
           command: "./bin/pelias-geonames -d #{c} >/opt/pelias/logs/geonames_#{c}.log 2>&1",
-          cwd: '/opt/pelias/pelias-geonames/current',
+          cwd: '/opt/pelias/geonames/current',
           timeout: 7200,
           environment: { 'HOME' => '/home/pelias', 'PELIAS_CONFIG' => '/etc/pelias/pelias.json' }
         )

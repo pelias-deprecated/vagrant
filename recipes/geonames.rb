@@ -3,7 +3,7 @@
 # Recipe:: geonames
 #
 
-deploy "#{node[:pelias][:basedir]}/pelias-geonames" do
+deploy "#{node[:pelias][:basedir]}/geonames" do
   user        node[:pelias][:user][:name]
   repository  node[:pelias][:geonames][:repository]
   revision    node[:pelias][:geonames][:revision]
@@ -12,15 +12,15 @@ deploy "#{node[:pelias][:basedir]}/pelias-geonames" do
   symlink_before_migrate.clear
   create_dirs_before_symlink %w(tmp public config deploy)
 
-  notifies :run, 'execute[npm install pelias-geonames]', :immediately
+  notifies :run, 'execute[npm install geonames]', :immediately
   only_if { node[:pelias][:geonames][:index_data] == true }
 end
 
-execute 'npm install pelias-geonames' do
+execute 'npm install geonames' do
   action  :nothing
   user    node[:pelias][:user][:name]
   command 'npm install'
-  cwd     "#{node[:pelias][:basedir]}/pelias-geonames/current"
+  cwd     "#{node[:pelias][:basedir]}/geonames/current"
   environment('HOME' => node[:pelias][:user][:home])
 end
 
@@ -31,7 +31,7 @@ node[:pelias][:geonames][:country_codes].each do |country|
   execute "download geonames for #{country}" do
     user    node[:pelias][:user][:name]
     command "./bin/pelias-geonames -d #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.log 2>&1"
-    cwd     "#{node[:pelias][:basedir]}/pelias-geonames/current"
+    cwd     "#{node[:pelias][:basedir]}/geonames/current"
     timeout node[:pelias][:geonames][:timeout]
     environment(
       'HOME' => node[:pelias][:user][:home],
@@ -51,7 +51,7 @@ node[:pelias][:geonames][:country_codes].each do |country|
     action  :nothing
     user    node[:pelias][:user][:name]
     command "./bin/pelias-geonames -i #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.log 2>&1"
-    cwd     "#{node[:pelias][:basedir]}/pelias-geonames/current"
+    cwd     "#{node[:pelias][:basedir]}/geonames/current"
     timeout node[:pelias][:geonames][:timeout]
     environment(
       'HOME' => node[:pelias][:user][:home],
