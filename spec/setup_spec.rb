@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe 'pelias::setup' do
-  before do
-    stub_command('npm -g list bower').and_return(true)
-  end
   let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
 
   it 'should log something' do
@@ -36,12 +33,14 @@ describe 'pelias::setup' do
     expect(chef_run).to restart_service 'elasticsearch'
   end
 
-  it 'should install bower' do
-    stub_command('npm -g list bower').and_return(false)
-    expect(chef_run).to run_execute('install bower').with(
-      command: 'npm install bower -g',
-      user:    'root'
-    )
+  it 'should notify to create the ES restart lockfile' do
+    resource = chef_run.service('elasticsearch')
+    expect(resource).to notify('file[/etc/.elasticsearch_initial_install.lock]').to(:create).immediately
+  end
+
+  it 'should define the es initial install lockfile' do
+    resource = chef_run.file('/etc/.elasticsearch_initial_install.lock')
+    expect(resource).to do_nothing
   end
 
   %w(

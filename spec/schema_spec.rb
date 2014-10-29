@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe 'pelias::schema' do
   before do
-    stub_command('npm -g list bower').and_return(true)
     stub_command("curl -s 'localhost:9200/_cat/indices?v' | grep pelias").and_return(false)
   end
 

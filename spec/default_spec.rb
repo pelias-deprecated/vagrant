@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe 'pelias::default' do
-  before do
-    stub_command('npm -g list bower').and_return(true)
-  end
   let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
 
   %w(

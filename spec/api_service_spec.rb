@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe 'pelias::api_service' do
-  before do
-    stub_command('npm -g list bower').and_return(true)
-  end
   let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
 
   it 'should enable and start the runit service pelias-api' do

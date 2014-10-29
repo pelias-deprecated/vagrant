@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe 'pelias::geonames' do
-  before do
-    stub_command('npm -g list bower').and_return(true)
-  end
-
   context 'with index_data = true' do
     let(:chef_run) do
       ChefSpec::Runner.new do |node|

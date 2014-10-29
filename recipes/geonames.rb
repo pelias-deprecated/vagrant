@@ -6,11 +6,11 @@
 # skip deploying if we don't need to
 node[:pelias][:geonames][:country_codes].each do |country|
   download = "#{node[:pelias][:geonames][:data_dir]}/#{country}.zip"
-  if !File.exist?(download)
+  unless File.exist?(download)
     node.set[:pelias][:geonames][:shall_we_deploy] = true
     break
   end
-end 
+end
 
 deploy "#{node[:pelias][:basedir]}/geonames" do
   user        node[:pelias][:user][:name]
