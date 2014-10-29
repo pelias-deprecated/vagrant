@@ -11,13 +11,13 @@ Requirements
 ------------
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) >= 4.3.18
 * [Vagrant](https://www.vagrantup.com/downloads.html) >= 1.6.5
-* a system with ~8GB of RAM and ~60GB of free disk space
+* a system with ~8GB of RAM and ~50GB of free disk space
 
 Goals
 -----
-* provide, via the included Chef code, a reference for installing your own Pelias system:
+* to provide, via the included Chef code, a reference for installing your own Pelias system:
   * learn what dependencies you'll need, what the workflow looks like and how you can mold that to your own environment and needs
-* provide a sandbox environment for people to do quick development against a local Pelias instance
+* to provide a sandbox environment for people to do quick development against a local Pelias instance
 
 Getting started
 ---------------
