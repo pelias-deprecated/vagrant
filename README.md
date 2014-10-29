@@ -76,7 +76,6 @@ Bugs/Issues
 * geonames
   * there's an issue with geonames which will cause the load to always run unless you set `'index_data' => false` in vagrant_chef.rb explicitly
     * # NOTE: there's a bug here in that the download doesn't write to data_dir, so this will always run at the moment.
-  * unzip fail: https://github.com/mapzen/pelias-geonames/issues/1
 * quattroshapes take a long time to load ( >8 hours in this type of environment)
   * look into breaking quattroshapes up into more easily ingested chunks
 
