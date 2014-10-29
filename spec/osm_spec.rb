@@ -16,8 +16,8 @@ describe 'pelias::osm' do
       end.converge(described_recipe)
     end
 
-    it 'should deploy openstreetmap' do
-      expect(chef_run).to deploy_deploy('/opt/pelias/openstreetmap').with(
+    it 'should deploy osm' do
+      expect(chef_run).to deploy_deploy('/opt/pelias/osm').with(
         user:     'pelias',
         repo:     'https://github.com/pelias/openstreetmap.git',
         revision: 'master',
@@ -25,14 +25,14 @@ describe 'pelias::osm' do
       )
     end
 
-    it 'should define execute npm install openstreetmap' do
-      resource = chef_run.execute('npm install openstreetmap')
+    it 'should define execute npm install osm' do
+      resource = chef_run.execute('npm install osm')
       expect(resource).to do_nothing
     end
 
     it 'should notify npm install' do
-      resource = chef_run.deploy('/opt/pelias/openstreetmap')
-      expect(resource).to notify('execute[npm install openstreetmap]').to(:run).immediately
+      resource = chef_run.deploy('/opt/pelias/osm')
+      expect(resource).to notify('execute[npm install osm]').to(:run).immediately
     end
 
     %w(florence rome).each do |c|
@@ -85,8 +85,8 @@ describe 'pelias::osm' do
       end.converge(described_recipe)
     end
 
-    it 'should not deploy openstreetmap' do
-      expect(chef_run).to_not deploy_deploy('/opt/pelias/openstreetmap')
+    it 'should not deploy osm' do
+      expect(chef_run).to_not deploy_deploy('/opt/pelias/osm')
     end
   end
 

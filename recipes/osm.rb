@@ -3,7 +3,7 @@
 # Recipe:: osm
 #
 
-deploy "#{node[:pelias][:basedir]}/openstreetmap" do
+deploy "#{node[:pelias][:basedir]}/osm" do
   user        node[:pelias][:user][:name]
   repository  node[:pelias][:osm][:repository]
   revision    node[:pelias][:osm][:revision]
@@ -12,15 +12,15 @@ deploy "#{node[:pelias][:basedir]}/openstreetmap" do
   symlink_before_migrate.clear
   create_dirs_before_symlink %w(tmp public config deploy)
 
-  notifies :run, 'execute[npm install openstreetmap]', :immediately
+  notifies :run, 'execute[npm install osm]', :immediately
   only_if { node[:pelias][:osm][:index_data] == true }
 end
 
-execute 'npm install openstreetmap' do
+execute 'npm install osm' do
   action  :nothing
   user    node[:pelias][:user][:name]
   command 'npm install'
-  cwd     "#{node[:pelias][:basedir]}/openstreetmap/current"
+  cwd     "#{node[:pelias][:basedir]}/osm/current"
   environment('HOME' => node[:pelias][:user][:home])
 end
 
@@ -58,7 +58,7 @@ node[:pelias][:osm][:extracts].map do |name, url|
     action  :nothing
     user    node[:pelias][:user][:name]
     command "node index.js >#{node[:pelias][:basedir]}/logs/osm_#{name}.log 2>&1"
-    cwd     "#{node[:pelias][:basedir]}/openstreetmap/current"
+    cwd     "#{node[:pelias][:basedir]}/osm/current"
     timeout node[:pelias][:osm][:timeout]
     environment(
       'HOME' => node[:pelias][:user][:home],
