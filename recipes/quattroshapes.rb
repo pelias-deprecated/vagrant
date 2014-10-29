@@ -31,7 +31,7 @@ ark 'quattroshapes-data' do
   checksum          node[:pelias][:quattroshapes][:checksum]
   path              node[:pelias][:basedir]
   notifies          :write, 'log[log quattroshapes data load]', :immediately
-  only_if { node[:pelias][:quattroshapes][:index_data] == true }
+  only_if { node[:pelias][:quattroshapes][:index_data] == true && !::Directory.exist?("#{node[:pelias][:basedir]}/quattroshapes-data") }
 end
 
 log 'log quattroshapes data load' do
