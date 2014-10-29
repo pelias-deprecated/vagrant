@@ -29,8 +29,8 @@ describe 'pelias::setup' do
     expect(chef_run).to write_log 'Installing Elasticsearch'
   end
 
-  it 'should restart elasticsearch' do
-    expect(chef_run).to restart_service 'elasticsearch'
+  it 'should start elasticsearch' do
+    expect(chef_run).to start_service 'elasticsearch'
   end
 
   it 'should notify to create the ES restart lockfile' do
