@@ -22,8 +22,7 @@ file '/etc/.elasticsearch_initial_install.lock' do
   action :nothing
 end
 
-service 'elasticsearch' do
-  action   :start
+execute 'service elasticsearch start' do
   not_if   { ::File.exist?('/etc/.elasticsearch_initial_install.lock') }
   notifies :create, 'file[/etc/.elasticsearch_initial_install.lock]', :immediately
 end

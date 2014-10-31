@@ -30,11 +30,11 @@ describe 'pelias::setup' do
   end
 
   it 'should start elasticsearch' do
-    expect(chef_run).to start_service 'elasticsearch'
+    expect(chef_run).to run_execute 'service elasticsearch start'
   end
 
   it 'should notify to create the ES restart lockfile' do
-    resource = chef_run.service('elasticsearch')
+    resource = chef_run.execute('service elasticsearch start')
     expect(resource).to notify('file[/etc/.elasticsearch_initial_install.lock]').to(:create).immediately
   end
 
