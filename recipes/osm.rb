@@ -3,6 +3,15 @@
 # Recipe:: osm
 #
 
+# skip deploying if we don't need to
+node[:pelias][:osm][:extracts].map do |_name, url|
+  data_file = url.split('/').last
+  download  = "#{node[:pelias][:osm][:data_dir]}/#{data_file}"
+  next if File.exist?(download)
+  node.set[:pelias][:osm][:shall_we_deploy] = true
+  break
+end
+
 deploy "#{node[:pelias][:basedir]}/osm" do
   user        node[:pelias][:user][:name]
   repository  node[:pelias][:osm][:repository]
@@ -13,7 +22,7 @@ deploy "#{node[:pelias][:basedir]}/osm" do
   create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :run, 'execute[npm install osm]', :immediately
-  only_if { node[:pelias][:osm][:index_data] == true }
+  only_if { node[:pelias][:osm][:index_data] == true && node[:pelias][:osm][:shall_we_deploy] == true }
 end
 
 execute 'npm install osm' do
