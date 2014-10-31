@@ -13,7 +13,7 @@ deploy "#{node[:pelias][:basedir]}/quattroshapes-pipeline" do
   create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :run, 'execute[npm install quattroshapes-pipeline]', :immediately
-  only_if { node[:pelias][:quattroshapes][:index_data] == true }
+  only_if { node[:pelias][:quattroshapes][:index_data] == true && !::File.directory?("#{node[:pelias][:basedir]}/quattroshapes-data" }
 end
 
 execute 'npm install quattroshapes-pipeline' do
