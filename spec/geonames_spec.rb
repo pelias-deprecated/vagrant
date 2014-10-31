@@ -32,7 +32,7 @@ describe 'pelias::geonames' do
       it "should download geonames for #{c}" do
         expect(chef_run).to run_execute("download geonames for #{c}").with(
           user: 'pelias',
-          command: "./bin/pelias-geonames -d #{c} >/opt/pelias/logs/geonames_#{c}.log 2>&1",
+          command: "./bin/pelias-geonames -d #{c} >/opt/pelias/logs/geonames_#{c}.out 2>/opt/pelias/logs/geonames_#{c}.err",
           cwd: '/opt/pelias/geonames/current',
           timeout: 7200,
           environment: { 'HOME' => '/home/pelias', 'PELIAS_CONFIG' => '/etc/pelias/pelias.json' }
