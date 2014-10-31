@@ -38,7 +38,7 @@ end
 node[:pelias][:geonames][:country_codes].each do |country|
   execute "download geonames for #{country}" do
     user    node[:pelias][:user][:name]
-    command "./bin/pelias-geonames -d #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.out 2#{node[:pelias][:basedir]}/logs/geonames_#{country}.err"
+    command "./bin/pelias-geonames -d #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.out 2>#{node[:pelias][:basedir]}/logs/geonames_#{country}.err"
     cwd     "#{node[:pelias][:basedir]}/geonames/current"
     timeout node[:pelias][:geonames][:timeout]
     environment(
