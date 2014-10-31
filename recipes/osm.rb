@@ -50,14 +50,14 @@ node[:pelias][:osm][:extracts].map do |name, url|
 
   log "log osm load #{name}" do
     action  :nothing
-    message "Beginning load of OSM data into Elasticsearch for #{name}. Log: #{node[:pelias][:basedir]}/logs/osm_#{name}.log"
+    message "Beginning load of OSM data into Elasticsearch for #{name}. Log: #{node[:pelias][:basedir]}/logs/osm_#{name}.{out,err}"
   end
 
   # triggered by the data download
   execute "load osm #{name}" do
     action  :nothing
     user    node[:pelias][:user][:name]
-    command "node index.js >#{node[:pelias][:basedir]}/logs/osm_#{name}.log 2>&1"
+    command "node index.js >#{node[:pelias][:basedir]}/logs/osm_#{name}.out 2#{node[:pelias][:basedir]}/logs/osm_#{name}.err"
     cwd     "#{node[:pelias][:basedir]}/osm/current"
     timeout node[:pelias][:osm][:timeout]
     environment(

@@ -38,7 +38,7 @@ end
 node[:pelias][:geonames][:country_codes].each do |country|
   execute "download geonames for #{country}" do
     user    node[:pelias][:user][:name]
-    command "./bin/pelias-geonames -d #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.log 2>&1"
+    command "./bin/pelias-geonames -d #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.out 2#{node[:pelias][:basedir]}/logs/geonames_#{country}.err"
     cwd     "#{node[:pelias][:basedir]}/geonames/current"
     timeout node[:pelias][:geonames][:timeout]
     environment(
@@ -52,13 +52,13 @@ node[:pelias][:geonames][:country_codes].each do |country|
 
   log "log geonames load for #{country}" do
     action  :nothing
-    message "Beginning load of Geonames data into Elasticsearch for #{country}. Log: #{node[:pelias][:basedir]}/logs/geonames_#{country}.log"
+    message "Beginning load of Geonames data into Elasticsearch for #{country}. Log: #{node[:pelias][:basedir]}/logs/geonames_#{country}.{out,err}"
   end
 
   execute "load geonames for #{country}" do
     action  :nothing
     user    node[:pelias][:user][:name]
-    command "./bin/pelias-geonames -i #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.log 2>&1"
+    command "./bin/pelias-geonames -i #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.out 2>#{node[:pelias][:basedir]}/logs/geonames_#{country}.err"
     cwd     "#{node[:pelias][:basedir]}/geonames/current"
     timeout node[:pelias][:geonames][:timeout]
     environment(

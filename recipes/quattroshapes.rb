@@ -43,7 +43,7 @@ node[:pelias][:quattroshapes][:types].each do |type|
   execute "load quattroshapes #{type}" do
     action      :nothing
     user        node[:pelias][:user][:name]
-    command     "node example/runme.js #{type} >#{node[:pelias][:basedir]}/logs/quattroshapes_#{type}.log 2>&1"
+    command     "node example/runme.js #{type} >#{node[:pelias][:basedir]}/logs/quattroshapes_#{type}.out 2>#{node[:pelias][:basedir]}/logs/quattroshapes_#{type}.err"
     cwd         "#{node[:pelias][:basedir]}/quattroshapes-pipeline/current"
     timeout     node[:pelias][:quattroshapes][:timeout]
     subscribes  :run, 'ark[quattroshapes-data]', :immediately
