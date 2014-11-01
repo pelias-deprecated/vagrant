@@ -25,7 +25,7 @@ Getting started
   * download the vagrant box
     * this is a one time operation
   * boot a linux instance that you can connect to via `vagrant ssh`
-  * install all the dependencies required to run load and run Pelias:
+  * install all the dependencies required to load data into and run Pelias:
     * elasticsearch
     * nodejs
     * required Pelias repositories
