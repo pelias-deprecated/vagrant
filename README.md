@@ -40,6 +40,11 @@ Getting started
 * `vagrant up` will bring it back online for use
 * to start from scratch: `vagrant destroy; vagrant up`
 
+How long will this take?
+------------------------
+* presently, to load the defaults (geonames for IT, all of quattroshapes, Florence and Rome): ~9 hours
+* 95% of this time is spent on quattroshapes, which we're working to modify to allow importing only required pieces
+
 Tweaking things
 ---------------
 * the pelias_settings.rb file is your primary means of overriding any default values
