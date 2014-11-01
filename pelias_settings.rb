@@ -28,7 +28,7 @@ Vagrant.configure('2') do |config|
           ]
         },
         'quattroshapes' => {
-          'index_data' => false
+          'index_data' => true
         },
         'osm' => {
           'index_data' => true,
