@@ -94,7 +94,7 @@ Contributing
 
 Happy Geocoding!
 ----------------
-```curl 'localhost:3100/search?input=grazie%20geo&lat=41.8902&lon=12.4923' | python -mjson.tool```
+```curl 'localhost:3100/search?input=grazie&lat=41.8902&lon=12.4923' | python -mjson.tool```
 ```json
 {
     "date": 1414926251985,
