@@ -47,7 +47,7 @@ How long will this take?
 
 Tweaking things
 ---------------
-* the pelias_settings.rb file is your primary means of overriding any default values
+* the `pelias_settings.rb` file is your primary means of overriding any default values
 * as an example, let's suppose you want to load osm data for a location in Germany:
 
 #### geonames
@@ -73,12 +73,12 @@ Tweaking things
   }
 ```
 
-* now that you've edited pelias_settings.rb, run `vagrant up` to start loading data, or `vagrant provision` if you'd previously started the instance
+* now that you've edited `pelias_settings.rb`, run `vagrant up` to start loading data, or `vagrant provision` if you'd previously started the instance
 
 Bugs/Issues
 -----------
 * due to an issue in Elasticsearch 0.3.10 cookbook, setting `default[:elasticsearch][:version]` inside the attributes file does not take effect
-  * current workaround is to override the version in pelias_settings.rb
+  * current workaround is to override the version in `pelias_settings.rb`
   * future fix is to move to Elasticsearch 0.3.11 when it's pushed to opscode
 * quattroshapes take a long time to load ( >8 hours in this type of environment)
   * look into breaking quattroshapes up into more easily ingested chunks
