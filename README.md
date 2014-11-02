@@ -31,7 +31,7 @@ Getting started
     * required Pelias repositories
     * other system dependencies
   * create the Elasticsearch 'pelias' index
-  * run the Pelias API server, which you can interact with locally via your browser, curl, etc thanks to the magic of port forwarding: [API](http://localhost:3100/search?input=Coli&lat=41.8902&lon=12.4923)
+  * run the Pelias API server, which you can interact with locally via your browser, curl, etc thanks to the magic of port forwarding: [example query](http://localhost:3100/search?input=fontana&lat=41.8902&lon=12.4923)
     * as soon as the geonames data load starts, you'll be able to start querying the index via the API
     * more details on the API can be found here: [Pelias API](https://github.com/pelias/api)
   * load Geonames data for Italy into Elasticsearch
