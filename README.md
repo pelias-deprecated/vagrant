@@ -83,10 +83,6 @@ Bugs/Issues
 * quattroshapes take a long time to load ( >8 hours in this type of environment)
   * look into breaking quattroshapes up into more easily ingested chunks
 
-TODO
-----
-* end to end testing
-
 Contributing
 ------------
 * yes please!
