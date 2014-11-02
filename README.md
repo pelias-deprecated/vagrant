@@ -36,7 +36,7 @@ Getting started
     * more details on the API can be found here: [Pelias API](https://github.com/pelias/api)
   * load Geonames data for Italy into Elasticsearch
   * load OSM extracts for Rome and Florence into Elasticsearch
-* `vagrant halt` will stop the virtual machine without any data loss
+* `vagrant suspend` or `vagrant halt` will stop the virtual machine without any data loss
 * `vagrant up` will bring it back online for use
 * to start from scratch: `vagrant destroy; vagrant up`
 
