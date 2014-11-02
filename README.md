@@ -91,3 +91,34 @@ Contributing
 ------------
 * yes please!
 * fork, create a feature branch, make your changes, add/update specs, submit a pull request
+
+Happy Geocoding!
+----------------
+```curl "http://localhost:3100/search?input=grazie%20geo&lat=41.8902&lon=12.4923" | python -mjson.tool```
+```json
+{
+    "date": 1414926251985,
+    "features": [
+        {
+            "geometry": {
+                "coordinates": [
+                    12.4833598,
+                    41.9046615
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "admin0": "Italia",
+                "admin1": "Roma",
+                "admin2": "Provincia di Roma",
+                "alpha3": "ITA",
+                "local_admin": "Roma",
+                "locality": "Roma",
+                "name": "Madonna Delle Grazie",
+                "neighborhood": "Campo Marzio",
+                "text": "Madonna Delle Grazie, Roma"
+            },
+            "type": "Feature"
+        },
+...
+```
