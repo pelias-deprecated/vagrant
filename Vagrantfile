@@ -10,16 +10,13 @@ Vagrant.configure('2') do |config|
     host = RbConfig::CONFIG['host_os']
 
     def memish(ram, mem_min, mem_max)
-      if ram < mem_min
-        mem_min
-      elsif ram > mem_max
+      if ram > mem_max
         mem_max
       else
         ram
       end
     end
 
-    # give 1/2 RAM to VM, with a min of 3096.
     mem_divisor = 2
     mem_min     = 3096
     mem_max     = 8096
