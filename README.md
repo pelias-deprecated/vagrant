@@ -53,6 +53,7 @@ Tweaking things
 * multiple geoname countries can be loaded by editing the geonames array:
 ```
   'geonames' => {
+    'revision' => 'master',
     'index_data' => true,
     'country_codes' => [
       'DE'
@@ -65,6 +66,7 @@ Tweaking things
 * multiple extracts can be loaded by updating the extracts hash:
 ```
   'osm' => {
+    'revision' => 'master',
     'index_data' => true,
     'extracts' => {
       'munich' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/munich_germany.osm.pbf'
