@@ -19,18 +19,22 @@ Vagrant.configure('2') do |config|
       },
       'pelias' => {
         'schema' => {
+          'revision' => 'master',
           'create_index' => true
         },
         'geonames' => {
+          'revision' => 'master',
           'index_data' => true,
           'country_codes' => [
             'IT'
           ]
         },
         'quattroshapes' => {
+          'revision' => 'master',
           'index_data' => true
         },
         'osm' => {
+          'revision' => 'master',
           'index_data' => true,
           'extracts' => {
             'rome' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/rome_italy.osm.pbf',
