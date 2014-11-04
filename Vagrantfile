@@ -50,5 +50,5 @@ end
 if ENV['PELIAS_VAGRANTFILE']
   load ENV['PELIAS_VAGRANTFILE']
 else
-  load 'pelias_settings.rb'
+  load 'pelias_settings.example.rb'
 end
