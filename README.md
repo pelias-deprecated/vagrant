@@ -21,6 +21,8 @@ Goals
 
 Getting started
 ---------------
+* copy the included pelias_settings.example.rb to a location of your choice, then export the environment variable `PELIAS_VAGRANTFILE` to reference it: `export PELIAS_VAGRANTFILE=/path/to/the/file`
+  * you can leave the defaults in place until you get familiar with things, or if you're feeling up to it, edit away
 * from the repository root run `vagrant up`, which will:
   * download the vagrant box (this is a one time operation)
   * boot a linux instance that you can connect to via `vagrant ssh`
@@ -49,7 +51,7 @@ Tweaking things
 * the `pelias_settings.example.rb` file shows some ways you can define/override values in the provisioning process
 * you can copy this file to a location of your choice and reference it via an environment variable: `PELIAS_VAGRANTFILE`
   * if the environment variable is set, vagrant will attempt to load the contents of the file it references
-  * if the environment variable is not set, vagrant will load the default pelias_settings.rb provided in the repository
+  * if the environment variable is not set, vagrant will load pelias_settings.example.rb provided in the repository
   * NOTE: due to a bug (see below) you must leave the `elasticsearch[version]` key in the file!
 * let's suppose you want to load osm data for a location in Germany:
   * from the repo root: `cp pelias_settings.example.rb ~/.pelias_settings.rb`
