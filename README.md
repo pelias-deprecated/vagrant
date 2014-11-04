@@ -46,12 +46,13 @@ How long will this take?
 
 Tweaking things
 ---------------
-* the `pelias_settings.rb` file serves as an example of ways you can define/override values in the provisioning process
+* the `pelias_settings.example.rb` file shows some ways you can define/override values in the provisioning process
 * you can copy this file to a location of your choice and reference it via an environment variable: `PELIAS_VAGRANTFILE`
   * if the environment variable is set, vagrant will attempt to load the contents of the file it references
   * if the environment variable is not set, vagrant will load the default pelias_settings.rb provided in the repository
-* as an example, let's suppose you want to load osm data for a location in Germany:
-  * from the repo root: `cp pelias_settings.rb ~/.pelias_settings.rb`
+  * NOTE: due to a bug (see below) you must leave the `elasticsearch[version]` key in the file!
+* let's suppose you want to load osm data for a location in Germany:
+  * from the repo root: `cp pelias_settings.example.rb ~/.pelias_settings.rb`
   * in your profile, `export PELIAS_VAGRANTFILE=${HOME}/.pelias_settings.rb`
     * this file is now your means of manipulating the vagrant chef run going forward
 
@@ -80,12 +81,12 @@ Tweaking things
   }
 ```
 
-* now that you've edited `pelias_settings.rb`, run `vagrant up` to start loading data, or `vagrant provision` if you'd previously started the instance
+* now that you've edited `PELIAS_VAGRANTFILE`, run `vagrant up` to start loading data, or `vagrant provision` if you'd previously started the instance
 
 Bugs/Issues
 -----------
 * due to an issue in Elasticsearch 0.3.10 cookbook, setting `default[:elasticsearch][:version]` inside the attributes file does not take effect
-  * current workaround is to override the version in `pelias_settings.rb`
+  * current workaround is to override the version in `pelias_settings.example.rb`
   * future fix is to move to Elasticsearch 0.3.11 when it's pushed to opscode
 * quattroshapes take a long time to load ( >8 hours in this type of environment)
   * look into breaking quattroshapes up into more easily ingested chunks
