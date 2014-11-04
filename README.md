@@ -46,8 +46,14 @@ How long will this take?
 
 Tweaking things
 ---------------
-* the `pelias_settings.rb` file is your primary means of overriding any default values
+* the `pelias_settings.rb` file serves as an example of ways you can define/override values in the provisioning process
+* you can copy this file to a location of your choice and reference it via an environment variable: `PELIAS_VAGRANTFILE`
+  * if the environment variable is set, vagrant will attempt to load the contents of the file it references
+  * if the environment variable is not set, vagrant will load the default pelias_settings.rb provided in the repository
 * as an example, let's suppose you want to load osm data for a location in Germany:
+  * from the repo root: `cp pelias_settings.rb ~/.pelias_settings.rb`
+  * in your profile, `export PELIAS_VAGRANTFILE=${HOME}/.pelias_settings.rb`
+    * this file is now your means of manipulating the vagrant chef run going forward
 
 #### geonames
 * multiple geoname countries can be loaded by editing the geonames array:

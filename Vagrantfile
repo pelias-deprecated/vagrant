@@ -47,4 +47,8 @@ Vagrant.configure('2') do |config|
 end
 
 # includes
-load 'pelias_settings.rb'
+if ENV['PELIAS_VAGRANTFILE']
+  load ENV['PELIAS_VAGRANTFILE']
+else
+  load 'pelias_settings.rb'
+end
