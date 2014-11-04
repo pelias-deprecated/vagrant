@@ -17,9 +17,6 @@
 Vagrant.configure('2') do |config|
   config.vm.provision :chef_solo do |chef|
     chef.json = {
-      'elasticsearch' => {
-        'version' => '1.3.4'
-      },
       'pelias' => {
         'schema' => {
           'create_index' => true

@@ -53,7 +53,6 @@ Tweaking things
 * you can copy this file to a location of your choice and reference it via an environment variable: `PELIAS_VAGRANTFILE`
   * if the environment variable is set, vagrant will attempt to load the contents of the file it references
   * if the environment variable is not set, vagrant will load pelias_settings.example.rb provided in the repository
-  * NOTE: due to a bug (see below) you must leave the `elasticsearch[version]` key in the file!
 * let's suppose you want to load osm data for a location in Germany:
   * from the repo root: `cp pelias_settings.example.rb ~/.pelias_settings.rb`
   * in your profile, `export PELIAS_VAGRANTFILE=${HOME}/.pelias_settings.rb`
@@ -88,9 +87,6 @@ Tweaking things
 
 Bugs/Issues
 -----------
-* due to an issue in Elasticsearch 0.3.10 cookbook, setting `default[:elasticsearch][:version]` inside the attributes file does not take effect
-  * current workaround is to override the version in `pelias_settings.example.rb`
-  * future fix is to move to Elasticsearch 0.3.11 when it's pushed to opscode
 * quattroshapes take a long time to load ( >8 hours in this type of environment)
   * look into breaking quattroshapes up into more easily ingested chunks
 
