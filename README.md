@@ -23,6 +23,7 @@ Getting started
 ---------------
 * copy the included pelias_settings.example.rb to a location of your choice, then export the environment variable `PELIAS_VAGRANTFILE` to reference it: `export PELIAS_VAGRANTFILE=/path/to/the/file`
   * you can leave the defaults in place until you get familiar with things, or if you're feeling up to it, edit away
+  * you can override anything found in `attributes/default.rb`
 * from the repository root run `vagrant up`, which will:
   * download the vagrant box (this is a one time operation)
   * boot a linux instance that you can connect to via `vagrant ssh`
