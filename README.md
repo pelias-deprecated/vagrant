@@ -11,7 +11,7 @@ Requirements
 ------------
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) >= 4.3.18
 * [Vagrant](https://www.vagrantup.com/downloads.html) >= 1.6.5
-* a system with ~8GB of RAM and ~50GB of free disk space
+* a system with an absolute minimum of ~4GB of RAM (more is better, and will be necessary if you want to load larger regions) and ~50GB of free disk space
 
 Goals
 -----
