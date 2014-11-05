@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe 'pelias::api_service' do
   let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+  before do
+    stub_command('pgrep -f elasticsearch').and_return(true)
+  end
 
   it 'should enable and start the runit service pelias-api' do
     expect(chef_run).to enable_runit_service('pelias-api').with(

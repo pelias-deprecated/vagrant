@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe 'pelias::default' do
   let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+  before do
+    stub_command('pgrep -f elasticsearch').and_return(true)
+  end
 
   %w(
     setup

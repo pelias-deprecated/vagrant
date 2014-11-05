@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe 'pelias::setup' do
   let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+  before do
+    stub_command('pgrep -f elasticsearch').and_return(false)
+  end
 
   it 'should log something' do
     expect(chef_run).to write_log 'Installing system dependencies'
@@ -33,21 +36,12 @@ describe 'pelias::setup' do
     expect(chef_run).to run_execute 'service elasticsearch start'
   end
 
-  it 'should notify to create the ES restart lockfile' do
-    resource = chef_run.execute('service elasticsearch start')
-    expect(resource).to notify('file[/etc/.elasticsearch_initial_install.lock]').to(:create).immediately
-  end
-
-  it 'should define the es initial install lockfile' do
-    resource = chef_run.file('/etc/.elasticsearch_initial_install.lock')
-    expect(resource).to do_nothing
-  end
-
   %w(
     /opt/pelias
     /opt/pelias/logs
-    /opt/pelias/geonames-data
-    /opt/pelias/osm-data
+    /opt/pelias/data/geonames
+    /opt/pelias/data/quattroshapes
+    /opt/pelias/data/osm
     /opt/pelias/leveldb
   ).each do |dir|
     it "it should create #{dir}" do

@@ -1,11 +1,14 @@
 require 'spec_helper'
 
 describe 'pelias::geonames' do
+  before do
+    stub_command('pgrep -f elasticsearch').and_return(true)
+  end
   context 'with index_data = true' do
     let(:chef_run) do
       ChefSpec::Runner.new do |node|
         node.set[:pelias][:geonames][:index_data]     = true
-        node.set[:pelias][:geonames][:country_codes]  = %w(IT DE)
+        node.set[:pelias][:geonames][:alpha2_country_codes]  = %w(IT DE)
       end.converge(described_recipe)
     end
 

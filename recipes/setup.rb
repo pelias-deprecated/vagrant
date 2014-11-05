@@ -16,15 +16,9 @@ log 'Installing Elasticsearch'
 include_recipe 'elasticsearch::default'
 include_recipe 'elasticsearch::plugins'
 
-# need to start ES after the initial installation, but
-#   not after.
-file '/etc/.elasticsearch_initial_install.lock' do
-  action :nothing
-end
-
+# need to start ES after the initial installation
 execute 'service elasticsearch start' do
-  not_if   { ::File.exist?('/etc/.elasticsearch_initial_install.lock') }
-  notifies :create, 'file[/etc/.elasticsearch_initial_install.lock]', :immediately
+  not_if 'pgrep -f elasticsearch'
 end
 
 # base/logs
@@ -43,14 +37,23 @@ end
 
 # geonames
 directory node[:pelias][:geonames][:data_dir] do
-  owner  node[:pelias][:user][:name]
-  mode   0755
+  recursive true
+  owner     node[:pelias][:user][:name]
+  mode      0755
+end
+
+# quattroshapes
+directory node[:pelias][:quattroshapes][:data_dir] do
+  recursive true
+  owner     node[:pelias][:user][:name]
+  mode      0755
 end
 
 # osm
 directory node[:pelias][:osm][:data_dir] do
-  owner  node[:pelias][:user][:name]
-  mode   0755
+  recursive true
+  owner     node[:pelias][:user][:name]
+  mode      0755
 end
 
 directory node[:pelias][:osm][:leveldb] do

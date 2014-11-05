@@ -19,6 +19,13 @@ Goals
   * learn what dependencies you'll need, what the workflow looks like and how you can mold that to your own environment and needs
 * to provide a sandbox environment for people to do quick development against a local Pelias instance
 
+Access points
+-------------
+* API: `curl http://localhost:3100`
+* [Demo](http://rawgit.com/pelias/demo/vagrant/index.html#loc=7,41.857,13.217), which references the API on localhost:3100
+* Elasticsearch: `curl http://localhost:9200`
+* `vagrant ssh && sudo su -` and you've got free reign in a sandboxed environment
+
 Getting started
 ---------------
 * copy the included pelias_settings.example.rb to a location of your choice, then export the environment variable `PELIAS_VAGRANTFILE` to reference it: `export PELIAS_VAGRANTFILE=/path/to/the/file`
@@ -36,6 +43,7 @@ Getting started
   * run the Pelias API server, which you can interact with locally via your browser, curl, etc thanks to the magic of port forwarding: [example query](http://localhost:3100/search?input=fontana&lat=41.8902&lon=12.4923)
     * as soon as the geonames data load starts, you'll be able to start querying the index via the API
     * more details on the API can be found here: [Pelias API](https://github.com/pelias/api)
+    * in addition, you can access our [Demo](http://rawgit.com/pelias/demo/vagrant/index.html#loc=7,41.857,13.217) which will let you visualize the data you're loading, run searches, etc.
   * load Geonames data for Italy into Elasticsearch
   * load OSM extracts for Rome and Florence into Elasticsearch
 * `vagrant suspend` or `vagrant halt` will stop the virtual machine without any data loss
@@ -44,8 +52,8 @@ Getting started
 
 How long will this take?
 ------------------------
-* presently, to load the defaults (geonames for IT, all of quattroshapes, Florence and Rome): ~9 hours
-* 95% of this time is spent on quattroshapes, which we're working to modify to allow importing only required pieces
+* presently, to load the defaults (geonames for IT, quattroshapes for ITA and Florence and Rome OSM data): ~1 hour (including initial build time of the VM, which is a one time deal)
+* larger countries with more data, e.g. the US and most countries in Western Europe, will take longer
 
 Tweaking things
 ---------------
@@ -53,19 +61,31 @@ Tweaking things
 * you can copy this file to a location of your choice and reference it via an environment variable: `PELIAS_VAGRANTFILE`
   * if the environment variable is set, vagrant will attempt to load the contents of the file it references
   * if the environment variable is not set, vagrant will load pelias_settings.example.rb provided in the repository
-* let's suppose you want to load osm data for a location in Germany:
+* let's suppose you want to load osm data for locations in Germany and Italy:
   * from the repo root: `cp pelias_settings.example.rb ~/.pelias_settings.rb`
   * in your profile, `export PELIAS_VAGRANTFILE=${HOME}/.pelias_settings.rb`
     * this file is now your means of manipulating the vagrant chef run going forward
 
 #### geonames
-* multiple geoname countries can be loaded by editing the geonames array:
+* multiple geoname countries can be loaded by editing the geonames alpha2 array of [country codes](http://www.geonames.org/countries/):
 ```
   'geonames' => {
-    'revision' => 'master',
     'index_data' => true,
     'country_codes' => [
+      'IT',
       'DE'
+    ]
+  },
+```
+
+#### quattroshapes
+* multiple quattroshapes can be loaded by modifying the quattroshapes alpha3 array of [country codes](http://www.geonames.org/countries/):
+```
+  'quattroshapes' => {
+    'index_data' => true,
+    'alpha3' => [
+      'ITA',
+      'DEU'
     ]
   },
 ```
@@ -75,9 +95,9 @@ Tweaking things
 * multiple extracts can be loaded by updating the extracts hash:
 ```
   'osm' => {
-    'revision' => 'master',
     'index_data' => true,
     'extracts' => {
+      'florence' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/florence_italy.osm.pbf',
       'munich' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/munich_germany.osm.pbf'
     }
   }
@@ -89,6 +109,10 @@ Bugs/Issues
 -----------
 * quattroshapes take a long time to load ( >8 hours in this type of environment)
   * look into breaking quattroshapes up into more easily ingested chunks
+
+TODO
+----
+* specs for quattro
 
 Contributing
 ------------

@@ -3,6 +3,7 @@ require 'spec_helper'
 describe 'pelias::schema' do
   before do
     stub_command("curl -s 'localhost:9200/_cat/indices?v' | grep pelias").and_return(false)
+    stub_command('pgrep -f elasticsearch').and_return(true)
   end
 
   context 'with create_index = true' do

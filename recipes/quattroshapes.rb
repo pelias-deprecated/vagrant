@@ -3,6 +3,14 @@
 # Recipe:: quattroshapes
 #
 
+# skip deploying if we don't need to
+node[:pelias][:quattroshapes][:alpha3_country_codes].each do |country|
+  download = "#{node[:pelias][:quattroshapes][:data_dir]}/#{country}.tgz"
+  next if File.exist?(download)
+  node.set[:pelias][:quattroshapes][:shall_we_deploy] = true
+  break
+end
+
 deploy "#{node[:pelias][:basedir]}/quattroshapes-pipeline" do
   user        node[:pelias][:user][:name]
   repository  node[:pelias][:quattroshapes][:repository]
@@ -13,7 +21,8 @@ deploy "#{node[:pelias][:basedir]}/quattroshapes-pipeline" do
   create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :run, 'execute[npm install quattroshapes-pipeline]', :immediately
-  only_if { node[:pelias][:quattroshapes][:index_data] == true && !::File.directory?("#{node[:pelias][:basedir]}/quattroshapes-data") }
+  notifies :run, 'execute[npm install quattroshapes-pipeline-temp]', :immediately #### NOTE: temp hack, remove when quattro is updated
+  only_if { node[:pelias][:quattroshapes][:index_data] == true && node[:pelias][:quattroshapes][:shall_we_deploy] == true }
 end
 
 execute 'npm install quattroshapes-pipeline' do
@@ -23,30 +32,49 @@ execute 'npm install quattroshapes-pipeline' do
   cwd     "#{node[:pelias][:basedir]}/quattroshapes-pipeline/current"
   environment('HOME' => node[:pelias][:user][:home])
 end
-
-ark 'quattroshapes-data' do
-  action            :put
-  owner             node[:pelias][:user][:name]
-  url               node[:pelias][:quattroshapes][:data_url]
-  checksum          node[:pelias][:quattroshapes][:checksum]
-  path              node[:pelias][:basedir]
-  notifies          :write, 'log[log quattroshapes data load]', :immediately
-  only_if { node[:pelias][:quattroshapes][:index_data] == true && !::File.directory?("#{node[:pelias][:basedir]}/quattroshapes-data") }
-end
-
-log 'log quattroshapes data load' do
+#### NOTE: temp hack, remove when quattro is updated
+execute 'npm install quattroshapes-pipeline-temp' do
   action  :nothing
-  message "Beginning load of Quattroshapes data into Elasticsearch. See #{node[:pelias][:basedir]}/logs."
+  user    node[:pelias][:user][:name]
+  command 'npm install pelias-suggester-pipeline@latest'
+  cwd     "#{node[:pelias][:basedir]}/quattroshapes-pipeline/current"
+  environment('HOME' => node[:pelias][:user][:home])
 end
 
-node[:pelias][:quattroshapes][:types].each do |type|
-  execute "load quattroshapes #{type}" do
-    action      :nothing
-    user        node[:pelias][:user][:name]
-    command     "node example/runme.js #{type} >#{node[:pelias][:basedir]}/logs/quattroshapes_#{type}.out 2>#{node[:pelias][:basedir]}/logs/quattroshapes_#{type}.err"
-    cwd         "#{node[:pelias][:basedir]}/quattroshapes-pipeline/current"
-    timeout     node[:pelias][:quattroshapes][:timeout]
-    subscribes  :run, 'ark[quattroshapes-data]', :immediately
-    environment('PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}")
+node[:pelias][:quattroshapes][:alpha3_country_codes].each do |country|
+  # unique templates for each file we need to load (ugh)
+  template "#{node[:pelias][:basedir]}/quattroshapes-pipeline/current/example/#{country}_index_quattroshapes.js" do
+    source  'index_quattroshapes.js.erb'
+    mode    0644
+    variables(country: country)
+    only_if { node[:pelias][:quattroshapes][:index_data] == true && node[:pelias][:quattroshapes][:shall_we_deploy] == true }
+  end
+
+  remote_file "#{node[:pelias][:quattroshapes][:data_dir]}/#{country}.tgz" do
+    action    :create_if_missing
+    source    "#{node[:pelias][:quattroshapes][:data_url]}/#{country}.tgz"
+    mode      0644
+    backup    false
+    notifies  :run, "execute[extract quattroshapes for #{country}]", :immediately
+    only_if { node[:pelias][:quattroshapes][:index_data] == true }
+  end
+
+  execute "extract quattroshapes for #{country}" do
+    action  :nothing
+    user    node[:pelias][:user][:name]
+    command "tar zxf #{country}.tgz"
+    cwd     node[:pelias][:quattroshapes][:data_dir]
+  end
+
+  node[:pelias][:quattroshapes][:types].each do |type|
+    execute "load quattroshapes for #{country} #{type}" do
+      action      :nothing
+      user        node[:pelias][:user][:name]
+      command     "node #{node[:pelias][:basedir]}/quattroshapes-pipeline/current/example/#{country}_index_quattroshapes.js #{type} >#{node[:pelias][:basedir]}/logs/quattroshapes_#{country}_#{type}.out 2>#{node[:pelias][:basedir]}/logs/quattroshapes_#{country}_#{type}.err"
+      cwd         "#{node[:pelias][:basedir]}/quattroshapes-pipeline/current"
+      timeout     node[:pelias][:quattroshapes][:timeout]
+      subscribes  :run, "execute[extract quattroshapes for #{country}]", :immediately
+      environment('PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}")
+    end
   end
 end

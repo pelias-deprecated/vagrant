@@ -8,7 +8,7 @@ default[:nodejs][:dir]                        = '/usr'
 
 # elasticsearch
 default[:elasticsearch][:version]             = '1.3.4'
-default[:elasticsearch][:filename]            = "elasticsearch-#{node.elasticsearch[:version]}.tar.gz"
+default[:elasticsearch][:filename]            = "elasticsearch-#{node[:elasticsearch][:version]}.tar.gz"
 default[:elasticsearch][:download_url]        = [node[:elasticsearch][:host], node[:elasticsearch][:repository], node[:elasticsearch][:filename]].join('/')
 default[:elasticsearch][:skip_restart]        = true
 default[:elasticsearch][:allocated_memory]    = "#{(node[:memory][:total].to_i * 0.7).floor / 1024}m"

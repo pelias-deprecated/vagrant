@@ -4,7 +4,7 @@
 #
 
 # skip deploying if we don't need to
-node[:pelias][:geonames][:country_codes].each do |country|
+node[:pelias][:geonames][:alpha2_country_codes].each do |country|
   download = "#{node[:pelias][:geonames][:data_dir]}/#{country}.zip"
   next if File.exist?(download)
   node.set[:pelias][:geonames][:shall_we_deploy] = true
@@ -35,7 +35,7 @@ end
 # download and load, using the downloaded file
 #   as an additional guard against a re-load.
 #
-node[:pelias][:geonames][:country_codes].each do |country|
+node[:pelias][:geonames][:alpha2_country_codes].each do |country|
   execute "download geonames for #{country}" do
     user    node[:pelias][:user][:name]
     command "./bin/pelias-geonames -d #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.out 2>#{node[:pelias][:basedir]}/logs/geonames_#{country}.err"

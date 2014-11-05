@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe 'pelias::osm' do
+  before do
+    stub_command('pgrep -f elasticsearch').and_return(true)
+  end
   context 'with index_data = true' do
     let(:chef_run) do
       ChefSpec::Runner.new do |node|
@@ -41,7 +44,7 @@ describe 'pelias::osm' do
       end
 
       it "should download the data file #{c}.osm.pbf" do
-        expect(chef_run).to create_remote_file_if_missing("/opt/pelias/osm-data/#{c}.osm.pbf").with(
+        expect(chef_run).to create_remote_file_if_missing("/opt/pelias/data/osm/#{c}.osm.pbf").with(
           source: "http://#{c}.osm.pbf",
           mode:   0644,
           backup: false
@@ -49,12 +52,12 @@ describe 'pelias::osm' do
       end
 
       it 'should notify to write a log message' do
-        resource = chef_run.remote_file("/opt/pelias/osm-data/#{c}.osm.pbf")
+        resource = chef_run.remote_file("/opt/pelias/data/osm/#{c}.osm.pbf")
         expect(resource).to notify("log[log osm load #{c}]").to(:write).immediately
       end
 
       it "should notify to load #{c} into elasticsearch" do
-        resource = chef_run.remote_file("/opt/pelias/osm-data/#{c}.osm.pbf")
+        resource = chef_run.remote_file("/opt/pelias/data/osm/#{c}.osm.pbf")
         expect(resource).to notify("execute[load osm #{c}]").to(:run).immediately
       end
 

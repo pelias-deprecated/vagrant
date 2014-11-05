@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe 'pelias::config' do
   let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+  before do
+    stub_command('pgrep -f elasticsearch').and_return(true)
+  end
 
   it 'should create the cfg dir' do
     expect(chef_run).to create_directory('/etc/pelias').with(

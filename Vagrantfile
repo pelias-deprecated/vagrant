@@ -9,7 +9,7 @@ Vagrant.configure('2') do |config|
   config.vm.provider 'virtualbox' do |v|
     host = RbConfig::CONFIG['host_os']
 
-    def memish(ram, mem_min, mem_max)
+    def memish(ram, mem_max)
       if ram > mem_max
         mem_max
       else
@@ -18,17 +18,17 @@ Vagrant.configure('2') do |config|
     end
 
     mem_divisor = 2
-    mem_min     = 3096
-    mem_max     = 8096
+    mem_min     = 2048
+    mem_max     = 6144
 
     if host =~ /darwin/
       cpu = `sysctl -n hw.ncpu`.to_i
       ram = `sysctl -n hw.memsize`.to_i / 1024 / 1024 / mem_divisor
-      mem = memish(ram, mem_min, mem_max)
+      mem = memish(ram, mem_max)
     elsif host =~ /linux/
       cpu = `nproc`.to_i
       ram = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / mem_divisor
-      mem = memish(ram, mem_min, mem_max)
+      mem = memish(ram, mem_max)
     else
       cpu = 2
       mem = mem_min

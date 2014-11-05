@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd <%= node[:pelias][:api][:deploy_to] %>/current
+cd <%= node[:pelias][:api][:deploy_to] %>
 exec 2>&1
 exec chpst -u <%= node[:pelias][:user][:name] %> -e /etc/sv/pelias-api/env node index.js
