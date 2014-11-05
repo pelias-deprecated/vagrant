@@ -22,20 +22,20 @@ Vagrant.configure('2') do |config|
     mem_max     = 8192
 
     if host =~ /darwin/
-      cpu = `sysctl -n hw.ncpu`.to_i
+      cpu = ENV['PELIAS_VAGRANT_CPUS'] || `sysctl -n hw.ncpu`.to_i
       ram = `sysctl -n hw.memsize`.to_i / 1024 / 1024 / mem_divisor
       mem = memish(ram, mem_max)
     elsif host =~ /linux/
-      cpu = `nproc`.to_i
+      cpu = ENV['PELIAS_VAGRANT_CPUS'] || `nproc`.to_i
       ram = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / mem_divisor
-      mem = memish(ram, mem_max)
+      mem = ENV['PELIAS_VAGRANT_MB'] || memish(ram, mem_max)
     else
-      cpu = 2
-      mem = mem_min
+      cpu = ENV['PELIAS_VAGRANT_CPUS'] || 2
+      mem = ENV['PELIAS_VAGRANT_MB'] || mem_min
     end
 
-    v.cpus   = cpu
-    v.memory = mem
+    v.cpus   = ENV['PELIAS_VAGRANT_CPUS'] || cpu
+    v.memory = ENV['PELIAS_VAGRANT_MB'] || mem
   end
 
   # forward 3100 (API) and 9200 (ES)
@@ -47,8 +47,8 @@ Vagrant.configure('2') do |config|
 end
 
 # includes
-if ENV['PELIAS_VAGRANTFILE']
-  load ENV['PELIAS_VAGRANTFILE']
+if ENV['PELIAS_VAGRANT_CFG']
+  load ENV['PELIAS_VAGRANT_CFG']
 else
   load 'pelias_settings.example.rb'
 end

@@ -26,6 +26,21 @@ Access points
 * Elasticsearch: `curl http://localhost:9200`
 * `vagrant ssh && sudo su -` and you've got free reign in a sandboxed environment
 
+Environment
+-----------
+* you can set the following environment variables to specify the number of cores and amount of RAM in MB to allocate to the VM. If left unset, we will infer sensible defaults (see Vagrantfile).
+
+```
+export PELIAS_VAGRANT_CPUS=3
+export PELIAS_VAGRANT_MB=6144
+```
+
+* you can alter the default settings in pelias_settings.example.rb by using a local config:
+
+```
+export PELIAS_VAGRANT_CFG=${HOME}/.pelias_settings.rb
+```
+
 Getting started
 ---------------
 * copy the included pelias_settings.example.rb to a location of your choice, then export the environment variable `PELIAS_VAGRANTFILE` to reference it: `export PELIAS_VAGRANTFILE=/path/to/the/file`
