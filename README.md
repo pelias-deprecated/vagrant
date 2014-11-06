@@ -23,7 +23,6 @@ Access points
 -------------
 * API: `curl http://localhost:3100`
 * [Angular Demo](http://rawgit.com/pelias/demo/vagrant/index.html#loc=7,41.857,13.217): references the API on localhost:3100 so you can see a visual representation of the data you're loading
-* Elasticsearch: `curl http://localhost:9200`
 * `vagrant ssh && sudo su -` and you've got free reign in a sandboxed environment
 
 Environment
