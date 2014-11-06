@@ -66,7 +66,7 @@ node[:pelias][:osm][:extracts].map do |name, url|
   execute "load osm #{name}" do
     action  :nothing
     user    node[:pelias][:user][:name]
-    command "node index.js >#{node[:pelias][:basedir]}/logs/osm_#{name}.out 2#{node[:pelias][:basedir]}/logs/osm_#{name}.err"
+    command "node index.js >#{node[:pelias][:basedir]}/logs/osm_#{name}.out 2>#{node[:pelias][:basedir]}/logs/osm_#{name}.err"
     cwd     "#{node[:pelias][:basedir]}/osm/current"
     timeout node[:pelias][:osm][:timeout]
     environment(
