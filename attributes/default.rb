@@ -54,6 +54,7 @@ default[:pelias][:osm][:index_data]                     = false
 default[:pelias][:osm][:timeout]                        = 14_400 # 4 hours
 default[:pelias][:osm][:leveldb]                        = "#{node[:pelias][:basedir]}/leveldb"
 default[:pelias][:osm][:extracts]                       = {}
+default[:pelias][:osm][:osmium_threads]                 = (node[:cpu][:total] * 10).to_s
 
 # schema
 default[:pelias][:schema][:repository]                  = 'https://github.com/pelias/schema.git'

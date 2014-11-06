@@ -72,7 +72,7 @@ node[:pelias][:osm][:extracts].map do |name, url|
     environment(
       'HOME'                => node[:pelias][:user][:home],
       'PELIAS_CONFIG'       => "#{node[:pelias][:cfg_dir]}/#{name}_#{node[:pelias][:cfg_file]}",
-      'OSMIUM_POOL_THREADS' => "#{node[:cpu][:total]}"
+      'OSMIUM_POOL_THREADS' => node[:pelias][:osm][:osmium_threads]
     )
   end
 end
