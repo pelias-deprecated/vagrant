@@ -86,7 +86,7 @@ Tweaking things
 ```
   'geonames' => {
     'index_data' => true,
-    'country_codes' => [
+    'alpha2_country_codes' => [
       'IT',
       'DE'
     ]
@@ -98,7 +98,7 @@ Tweaking things
 ```
   'quattroshapes' => {
     'index_data' => true,
-    'alpha3' => [
+    'alpha3_country_codes' => [
       'ITA',
       'DEU'
     ]
