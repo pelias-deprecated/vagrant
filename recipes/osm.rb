@@ -22,7 +22,6 @@ deploy "#{node[:pelias][:basedir]}/osm" do
   create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :run, 'execute[npm install osm]', :immediately
-  notifies :run, 'execute[npm install osm-temp]', :immediately
   only_if { node[:pelias][:osm][:index_data] == true && node[:pelias][:osm][:shall_we_deploy] == true }
 end
 
