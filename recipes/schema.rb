@@ -38,7 +38,7 @@ end
 execute 'wipe data' do
   action  :nothing
   user    node[:pelias][:user][:name]
-  command "rm -rf #{node[:pelias][:osm][:data_dir]}/* #{node[:pelias][:geonames][:data_dir]}/* #{node[:pelias][:quattroshapes][:data_dir]}/*"
+  command "rm -rf #{node[:pelias][:osm][:data_dir]}/* #{node[:pelias][:geonames][:data_dir]}/* #{node[:pelias][:quattroshapes][:data_dir]}/* #{node[:pelias][:osm][:leveldb]}/*"
 end
 
 # retry once in case ES is slow to start.
