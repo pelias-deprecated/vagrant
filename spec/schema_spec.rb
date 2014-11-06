@@ -36,6 +36,11 @@ describe 'pelias::schema' do
       expect(chef_run).to_not run_execute('node scripts/drop_index.js --force-yes')
     end
 
+    it 'should define the wipe data block which does nothing' do
+      resource = chef_run.execute('wipe data')
+      expect(resource).to do_nothing
+    end
+
     it 'should try to create the index' do
       expect(chef_run).to run_execute('node scripts/create_index.js').with(
         user:           'pelias',

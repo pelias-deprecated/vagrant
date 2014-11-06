@@ -13,6 +13,10 @@
 #   loaded on the initial provisioning run. Subsequent provisioning runs will not attempt to re-index
 #   the data, as the recipe will check for the existence of downloaded data and skip the run if it
 #   already exists.
+#
+#   The caveat to the above is that if you manually drop the pelias index and re-provision the VM,
+#   after the index is created it will wipe all the osm/geonames/quattroshapes data under the assumption
+#   you want to reload some set of data that may or may not include what you'd used before.
 
 Vagrant.configure('2') do |config|
   config.vm.provision :chef_solo do |chef|

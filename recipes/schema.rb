@@ -32,13 +32,23 @@ execute 'node scripts/drop_index.js --force-yes' do
   environment('PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}")
 end
 
+# this is triggered on index creation, the assumption being that
+#   if someone dropped the index, we want to remove any data triggers
+#   and load the data again.
+execute 'wipe data' do
+  action  :nothing
+  user    node[:pelias][:user][:name]
+  command "rm -f #{node[:pelias][:osm][:data_dir]}/* #{node[:pelias][:geonames][:data_dir]}/* #{node[:pelias][:quattroshapes][:data_dir]}/*"
+end
+
 # retry once in case ES is slow to start.
 execute 'node scripts/create_index.js' do
-  user            node[:pelias][:user][:name]
-  cwd             "#{node[:pelias][:basedir]}/pelias-schema/current"
-  retries         1
-  retry_delay     15
-  not_if  "curl -s 'localhost:9200/_cat/indices?v' | grep pelias"
-  only_if { node[:pelias][:schema][:create_index] == true }
+  user        node[:pelias][:user][:name]
+  cwd         "#{node[:pelias][:basedir]}/pelias-schema/current"
+  retries     1
+  retry_delay 15
+  not_if      "curl -s 'localhost:9200/_cat/indices?v' | grep pelias"
+  only_if     { node[:pelias][:schema][:create_index] == true }
+  notifies    :run, 'execute[wipe data]', :immediately
   environment('PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}")
 end
