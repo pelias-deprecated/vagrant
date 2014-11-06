@@ -70,8 +70,9 @@ node[:pelias][:osm][:extracts].map do |name, url|
     cwd     "#{node[:pelias][:basedir]}/osm/current"
     timeout node[:pelias][:osm][:timeout]
     environment(
-      'HOME' => node[:pelias][:user][:home],
-      'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{name}_#{node[:pelias][:cfg_file]}"
+      'HOME'                => node[:pelias][:user][:home],
+      'PELIAS_CONFIG'       => "#{node[:pelias][:cfg_dir]}/#{name}_#{node[:pelias][:cfg_file]}",
+      'OSMIUM_POOL_THREADS' => "#{node[:cpu][:total]}"
     )
   end
 end
