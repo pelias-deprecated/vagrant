@@ -45,7 +45,7 @@ Getting started
 ---------------
 * copy the included pelias_settings.example.rb to a location of your choice, then export the environment variable `PELIAS_VAGRANTFILE` to reference it: `export PELIAS_VAGRANTFILE=/path/to/the/file`
   * you can leave the defaults in place until you get familiar with things, or if you're feeling up to it, edit away
-  * you can override anything found in `attributes/default.rb`
+  * you can override anything found in `attributes/default.rb`, but typically what you'll want access to is already shows in `pelias_settings.example.rb`
 * from the repository root run `vagrant up`, which will:
   * download the vagrant box (this is a one time operation)
   * boot a linux instance that you can connect to via `vagrant ssh`
@@ -63,7 +63,7 @@ Getting started
   * load OSM extracts for Rome and Florence into Elasticsearch
 * `vagrant suspend` or `vagrant halt` will stop the virtual machine without any data loss
 * `vagrant up` will bring it back online for use
-* to start from scratch: `vagrant destroy; vagrant up`
+* to start from scratch: `vagrant destroy; vagrant up`, or `curl -XDELETE http://localhost:9200/pelias` followed by `vagrant provision`
 
 How long will this take?
 ------------------------
