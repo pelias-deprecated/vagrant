@@ -51,7 +51,7 @@ default[:pelias][:osm][:data_dir]                       = "#{node[:pelias][:base
 default[:pelias][:osm][:repository]                     = 'https://github.com/pelias/openstreetmap.git'
 default[:pelias][:osm][:revision]                       = 'master'
 default[:pelias][:osm][:index_data]                     = false
-default[:pelias][:osm][:timeout]                        = 7200 # 2 hours
+default[:pelias][:osm][:timeout]                        = 14_400 # 4 hours
 default[:pelias][:osm][:leveldb]                        = "#{node[:pelias][:basedir]}/leveldb"
 default[:pelias][:osm][:extracts]                       = {}
 
