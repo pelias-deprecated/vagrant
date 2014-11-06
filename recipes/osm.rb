@@ -22,7 +22,7 @@ deploy "#{node[:pelias][:basedir]}/osm" do
   create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :run, 'execute[npm install osm]', :immediately
-  notifies :run, 'execute[npm install osm-temp]', :immediately # NOTE: temp hack
+  notifies :run, 'execute[npm install osm-temp]', :immediately
   only_if { node[:pelias][:osm][:index_data] == true && node[:pelias][:osm][:shall_we_deploy] == true }
 end
 
@@ -30,14 +30,6 @@ execute 'npm install osm' do
   action  :nothing
   user    node[:pelias][:user][:name]
   command 'npm install'
-  cwd     "#{node[:pelias][:basedir]}/osm/current"
-  environment('HOME' => node[:pelias][:user][:home])
-end
-#### NOTE: temp hack, remove when quattro is updated
-execute 'npm install osm-temp' do
-  action  :nothing
-  user    node[:pelias][:user][:name]
-  command 'npm install pelias-suggester-pipeline@latest'
   cwd     "#{node[:pelias][:basedir]}/osm/current"
   environment('HOME' => node[:pelias][:user][:home])
 end
