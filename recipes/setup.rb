@@ -3,23 +3,23 @@
 # Recipe:: setup
 #
 
-log 'Installing system dependencies'
-package 'build-essential'
-
-include_recipe 'pelias::user'
+# dependencies
 include_recipe 'apt::default'
 include_recipe 'git::default'
 include_recipe 'java::default'
 include_recipe 'nodejs::nodejs_from_binary'
-
-log 'Installing Elasticsearch'
 include_recipe 'elasticsearch::default'
 include_recipe 'elasticsearch::plugins'
+
+package 'build-essential'
 
 # need to start ES after the initial installation
 execute 'service elasticsearch start' do
   not_if 'pgrep -f elasticsearch'
 end
+
+# user
+include_recipe 'pelias::user'
 
 # base/logs
 directory node[:pelias][:basedir] do

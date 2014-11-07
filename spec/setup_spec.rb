@@ -6,10 +6,6 @@ describe 'pelias::setup' do
     stub_command('pgrep -f elasticsearch').and_return(false)
   end
 
-  it 'should log something' do
-    expect(chef_run).to write_log 'Installing system dependencies'
-  end
-
   it 'should install build-essential' do
     expect(chef_run).to install_package 'build-essential'
   end
@@ -26,10 +22,6 @@ describe 'pelias::setup' do
     it "should include recipe #{r}" do
       expect(chef_run).to include_recipe r
     end
-  end
-
-  it 'should log something else' do
-    expect(chef_run).to write_log 'Installing Elasticsearch'
   end
 
   it 'should start elasticsearch' do
