@@ -17,7 +17,7 @@ execute 'npm install pelias-api' do
   command 'npm install'
   user    node[:pelias][:user][:name]
   cwd     node[:pelias][:api][:deploy_to]
-  environment('HOME' => "#{node[:pelias][:api][:deploy_to]}")
+  environment('HOME' => node[:pelias][:api][:deploy_to])
 end
 
 include_recipe 'pelias::api_service'
