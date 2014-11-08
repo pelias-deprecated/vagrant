@@ -159,5 +159,3 @@ Happy Geocoding!
         },
 ...
 ```
-
-![pelias](./img/vagrant.gif)
