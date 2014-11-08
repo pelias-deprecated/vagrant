@@ -3,15 +3,11 @@ README
 
 [![Circle CI](https://circleci.com/gh/pelias/vagrant.png?style=badge)](https://circleci.com/gh/pelias/vagrant)
 
-Notes
------
-* WORK IN PROGRESS!!!
-
 Requirements
 ------------
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) >= 4.3.18
 * [Vagrant](https://www.vagrantup.com/downloads.html) >= 1.6.5
-* a system with a minimum of ~4GB of RAM (more is better, and will be necessary if you want to load larger regions) and ~50GB of free disk space
+* a system with ~4GB of RAM and ~50GB of free disk space to load a modest test environment
 
 Goals
 -----
@@ -44,7 +40,7 @@ Getting started
 ---------------
 * copy the included pelias_settings.example.rb to a location of your choice, then export the environment variable `PELIAS_VAGRANTFILE` to reference it: `export PELIAS_VAGRANTFILE=/path/to/the/file`
   * you can leave the defaults in place until you get familiar with things, or if you're feeling up to it, edit away
-  * you can override anything found in `attributes/default.rb`, but typically what you'll want access to is already shows in `pelias_settings.example.rb`
+  * you can override anything found in `attributes/default.rb`, but typically what you'll want access to is referenced in the example config: `pelias_settings.example.rb`
 * from the repository root run `vagrant up`, which will:
   * download the vagrant box (this is a one time operation)
   * boot a linux instance that you can connect to via `vagrant ssh`
