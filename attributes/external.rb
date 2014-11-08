@@ -17,7 +17,8 @@ default[:elasticsearch][:custom_config]       = {
   'threadpool.bulk.type'      => 'fixed',
   'threadpool.bulk.size'      => '2',
   'threadpool.bulk.wait_time' => '3s',
-  'threadpool.bulk.queue'     => '500'
+  'threadpool.bulk.queue'     => '500',
+  'index.refresh_interval'    => '1m'
 }
 default[:elasticsearch][:plugins]             = {
   'pelias-analysis' => {
