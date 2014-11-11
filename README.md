@@ -77,7 +77,7 @@ Tweaking things
     * this file is now your means of manipulating the vagrant chef run going forward
 
 #### geonames
-* multiple geoname countries can be loaded by editing the geonames alpha2 array of [country codes](http://www.geonames.org/countries/):
+* multiple geoname countries can be loaded by editing the geonames alpha2 array of [country codes](http://www.geonames.org/countries/) (or you can specify 'all'):
 ```
   'geonames' => {
     'index_data' => true,
