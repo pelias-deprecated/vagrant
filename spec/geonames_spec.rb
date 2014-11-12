@@ -38,7 +38,7 @@ describe 'pelias::geonames' do
           command: "./bin/pelias-geonames -d #{c} >/opt/pelias/logs/geonames_#{c}.out 2>/opt/pelias/logs/geonames_#{c}.err",
           cwd: '/opt/pelias/geonames/current',
           timeout: 7200,
-          environment: { 'HOME' => '/home/pelias', 'PELIAS_CONFIG' => '/etc/pelias/pelias.json' }
+          environment: { 'HOME' => '/home/pelias', 'PELIAS_CONFIG' => '/etc/pelias/pelias.json', 'OSMIUM_POOL_THREADS' => '10' }
         )
       end
 
