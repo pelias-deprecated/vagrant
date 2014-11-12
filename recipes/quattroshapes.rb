@@ -65,7 +65,10 @@ node[:pelias][:quattroshapes][:alpha3_country_codes].each do |country|
       cwd         "#{node[:pelias][:basedir]}/quattroshapes-pipeline/current"
       timeout     node[:pelias][:quattroshapes][:timeout]
       subscribes  :run, "execute[extract quattroshapes for #{country}]", :immediately
-      environment('PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}")
+      environment(
+        'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}",
+        'OSMIUM_POOL_THREADS' => node[:pelias][:osm][:osmium_threads]
+      )
     end
   end
 end
