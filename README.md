@@ -21,6 +21,9 @@ Access points
 * API: `curl http://localhost:3100`
 * [Angular Demo](http://rawgit.com/pelias/demo/vagrant/index.html#loc=7,41.857,13.217): references the API on localhost:3100 so you can see a visual representation of the data you're loading
 * `vagrant ssh && sudo su -` and you've got free reign in a sandboxed environment
+* You can also share both access to your vagrant environment via ssh, or just share the API endpoint:
+  * `vagrant share --ssh` will accomplish both
+  * `vagrant share` will allow only the latter
 
 Environment
 -----------
