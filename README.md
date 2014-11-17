@@ -7,7 +7,6 @@ Requirements
 ------------
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) >= 4.3.18
 * [Vagrant](https://www.vagrantup.com/downloads.html) >= 1.6.5
-* `vagrant plugin install vagrant-berkshelf`
 * a system with ~4GB of RAM and ~50GB of free disk space to load a modest test environment
 
 Goals
@@ -39,6 +38,9 @@ export PELIAS_VAGRANT_CFG=${HOME}/.pelias_settings.rb
 
 Getting started
 ---------------
+* install VirtualBox
+* install Vagrant
+* `vagrant plugin install vagrant-berkshelf`
 * copy the included pelias_settings.example.rb to a location of your choice, then export the environment variable `PELIAS_VAGRANTFILE` to reference it: `export PELIAS_VAGRANTFILE=/path/to/the/file`
   * you can leave the defaults in place until you get familiar with things, or if you're feeling up to it, edit away
   * you can override anything found in `attributes/default.rb`, but typically what you'll want access to is referenced in the example config: `pelias_settings.example.rb`
