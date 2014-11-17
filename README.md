@@ -40,7 +40,7 @@ export PELIAS_VAGRANT_CFG=${HOME}/.pelias_settings.rb
 Getting started
 ---------------
 * install VirtualBox, Vagrant and ChefDK
-* `vagrant plugin install vagrant-berkshelf`
+* `vagrant plugin install vagrant-berkshelf --plugin-version "4.0.0"`
 * if you use rbenv or otherwise manipulate your path, make sure, make sure you set `/opt/chefdk/bin` ahead of the path to any other locally installed gems
 * copy the included pelias_settings.example.rb to a location of your choice, then export the environment variable `PELIAS_VAGRANTFILE` to reference it: `export PELIAS_VAGRANTFILE=/path/to/the/file`
   * you can leave the defaults in place until you get familiar with things, or if you're feeling up to it, edit away
