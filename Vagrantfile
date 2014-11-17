@@ -42,6 +42,7 @@ Vagrant.configure('2') do |config|
   config.vm.network :forwarded_port, host: 3100, guest: 3100
 
   config.vm.network :private_network, ip: '33.33.33.10'
+  config.berkshelf.berksfile_path = 'Berksfile'
   config.berkshelf.enabled = true
 end
 
