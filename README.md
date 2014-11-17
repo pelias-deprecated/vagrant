@@ -7,6 +7,7 @@ Requirements
 ------------
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) >= 4.3.18
 * [Vagrant](https://www.vagrantup.com/downloads.html) >= 1.6.5
+* `vagrant plugin install vagrant-berkshelf`
 * a system with ~4GB of RAM and ~50GB of free disk space to load a modest test environment
 
 Goals
