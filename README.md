@@ -170,5 +170,4 @@ Happy Geocoding!
             },
             "type": "Feature"
         },
-...
 ```
