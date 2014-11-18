@@ -20,6 +20,8 @@
 
 Vagrant.configure('2') do |config|
   config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = 'cookbooks'
+
     chef.json = {
       'pelias' => {
         'schema' => {

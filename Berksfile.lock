@@ -2,8 +2,7 @@ DEPENDENCIES
   elasticsearch (= 0.3.10)
   nodejs (= 2.1.0)
   pelias
-    path: .
-    metadata: true
+    path: cookbooks/pelias
   runit (= 1.5.10)
 
 GRAPH
