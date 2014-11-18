@@ -45,7 +45,7 @@ Getting started
   * load OSM extracts for Rome and Florence into Elasticsearch
 * `vagrant suspend` or `vagrant halt` will stop the virtual machine without any data loss
 * `vagrant up` will bring it back online for use
-* to start from scratch: `vagrant destroy; vagrant up`, or `curl -XDELETE http://localhost:9200/pelias` followed by `vagrant provision`
+* to start from scratch: `kitchen destroy pelias; kitchen converge pelias`, or `curl -XDELETE http://localhost:9200/pelias` followed by `kitchen converge pelias`
 
 How long will this take?
 ------------------------
