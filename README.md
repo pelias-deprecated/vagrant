@@ -130,12 +130,7 @@ Tweaking things
 
 Bugs/Issues
 -----------
-* quattroshapes take a long time to load ( >8 hours in this type of environment)
-  * look into breaking quattroshapes up into more easily ingested chunks
-
-TODO
-----
-* specs for quattro
+* there is presently a bug in pelias resulting in the OSM process not exiting on completion of data load
 
 Contributing
 ------------
