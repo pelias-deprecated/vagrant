@@ -1,3 +1,5 @@
 .vagrant
 .bundle
 tmp/
+.kitchen/
+.kitchen.local.yml
