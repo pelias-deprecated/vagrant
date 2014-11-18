@@ -38,7 +38,7 @@ Vagrant.configure('2') do |config|
     v.memory = ENV['PELIAS_VAGRANT_MB'] || mem
   end
 
-  # forward 3100 (API) and 9200 (ES)
+  # forward 3100 (API)
   config.vm.network :forwarded_port, host: 3100, guest: 3100
 
   config.vm.network :private_network, ip: '192.168.33.10'
