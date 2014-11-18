@@ -1,6 +1,9 @@
 ---
 driver:
   name: vagrant
+  customize:
+    memory: 2048
+    cpus: 2
 
 provisioner:
   name: chef_solo
@@ -9,6 +12,23 @@ platforms:
   - name: ubuntu-14.04
 
 suites:
-  - name: default
+  - name: pelias
     run_list:
+      - recipe[pelias::default]
     attributes:
+      pelias:
+        schema:
+          create_index: true
+        geonames:
+          index_data: true
+          alpha2_country_codes:
+            - IT
+        quattroshapes:
+          index_data: true
+          alpha3_country_codes:
+            - ITA
+        osm:
+          index_data: true
+          extracts:
+            rome: https://s3.amazonaws.com/metro-extracts.mapzen.com/rome_italy.osm.pbf
+            florence: https://s3.amazonaws.com/metro-extracts.mapzen.com/florence_italy.osm.pbf
