@@ -4,6 +4,8 @@ driver:
   customize:
     memory: 2048
     cpus: 2
+    network:
+    - ['forwarded_port', {guest: 3100, host: 3100}]
 
 provisioner:
   name: chef_solo

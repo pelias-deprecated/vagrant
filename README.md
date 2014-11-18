@@ -7,7 +7,6 @@ Requirements
 ------------
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) >= 4.3.18
 * [Vagrant](https://www.vagrantup.com/downloads.html) >= 1.6.5
-* [ChefDK](http://downloads.getchef.com/chef-dk/) >= 0.3.5
 * a system with ~4GB of RAM and ~50GB of free disk space to load a modest test environment
 
 Goals
@@ -20,43 +19,18 @@ Access points
 -------------
 * API: `curl http://localhost:3100`
 * [Angular Demo](http://rawgit.com/pelias/demo/vagrant/index.html#loc=7,41.857,13.217): references the API on localhost:3100 so you can see a visual representation of the data you're loading
-* `vagrant ssh && sudo su -` and you've got free reign in a sandboxed environment
-* You can also share both access to your vagrant environment via ssh, or just share the API endpoint:
-  * `vagrant share --ssh` will accomplish both
-  * `vagrant share` will allow only the latter
-
-Environment
------------
-* you can set the following environment variables to specify the number of cores and amount of RAM in MB to allocate to the VM. If left unset, we will infer sensible defaults (see Vagrantfile).
-
-```bash
-export PELIAS_VAGRANT_CPUS=3
-export PELIAS_VAGRANT_MB=6144
-```
-
-* you can alter the default settings in pelias_settings.example.rb by using a local config, which can in fact be used to override any value set in the chef run:
-
-```bash
-export PELIAS_VAGRANT_CFG=${HOME}/.pelias_settings.rb
-```
+* `kitchen login pelias` and you've got free reign in a sandboxed environment
 
 Getting started
 ---------------
-* install VirtualBox, Vagrant and ChefDK
-* `vagrant plugin install vagrant-berkshelf --plugin-version "4.0.0"`
-* if you use rbenv or otherwise manipulate your path, make sure, make sure you set `/opt/chefdk/bin` ahead of the path to any other locally installed gems that might conflict with berkshelf, foodcritic, etc, e.g.:
-
-```bash
-eval "$(rbenv init -)"
-export PATH=/opt/chefdk/bin:$PATH
-```
-
-* copy the included pelias_settings.example.rb to a location of your choice, then export the environment variable `PELIAS_VAGRANTFILE` to reference it: `export PELIAS_VAGRANTFILE=/path/to/the/file`
+* install VirtualBox and Vagrant
+* from the project root run `bundle install`
+* to modify the chef run, copy .kitchen.yml to .kitchen.local.yml
   * you can leave the defaults in place until you get familiar with things, or if you're feeling up to it, edit away
-  * you can override anything found in `attributes/default.rb`, but typically what you'll want access to is referenced in the example config: `pelias_settings.example.rb`
-* from the repository root run `vagrant up`, which will:
+  * you can override anything found in `attributes/default.rb`, but typically what you'll want access to is referenced in the existing config, namely specifying which extracts to install
+* from the repository root run `kitchen converge pelias`, which will:
   * download the vagrant box (this is a one time operation)
-  * boot a linux instance that you can connect to via `vagrant ssh`
+  * boot a linux instance that you can connect to via `kitchen login pelias`
   * install all the dependencies required to load data into and run Pelias:
     * elasticsearch
     * nodejs
@@ -80,53 +54,43 @@ How long will this take?
 
 Tweaking things
 ---------------
-* the `pelias_settings.example.rb` file shows some ways you can define/override values in the provisioning process
-* you can copy this file to a location of your choice and reference it via an environment variable: `PELIAS_VAGRANTFILE`
-  * if the environment variable is set, vagrant will attempt to load the contents of the file it references
-  * if the environment variable is not set, vagrant will load pelias_settings.example.rb provided in the repository
+* `.kitchen.yml` shows some ways you can define/override values in the provisioning process
 * let's suppose you want to load osm data for locations in Germany and Italy:
-  * from the repo root: `cp pelias_settings.example.rb ~/.pelias_settings.rb`
-  * in your profile, `export PELIAS_VAGRANTFILE=${HOME}/.pelias_settings.rb`
-    * this file is now your means of manipulating the vagrant chef run going forward
+  * from the repo root: `cp .kitchen.yml .kitchen.local.yml`
+  * this local config is now your means of manipulating things going forward
 
 #### geonames
 * multiple geoname countries can be loaded by editing the geonames alpha2 array of [country codes](http://www.geonames.org/countries/) (or you can specify 'all'):
 ```
-  'geonames' => {
-    'index_data' => true,
-    'alpha2_country_codes' => [
-      'IT',
-      'DE'
-    ]
-  },
+  geonames:
+    index_data: true
+    alpha2_country_codes:
+      - IT
+      - DE
 ```
 
 #### quattroshapes
 * multiple quattroshapes can be loaded by modifying the quattroshapes alpha3 array of [country codes](http://www.geonames.org/countries/):
 ```
-  'quattroshapes' => {
-    'index_data' => true,
-    'alpha3_country_codes' => [
-      'ITA',
-      'DEU'
-    ]
-  },
+  quattroshapes:
+    index_data: true
+    alpha3_country_codes:
+      - ITA
+      - DEU
 ```
 
 #### osm
 * osm extracts you may want to load can be found on the [Mapzen Metro Extracts](https://mapzen.com/metro-extracts) page.
 * multiple extracts can be loaded by updating the extracts hash:
 ```
-  'osm' => {
-    'index_data' => true,
-    'extracts' => {
-      'florence' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/florence_italy.osm.pbf',
-      'munich' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/munich_germany.osm.pbf'
-    }
-  }
+  osm:
+    index_data: true
+    extracts:
+      florence: https://s3.amazonaws.com/metro-extracts.mapzen.com/florence_italy.osm.pbf
+      munich: https://s3.amazonaws.com/metro-extracts.mapzen.com/munich_germany.osm.pbf
 ```
 
-* now that you've edited `PELIAS_VAGRANTFILE`, run `vagrant up` to start loading data, or `vagrant provision` if you'd previously started the instance
+* run `kitchen converge pelias`
 
 Bugs/Issues
 -----------
