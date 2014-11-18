@@ -1,11 +1,13 @@
 ---
 driver:
   name: vagrant
+  vm_hostname: pelias
+  network:
+    - ['forwarded_port', {guest: 3100, host: 3100}]
+    - ['private_network', {ip: '192.168.33.0'}]
   customize:
     memory: 2048
     cpus: 2
-    network:
-    - ['forwarded_port', {guest: 3100, host: 3100}]
 
 provisioner:
   name: chef_solo
