@@ -10,6 +10,8 @@ Requirements
 * [ChefDK](http://downloads.getchef.com/chef-dk/)
 * a system with ~4GB of RAM and ~50GB of free disk space to load a modest test environment
 
+If you're installing on OSX we recommend you download the latest from the above links. We've also tested on Ubuntu 14.04LTS, in which case we recommend installing from apt.
+
 Goals
 -----
 * to provide, via the included Chef code, a reference for installing your own Pelias system:
