@@ -17,7 +17,7 @@ Vagrant.configure('2') do |config|
       end
     end
 
-    mem_divisor = 2
+    mem_divisor = 1.8
     mem_min     = 2048
     mem_max     = 8192
 
