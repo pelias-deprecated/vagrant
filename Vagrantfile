@@ -14,6 +14,8 @@ Vagrant.configure('2') do |config|
         mem_max
       elsif ram < mem_min
         mem_min
+      else
+        ram
       end
     end
 
@@ -22,20 +24,28 @@ Vagrant.configure('2') do |config|
     mem_max     = 8192
 
     if host =~ /darwin/
-      cpu = ENV['PELIAS_VAGRANT_CPUS'] || `sysctl -n hw.ncpu`.to_i
+      cpu = `sysctl -n hw.ncpu`.to_i
       ram = `sysctl -n hw.memsize`.to_i / 1024 / 1024 / mem_divisor
       mem = memish(ram, mem_max, mem_min)
     elsif host =~ /linux/
-      cpu = ENV['PELIAS_VAGRANT_CPUS'] || `nproc`.to_i
+      cpu = `nproc`.to_i
       ram = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / mem_divisor
-      mem = ENV['PELIAS_VAGRANT_MB'] || memish(ram, mem_max, mem_min)
+      mem = memish(ram, mem_max, mem_min)
     else
-      cpu = ENV['PELIAS_VAGRANT_CPUS'] || 2
-      mem = ENV['PELIAS_VAGRANT_MB'] || mem_min
+      cpu = 2
+      mem = mem_min
     end
 
-    v.cpus   = ENV['PELIAS_VAGRANT_CPUS'] || cpu
-    v.memory = ENV['PELIAS_VAGRANT_MB'] || mem
+    if ENV['PELIAS_VAGRANT_CPUS']
+      v.cpus = ENV['PELIAS_VAGRANT_CPUS']
+    else
+      v.cpus = cpu
+    end
+    if ENV['PELIAS_VAGRANT_MB']
+      v.memory = ENV['PELIAS_VAGRANT_MB']
+    else
+      v.memory = mem
+    end
   end
 
   # forward 3100 (API)
