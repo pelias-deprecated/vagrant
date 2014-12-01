@@ -24,7 +24,7 @@ Vagrant.configure('2') do |config|
     if host =~ /darwin/
       cpu = ENV['PELIAS_VAGRANT_CPUS'] || `sysctl -n hw.ncpu`.to_i
       ram = `sysctl -n hw.memsize`.to_i / 1024 / 1024 / mem_divisor
-      mem = ENV['PELIAS_VAGRANT_MB'] || memish(ram, mem_max, mem_min)
+      mem = memish(ram, mem_max, mem_min)
     elsif host =~ /linux/
       cpu = ENV['PELIAS_VAGRANT_CPUS'] || `nproc`.to_i
       ram = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / mem_divisor
