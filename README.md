@@ -14,8 +14,7 @@ On OSX, download/install:
   * [Vagrant](https://www.vagrantup.com/downloads.html)
 
 On Ubuntu 14.04LTS:
-  * `apt-get install virtualbox`
-  * `apt-get install vagrant`
+  * `apt-get install virtualbox vagrant`
 
 Goals
 -----
