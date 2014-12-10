@@ -5,12 +5,18 @@ README
 
 Requirements
 ------------
-* [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-* [Vagrant](https://www.vagrantup.com/downloads.html)
-* [ChefDK](http://downloads.getchef.com/chef-dk/)
-* a system with ~4GB of RAM and ~50GB of free disk space to load a modest test environment
+A system with ~4GB of RAM and ~50GB of free disk space to load a modest test environment is required.
 
-If you're installing on OSX we recommend you download the latest from the above links. We've also tested on Ubuntu 14.04LTS, in which case we recommend installing from apt.
+On OSX, download/install:
+  * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+  * [Vagrant](https://www.vagrantup.com/downloads.html)
+
+On Ubuntu 14.04LTS:
+  * `apt-get install virtualbox`
+  * `apt-get install vagrant`
+
+Install ChefDK:
+  * [ChefDK](http://downloads.getchef.com/chef-dk/)
 
 Goals
 -----
