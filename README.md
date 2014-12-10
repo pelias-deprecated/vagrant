@@ -5,11 +5,11 @@ README
 
 Requirements
 ------------
-A system with ~4GB of RAM and ~20GB of free disk space to load a modest test environment is required.
+A system with ~4GB of RAM and ~20GB of free disk space to load a modest test environment.
 
-Install [ChefDK](http://downloads.getchef.com/chef-dk/)
+Install [ChefDK](http://downloads.getchef.com/chef-dk/).
 
-On OSX, download/install:
+On OSX:
   * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
   * [Vagrant](https://www.vagrantup.com/downloads.html)
 
