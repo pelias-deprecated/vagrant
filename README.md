@@ -50,7 +50,7 @@ Getting started
 ---------------
 * install VirtualBox, Vagrant and ChefDK
 * `vagrant plugin install vagrant-berkshelf`
-* if you use rbenv or otherwise manipulate your path, make sure, make sure you set `/opt/chefdk/bin` ahead of the path to any other locally installed gems that might conflict with berkshelf, foodcritic, etc, e.g.:
+* if you use rbenv or otherwise manipulate your path, make sure you set `/opt/chefdk/bin` ahead of the path to any other locally installed gems that might conflict with berkshelf, foodcritic, etc, e.g.:
 
 ```bash
 eval "$(rbenv init -)"
