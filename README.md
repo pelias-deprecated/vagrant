@@ -5,7 +5,7 @@ README
 
 Requirements
 ------------
-A system with ~4GB of RAM and ~50GB of free disk space to load a modest test environment is required.
+A system with ~4GB of RAM and ~20GB of free disk space to load a modest test environment is required.
 
 On OSX, download/install:
   * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
@@ -15,8 +15,7 @@ On Ubuntu 14.04LTS:
   * `apt-get install virtualbox`
   * `apt-get install vagrant`
 
-Install ChefDK:
-  * [ChefDK](http://downloads.getchef.com/chef-dk/)
+Install [ChefDK](http://downloads.getchef.com/chef-dk/)
 
 Goals
 -----
