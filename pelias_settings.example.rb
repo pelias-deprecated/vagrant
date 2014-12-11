@@ -28,19 +28,19 @@ Vagrant.configure('2') do |config|
           'create_index' => true
         },
         'geonames' => {
-          'index_data' => true,
+          'index_data' => false,
           'alpha2_country_codes' => [
             'IT'
           ]
         },
         'quattroshapes' => {
-          'index_data' => true,
+          'index_data' => false,
           'alpha3_country_codes' => [
             'ITA'
           ]
         },
         'osm' => {
-          'index_data' => true,
+          'index_data' => false,
           'extracts' => {
             'rome'      => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/rome_italy.osm.pbf',
             'florence'  => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/florence_italy.osm.pbf'
