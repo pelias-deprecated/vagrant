@@ -2,9 +2,10 @@
 # vi: set ft=ruby :
 
 Vagrant.configure('2') do |config|
-  config.vm.hostname = 'pelias'
-  config.vm.box      = 'ubuntu-14.04'
-  config.vm.box_url  = 'https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box'
+  config.omnibus.chef_version = '11.12.8'
+  config.vm.hostname          = 'pelias'
+  config.vm.box               = 'ubuntu-14.04-opscode'
+  config.vm.box_url           = 'http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box'
 
   config.vm.provider 'virtualbox' do |v|
     host = RbConfig::CONFIG['host_os']
