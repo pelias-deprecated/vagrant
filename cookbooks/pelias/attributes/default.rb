@@ -13,8 +13,8 @@ default[:pelias][:user][:home]                          = '/home/pelias'
 # esclient
 default[:pelias][:esclient][:logdir]                    = '/var/log/esclient'
 default[:pelias][:esclient][:keepalive]                 = true
-default[:pelias][:esclient][:api_version]               = node[:elasticsearch][:version].split('.')[0] + '.' + node[:elasticsearch][:version].split('.')[1]
 default[:pelias][:esclient][:request_timeout]           = 120_000
+default[:pelias][:esclient][:api_version]               = '1.3'
 default[:pelias][:esclient][:max_retries]               = 3
 default[:pelias][:esclient][:dead_timeout]              = 3000
 default[:pelias][:esclient][:max_sockets]               = 20

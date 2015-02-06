@@ -2,12 +2,12 @@
 #
 
 # nodejs
-default[:nodejs][:version]                    = '0.10.32'
-default[:nodejs][:checksum_linux_x64]         = '621777798ed9523a4ad1c4d934f94b7bc765871d769a014a53a4f1f7bcb5d5a7'
+default[:nodejs][:version]                    = '0.10.36'
+default[:nodejs][:checksum_linux_x64]         = '2bc13477684a9fe534bdc9d8f4a8caf6257a11953b57c42cad9b919ee259a0d5'
 default[:nodejs][:dir]                        = '/usr'
 
 # elasticsearch
-default[:elasticsearch][:version]             = '1.3.4'
+default[:elasticsearch][:version]             = '1.4.2'
 default[:elasticsearch][:filename]            = "elasticsearch-#{node[:elasticsearch][:version]}.tar.gz"
 default[:elasticsearch][:download_url]        = [node[:elasticsearch][:host], node[:elasticsearch][:repository], node[:elasticsearch][:filename]].join('/')
 default[:elasticsearch][:skip_restart]        = true
@@ -22,7 +22,7 @@ default[:elasticsearch][:custom_config]       = {
 }
 default[:elasticsearch][:plugins]             = {
   'pelias-analysis' => {
-    'url' => "https://github.com/pelias/elasticsearch-plugin/blob/#{node[:elasticsearch][:version]}/pelias-analysis.zip?raw=true"
+    'url' => "https://github.com/pelias/elasticsearch-plugin/blob/1.3.4/pelias-analysis.zip?raw=true"
   }
 }
 
