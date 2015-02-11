@@ -7,7 +7,7 @@ default[:nodejs][:checksum_linux_x64]         = '2bc13477684a9fe534bdc9d8f4a8caf
 default[:nodejs][:dir]                        = '/usr'
 
 # elasticsearch
-default[:elasticsearch][:version]             = '1.4.2'
+default[:elasticsearch][:version]             = '1.4.3'
 default[:elasticsearch][:filename]            = "elasticsearch-#{node[:elasticsearch][:version]}.tar.gz"
 default[:elasticsearch][:download_url]        = [node[:elasticsearch][:host], node[:elasticsearch][:repository], node[:elasticsearch][:filename]].join('/')
 default[:elasticsearch][:skip_restart]        = true
