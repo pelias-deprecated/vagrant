@@ -6,6 +6,7 @@
 %w(
   setup
   config
+  groovy
   api
   schema
   geonames
