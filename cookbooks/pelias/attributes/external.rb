@@ -22,7 +22,7 @@ default[:elasticsearch][:custom_config]       = {
 }
 default[:elasticsearch][:plugins]             = {
   'pelias-analysis' => {
-    'url' => "https://github.com/pelias/elasticsearch-plugin/blob/1.3.4/pelias-analysis.zip?raw=true"
+    'url' => 'https://github.com/pelias/elasticsearch-plugin/blob/1.3.4/pelias-analysis.zip?raw=true'
   }
 }
 
