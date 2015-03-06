@@ -9,7 +9,7 @@ remote_file "#{node[:pelias][:quattroshapes][:data_dir]}/quattroshapes-simplifie
   source    url
   mode      0644
   backup    false
-  notifies  :run, 'execute[extract quattroshapes', :immediately
+  notifies  :run, 'execute[extract quattroshapes]', :immediately
 end
 
 execute 'extract quattroshapes' do
