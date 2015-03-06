@@ -3,6 +3,8 @@
 # Recipe:: geonames
 #
 
+include_recipe 'pelias::_all_quattro_data' if node[:pelias][:geonames][:index_data] == true
+
 # skip deploying if we don't need to
 node[:pelias][:geonames][:alpha2_country_codes].each do |country|
   download = "#{node[:pelias][:geonames][:data_dir]}/#{country}.zip"

@@ -30,20 +30,19 @@ Vagrant.configure('2') do |config|
         'geonames' => {
           'index_data' => true,
           'alpha2_country_codes' => [
-            'IT'
+            'GB'
           ]
         },
         'quattroshapes' => {
           'index_data' => true,
           'alpha3_country_codes' => [
-            'ITA'
+            'GBR'
           ]
         },
         'osm' => {
           'index_data' => true,
           'extracts' => {
-            'rome'      => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/rome_italy.osm.pbf',
-            'florence'  => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/florence_italy.osm.pbf'
+            'london' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/london_england.osm.pbf'
           }
         }
       }

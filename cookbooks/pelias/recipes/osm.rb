@@ -3,6 +3,8 @@
 # Recipe:: osm
 #
 
+include_recipe 'pelias::_all_quattro_data' if node[:pelias][:osm][:index_data] == true
+
 # skip deploying if we don't need to
 node[:pelias][:osm][:extracts].map do |_name, url|
   data_file = url.split('/').last
