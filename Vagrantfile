@@ -21,7 +21,7 @@ Vagrant.configure('2') do |config|
     end
 
     mem_divisor = 2
-    mem_min     = 8096
+    mem_min     = 10240
     mem_max     = 10240
 
     if host =~ /darwin/
