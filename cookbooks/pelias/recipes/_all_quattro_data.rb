@@ -4,12 +4,12 @@
 #
 
 url = node[:pelias][:quattroshapes][:data_url].split('alpha3').first + 'quattroshapes-simplified.tar.gz'
-remote_file "#{node[:pelias][:quattroshapes][:data_dir]}/quattroshapes-simplified.tar.gz" do
-  action    :create_if_missing
-  source    url
-  mode      0644
-  backup    false
+
+execute "wget -O quattroshapes-simplified.tar.gz #{url}" do
+  user      node[:pelias][:user][:name]
+  cwd       node[:pelias][:quattroshapes][:data_dir]
   notifies  :run, 'execute[extract quattroshapes]', :immediately
+  not_if    { ::File.exist? 'quattroshapes-simplified.tar.gz' }
 end
 
 execute 'extract quattroshapes' do
