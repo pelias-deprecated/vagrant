@@ -54,7 +54,6 @@ default[:pelias][:osm][:index_data]                     = false
 default[:pelias][:osm][:timeout]                        = 14_400 # 4 hours
 default[:pelias][:osm][:leveldb]                        = "#{node[:pelias][:basedir]}/leveldb"
 default[:pelias][:osm][:extracts]                       = {}
-default[:pelias][:osm][:osmium_threads]                 = (node[:cpu][:total] * 10).to_s
 
 # schema
 default[:pelias][:schema][:repository]                  = 'https://github.com/pelias/schema.git'
@@ -63,7 +62,7 @@ default[:pelias][:schema][:drop_index]                  = false
 default[:pelias][:schema][:create_index]                = false
 default[:pelias][:schema][:replicas]                    = 0
 default[:pelias][:schema][:shards]                      = 1
-default[:pelias][:schema][:concurrency]                 = 32
+default[:pelias][:schema][:concurrency]                 = 24
 
 # groovy
 # es scripts
