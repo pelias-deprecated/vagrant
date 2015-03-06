@@ -5,7 +5,7 @@ README
 
 Requirements
 ------------
-A system with ~4GB of RAM and ~20GB of free disk space to load a modest test environment.
+A system with ~10GB of RAM and ~20GB of free disk space to load a modest test environment.
 
 Install [ChefDK](http://downloads.getchef.com/chef-dk/).
 
