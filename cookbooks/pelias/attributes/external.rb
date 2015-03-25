@@ -7,7 +7,7 @@ default[:nodejs][:checksum_linux_x64]         = '2bc13477684a9fe534bdc9d8f4a8caf
 default[:nodejs][:dir]                        = '/usr'
 
 # elasticsearch
-default[:elasticsearch][:version]             = '1.4.3'
+default[:elasticsearch][:version]             = '1.5.0'
 default[:elasticsearch][:filename]            = "elasticsearch-#{node[:elasticsearch][:version]}.tar.gz"
 default[:elasticsearch][:download_url]        = [node[:elasticsearch][:host], node[:elasticsearch][:repository], node[:elasticsearch][:filename]].join('/')
 default[:elasticsearch][:skip_restart]        = true
@@ -28,7 +28,7 @@ default[:elasticsearch][:plugins]             = {
 
 # java
 default[:java][:install_flavor]                         = 'oracle'
-default[:java][:jdk_version]                            = '7'
+default[:java][:jdk_version]                            = '8'
 default[:java][:oracle][:accept_oracle_download_terms]  = true
-default[:java][:jdk][:'7'][:x86_64][:url]               = 'http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-x64.tar.gz'
-default[:java][:jdk][:'7'][:x86_64][:checksum]          = '764f96c4b078b80adaa5983e75470ff2'
+default[:java][:jdk][:'8'][:x86_64][:url]               = 'http://download.oracle.com/otn-pub/java/jdk/8u40-b26/jdk-8u40-linux-x64.tar.gz'
+default[:java][:jdk][:'8'][:x86_64][:checksum]          = '3b3f74589539b8bbe5d78005e52f4f78'
