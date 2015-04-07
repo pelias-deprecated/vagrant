@@ -72,7 +72,7 @@ export PATH=/opt/chefdk/bin:$PATH
     * as soon as the geonames data load starts, you'll be able to start querying the index via the API
     * more details on the API can be found here: [Pelias API](https://github.com/pelias/api)
     * in addition, you can access our [Demo](http://rawgit.com/pelias/demo/vagrant/index.html#loc=7,41.857,13.217) which will let you visualize the data you're loading, run searches, etc.
-  * load Geonames data for Italy into Elasticsearch
+  * load Geonames data for England into Elasticsearch
   * load OSM extracts for London into Elasticsearch
 * `vagrant suspend` or `vagrant halt` will stop the virtual machine without any data loss
 * `vagrant up` will bring it back online for use
