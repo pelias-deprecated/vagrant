@@ -5,6 +5,7 @@
 
 url = node[:pelias][:quattroshapes][:data_url].split('alpha3').first + 'quattroshapes-simplified.tar.gz'
 
+log 'Downloading quattroshapes data'
 execute "wget -O quattroshapes-simplified.tar.gz #{url}" do
   user      node[:pelias][:user][:name]
   cwd       node[:pelias][:quattroshapes][:data_dir]
