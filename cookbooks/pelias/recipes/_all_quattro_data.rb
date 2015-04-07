@@ -9,7 +9,7 @@ execute "wget -O quattroshapes-simplified.tar.gz #{url}" do
   user      node[:pelias][:user][:name]
   cwd       node[:pelias][:quattroshapes][:data_dir]
   notifies  :run, 'execute[extract quattroshapes]', :immediately
-  not_if    { ::File.exist? 'quattroshapes-simplified.tar.gz' }
+  not_if    { ::File.exist? "#{node[:pelias][:quattroshapes][:data_dir]}/quattroshapes-simplified.tar.gz" }
 end
 
 execute 'extract quattroshapes' do
