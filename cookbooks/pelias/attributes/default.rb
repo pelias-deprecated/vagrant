@@ -32,6 +32,7 @@ default[:pelias][:geonames][:repository]                = 'https://github.com/pe
 default[:pelias][:geonames][:data_dir]                  = "#{node[:pelias][:basedir]}/data/geonames"
 default[:pelias][:geonames][:revision]                  = 'master'
 default[:pelias][:geonames][:index_data]                = false
+default[:pelias][:geonames][:admin_lookup]              = false
 default[:pelias][:geonames][:alpha2_country_codes]      = %w(IT) # Italy
 default[:pelias][:geonames][:timeout]                   = 7200 # 2 hours
 
@@ -51,6 +52,7 @@ default[:pelias][:osm][:data_dir]                       = "#{node[:pelias][:base
 default[:pelias][:osm][:repository]                     = 'https://github.com/pelias/openstreetmap.git'
 default[:pelias][:osm][:revision]                       = 'master'
 default[:pelias][:osm][:index_data]                     = false
+default[:pelias][:osm][:admin_lookup]                   = false
 default[:pelias][:osm][:timeout]                        = 14_400 # 4 hours
 default[:pelias][:osm][:leveldb]                        = "#{node[:pelias][:basedir]}/leveldb"
 default[:pelias][:osm][:extracts]                       = {}

@@ -28,13 +28,15 @@
   },
   "imports": {
     "geonames": {
-      "datapath": "<%= node[:pelias][:geonames][:data_dir] %>"
+      "datapath": "<%= node[:pelias][:geonames][:data_dir] %>",
+      "adminLookup": <%= node[:pelias][:geonames][:admin_lookup] %>
     },
     "quattroshapes": {
       "datapath": "<%= node[:pelias][:quattroshapes][:data_dir] %>"
     },
     "openstreetmap": {
       "datapath": "<%= node[:pelias][:osm][:data_dir] %>",
+      "adminLookup": <%= node[:pelias][:osm][:admin_lookup] %>,
       "leveldbpath": "<%= node[:pelias][:osm][:leveldb] %>",
       "import": [{
         "type": { "node": "osmnode", "way": "osmway" },
