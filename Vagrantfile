@@ -21,8 +21,8 @@ Vagrant.configure('2') do |config|
     end
 
     mem_divisor = 2
-    mem_min     = 2048
-    mem_max     = 8192
+    mem_min     = 4_096
+    mem_max     = 8_192
 
     if host =~ /darwin/
       cpu = `sysctl -n hw.ncpu`.to_i

@@ -5,7 +5,7 @@ README
 
 Requirements
 ------------
-A system with ~4GB of RAM and ~20GB of free disk space to load a modest test environment.
+A system with ~6GB of RAM and ~20GB of free disk space to load a modest test environment.
 
 Install [ChefDK](http://downloads.getchef.com/chef-dk/).
 
@@ -23,7 +23,7 @@ Goals
 Access points
 -------------
 * API: `curl http://localhost:3100`
-* [Angular Demo](http://rawgit.com/pelias/demo/vagrant/index.html#loc=7,41.857,13.217): references the API on localhost:3100 so you can see a visual representation of the data you're loading
+* [Angular Demo](http://rawgit.com/pelias/demo/vagrant/index.html#loc=12,51.5049,-0.1239): references the API on localhost:3100 so you can see a visual representation of the data you're loading
 * `vagrant ssh && sudo su -` and you've got free reign in a sandboxed environment
 * You can also share both access to your vagrant environment via ssh, or just share the API endpoint:
   * `vagrant share --ssh` will accomplish both
@@ -73,14 +73,14 @@ export PATH=/opt/chefdk/bin:$PATH
     * more details on the API can be found here: [Pelias API](https://github.com/pelias/api)
     * in addition, you can access our [Demo](http://rawgit.com/pelias/demo/vagrant/index.html#loc=7,41.857,13.217) which will let you visualize the data you're loading, run searches, etc.
   * load Geonames data for Italy into Elasticsearch
-  * load OSM extracts for Rome and Florence into Elasticsearch
+  * load OSM extracts for London into Elasticsearch
 * `vagrant suspend` or `vagrant halt` will stop the virtual machine without any data loss
 * `vagrant up` will bring it back online for use
 * to start from scratch: `vagrant destroy; vagrant up`, or `curl -XDELETE http://localhost:9200/pelias` followed by `vagrant provision`
 
 How long will this take?
 ------------------------
-* presently, to load the defaults (geonames for IT, quattroshapes for ITA and Florence and Rome OSM data): ~1 hour (including initial build time of the VM, which is a one time deal)
+* presently, to load the defaults (geonames for GB, quattroshapes for GBR and London OSM data): ~1 hour (including initial build time of the VM, which is a one time deal)
 * larger countries with more data, e.g. the US and most countries in Western Europe, will take longer
 
 Tweaking things

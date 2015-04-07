@@ -3,6 +3,8 @@
 # Recipe:: osm
 #
 
+include_recipe 'pelias::_all_quattro_data' if node[:pelias][:osm][:index_data] == true
+
 # skip deploying if we don't need to
 node[:pelias][:osm][:extracts].map do |_name, url|
   data_file = url.split('/').last
@@ -71,8 +73,7 @@ node[:pelias][:osm][:extracts].map do |name, url|
     timeout node[:pelias][:osm][:timeout]
     environment(
       'HOME'                => node[:pelias][:user][:home],
-      'PELIAS_CONFIG'       => "#{node[:pelias][:cfg_dir]}/#{name}_#{node[:pelias][:cfg_file]}",
-      'OSMIUM_POOL_THREADS' => node[:pelias][:osm][:osmium_threads]
+      'PELIAS_CONFIG'       => "#{node[:pelias][:cfg_dir]}/#{name}_#{node[:pelias][:cfg_file]}"
     )
   end
 end
