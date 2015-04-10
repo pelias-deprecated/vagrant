@@ -35,14 +35,6 @@ execute 'npm install quattroshapes-pipeline' do
 end
 
 node[:pelias][:quattroshapes][:alpha3_country_codes].each do |country|
-  # unique templates for each file we need to load (ugh)
-  template "#{node[:pelias][:basedir]}/quattroshapes-pipeline/current/example/#{country}_index_quattroshapes.js" do
-    source  'index_quattroshapes.js.erb'
-    mode    0644
-    variables(country: country)
-    only_if { node[:pelias][:quattroshapes][:index_data] == true && node[:pelias][:quattroshapes][:shall_we_deploy] == true }
-  end
-
   remote_file "#{node[:pelias][:quattroshapes][:data_dir]}/#{country}.tgz" do
     action    :create_if_missing
     source    "#{node[:pelias][:quattroshapes][:data_url]}/#{country}.tgz"
@@ -63,7 +55,7 @@ node[:pelias][:quattroshapes][:alpha3_country_codes].each do |country|
     execute "load quattroshapes for #{country} #{type}" do
       action      :nothing
       user        node[:pelias][:user][:name]
-      command     "node #{node[:pelias][:basedir]}/quattroshapes-pipeline/current/example/#{country}_index_quattroshapes.js #{type} >#{node[:pelias][:basedir]}/logs/quattroshapes_#{country}_#{type}.out 2>#{node[:pelias][:basedir]}/logs/quattroshapes_#{country}_#{type}.err"
+      command     "node example/runme.js #{type} #{country} >#{node[:pelias][:basedir]}/logs/quattroshapes_#{country}_#{type}.out 2>#{node[:pelias][:basedir]}/logs/quattroshapes_#{country}_#{type}.err"
       cwd         "#{node[:pelias][:basedir]}/quattroshapes-pipeline/current"
       timeout     node[:pelias][:quattroshapes][:timeout]
       subscribes  :run, "execute[extract quattroshapes for #{country}]", :immediately
