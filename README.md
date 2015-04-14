@@ -9,7 +9,7 @@ A system with ~4GB of RAM and ~20GB of free disk space to load a modest test env
 
 Install [ChefDK](http://downloads.getchef.com/chef-dk/).
 
-Install VirtualBox and Vagrant as required for you platform.
+Install VirtualBox and Vagrant as required for your platform.
 You'll need Vagrant ~> 1.5.
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 * [Vagrant](https://www.vagrantup.com/downloads.html)
