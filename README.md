@@ -5,9 +5,9 @@ README
 
 Requirements
 ------------
-* a system with ~4GB of RAM and ~20GB of free disk space to load a modest test environment.
+* a system with ~4GB of RAM and ~20GB of free disk space to load a modest test environment
 * ruby 2.x
-* [ChefDK](http://downloads.getchef.com/chef-dk/).
+* [ChefDK](http://downloads.getchef.com/chef-dk/)
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) ~> 1.5
 * [Vagrant](https://www.vagrantup.com/downloads.html) ~> 1.7
 
