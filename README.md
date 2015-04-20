@@ -142,8 +142,8 @@ Contributing
 Happy Geocoding!
 ----------------
 ```curl 'localhost:3100/search?input=tower&lat=51.508079&lon=-0.076131' | python -mjson.tool```
+
 ```json
-{
 {
     "bbox": [
         -0.08384,
