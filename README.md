@@ -7,6 +7,7 @@ Requirements
 ------------
 A system with ~4GB of RAM and ~20GB of free disk space to load a modest test environment.
 
+Install Ruby2.x.
 Install [ChefDK](http://downloads.getchef.com/chef-dk/).
 
 Install VirtualBox and Vagrant as required for your platform.
