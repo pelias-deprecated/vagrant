@@ -141,30 +141,39 @@ Contributing
 
 Happy Geocoding!
 ----------------
-```curl 'localhost:3100/search?input=grazie&lat=41.8902&lon=12.4923' | python -mjson.tool```
+```curl 'localhost:3100/search?input=tower&lat=51.508079&lon=-0.076131' | python -mjson.tool```
 ```json
 {
-    "date": 1414926251985,
+{
+    "bbox": [
+        -0.08384,
+        51.496048,
+        -0.05,
+        51.524085
+    ],
+    "date": 1429564182175,
     "features": [
         {
             "geometry": {
                 "coordinates": [
-                    12.4833598,
-                    41.9046615
+                    -0.0733,
+                    51.5066
                 ],
                 "type": "Point"
             },
             "properties": {
-                "admin0": "Italia",
-                "admin1": "Roma",
-                "admin2": "Provincia di Roma",
-                "alpha3": "ITA",
-                "local_admin": "Roma",
-                "locality": "Roma",
-                "name": "Madonna Delle Grazie",
-                "neighborhood": "Campo Marzio",
-                "text": "Madonna Delle Grazie, Roma"
+                "admin0": "United Kingdom",
+                "admin1": "England",
+                "admin2": "Greater London",
+                "alpha3": "GBR",
+                "id": "6467642",
+                "layer": "geoname",
+                "name": "Tower",
+                "text": "Tower, Greater London"
             },
             "type": "Feature"
-        },
+        }
+    ],
+    "type": "FeatureCollection"
+}
 ```
