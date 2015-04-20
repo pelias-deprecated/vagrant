@@ -11,6 +11,7 @@ include_recipe 'nodejs::nodejs_from_binary'
 include_recipe 'elasticsearch::default'
 include_recipe 'elasticsearch::plugins'
 
+package 'git'
 package 'build-essential'
 
 # need to start ES after the initial installation

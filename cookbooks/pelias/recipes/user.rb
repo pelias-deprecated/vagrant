@@ -13,8 +13,3 @@ user_account node[:pelias][:user][:name] do
   home          node[:pelias][:user][:home]
   not_if        { node[:pelias][:user][:name] == 'root' }
 end
-
-user_ulimit node[:pelias][:user][:name] do
-  filehandle_limit node[:pelias][:filehandle_limit]
-  not_if { node[:pelias][:user][:name] == 'root' }
-end

@@ -7,13 +7,11 @@ version          '0.3.0'
 
 %w(
   apt
-  git
   elasticsearch
   java
   user
   runit
   nodejs
-  ulimit
 ).each do |dep|
   depends dep
 end

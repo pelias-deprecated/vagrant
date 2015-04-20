@@ -5,15 +5,11 @@ README
 
 Requirements
 ------------
-A system with ~4GB of RAM and ~20GB of free disk space to load a modest test environment.
-
-Install Ruby2.x.
-Install [ChefDK](http://downloads.getchef.com/chef-dk/).
-
-Install VirtualBox and Vagrant as required for your platform.
-You'll need Vagrant ~> 1.5.
-* [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-* [Vagrant](https://www.vagrantup.com/downloads.html)
+* a system with ~4GB of RAM and ~20GB of free disk space to load a modest test environment.
+* ruby 2.x
+* [ChefDK](http://downloads.getchef.com/chef-dk/).
+* [VirtualBox](https://www.virtualbox.org/wiki/Downloads) ~> 1.5
+* [Vagrant](https://www.vagrantup.com/downloads.html) ~> 1.7
 
 Goals
 -----
@@ -69,7 +65,7 @@ export PATH=/opt/chefdk/bin:$PATH
     * required Pelias repositories
     * other system dependencies
   * create the Elasticsearch 'pelias' index
-  * run the Pelias API server, which you can interact with locally via your browser, curl, etc thanks to the magic of port forwarding: [example query](http://localhost:3100/search?input=fontana&lat=41.8902&lon=12.4923)
+  * run the Pelias API server, which you can interact with locally via your browser, curl, etc thanks to the magic of port forwarding: [example query](http://localhost:3100/search?input=tower&lat=51.508079&lon=-0.076131)
     * as soon as the geonames data load starts, you'll be able to start querying the index via the API
     * more details on the API can be found here: [Pelias API](https://github.com/pelias/api)
     * in addition, you can access our [Demo](http://rawgit.com/pelias/demo/vagrant/index.html#loc=7,41.857,13.217) which will let you visualize the data you're loading, run searches, etc.
