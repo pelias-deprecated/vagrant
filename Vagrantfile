@@ -8,6 +8,9 @@ Vagrant.configure('2') do |config|
   config.vm.box_url           = 'http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box'
 
   config.vm.provider 'virtualbox' do |v|
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+
     host = RbConfig::CONFIG['host_os']
 
     def memish(ram, mem_max, mem_min)
