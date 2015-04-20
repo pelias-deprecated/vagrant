@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.5.0
+-----
+* lots 'o modifications, bug fixes and improvements
+
 0.4.0
 -----
 * upgrade ES to 1.5.0
