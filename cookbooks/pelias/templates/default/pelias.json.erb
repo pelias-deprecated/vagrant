@@ -32,7 +32,8 @@
       "adminLookup": <%= node[:pelias][:geonames][:admin_lookup] %>
     },
     "quattroshapes": {
-      "datapath": "<%= node[:pelias][:quattroshapes][:data_dir] %>"
+      "datapath": "<%= node[:pelias][:quattroshapes][:data_dir] %>",
+      "adminLookup": <%= node[:pelias][:quattroshapes][:admin_lookup] %>
     },
     "openstreetmap": {
       "datapath": "<%= node[:pelias][:osm][:data_dir] %>",

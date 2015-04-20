@@ -42,6 +42,7 @@ default[:pelias][:quattroshapes][:data_url]             = 'http://quattroshapes.
 default[:pelias][:quattroshapes][:checksum]             = 'e89cd4cb232aaea00d14972247ac8229a74378968901af4661b8aa7fada23bcb'
 default[:pelias][:quattroshapes][:repository]           = 'https://github.com/pelias/quattroshapes-pipeline.git'
 default[:pelias][:quattroshapes][:revision]             = 'master'
+default[:pelias][:quattroshapes][:admin_lookup]         = false
 default[:pelias][:quattroshapes][:data_dir]             = "#{node[:pelias][:basedir]}/data/quattroshapes"
 default[:pelias][:quattroshapes][:index_data]           = false
 default[:pelias][:quattroshapes][:types]                = %w(admin0 admin1 admin2 local_admin locality neighborhood)
