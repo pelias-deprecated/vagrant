@@ -39,7 +39,7 @@ node[:pelias][:geonames][:alpha2_country_codes].each do |country|
     )
     notifies :write, "log[log geonames load for #{country}]", :immediately
     notifies :run,   "execute[load geonames for #{country}]", :immediately
-    only_if { node[:pelias][:geonames][:index_data] == true && !::File.exist?("#{node[:pelias][:geonames][:data_dir]}/#{country}.zip") }
+    only_if { node[:pelias][:geonames][:index_data] == true }
   end
 
   log "log geonames load for #{country}" do
