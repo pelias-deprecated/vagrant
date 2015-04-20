@@ -3,14 +3,6 @@
 # Recipe:: quattroshapes
 #
 
-# skip deploying if we don't need to
-node[:pelias][:quattroshapes][:alpha3_country_codes].each do |country|
-  download = "#{node[:pelias][:quattroshapes][:data_dir]}/#{country}.tgz"
-  next if File.exist?(download)
-  node.set[:pelias][:quattroshapes][:shall_we_deploy] = true
-  break
-end
-
 deploy "#{node[:pelias][:basedir]}/quattroshapes-pipeline" do
   user        node[:pelias][:user][:name]
   repository  node[:pelias][:quattroshapes][:repository]
@@ -21,7 +13,7 @@ deploy "#{node[:pelias][:basedir]}/quattroshapes-pipeline" do
   create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :run, 'execute[npm install quattroshapes-pipeline]', :immediately
-  only_if { node[:pelias][:quattroshapes][:index_data] == true && node[:pelias][:quattroshapes][:shall_we_deploy] == true }
+  only_if { node[:pelias][:quattroshapes][:index_data] == true }
 end
 
 execute 'npm install quattroshapes-pipeline' do
@@ -32,23 +24,23 @@ execute 'npm install quattroshapes-pipeline' do
   environment('HOME' => node[:pelias][:user][:home])
 end
 
+remote_file "#{node[:pelias][:quattroshapes][:data_dir]}/quattroshapes-simplified.tar.gz" do
+  action    :create_if_missing
+  source    "#{node[:pelias][:quattroshapes][:data_url]}/quattroshapes-simplified.tar.gz"
+  mode      0644
+  backup    false
+  notifies  :run, 'execute[extract quattroshapes]', :immediately
+  only_if { node[:pelias][:quattroshapes][:index_data] == true }
+end
+
+execute 'extract quattroshapes' do
+  action  :nothing
+  user    node[:pelias][:user][:name]
+  command 'tar zxf quattroshapes-simplified.tar.gz --strip-components=1'
+  cwd     node[:pelias][:quattroshapes][:data_dir]
+end
+
 node[:pelias][:quattroshapes][:alpha3_country_codes].each do |country|
-  remote_file "#{node[:pelias][:quattroshapes][:data_dir]}/#{country}.tgz" do
-    action    :create_if_missing
-    source    "#{node[:pelias][:quattroshapes][:data_url]}/#{country}.tgz"
-    mode      0644
-    backup    false
-    notifies  :run, "execute[extract quattroshapes for #{country}]", :immediately
-    only_if { node[:pelias][:quattroshapes][:index_data] == true }
-  end
-
-  execute "extract quattroshapes for #{country}" do
-    action  :nothing
-    user    node[:pelias][:user][:name]
-    command "tar zxf #{country}.tgz"
-    cwd     node[:pelias][:quattroshapes][:data_dir]
-  end
-
   node[:pelias][:quattroshapes][:types].each do |type|
     execute "load quattroshapes for #{country} #{type}" do
       action      :nothing

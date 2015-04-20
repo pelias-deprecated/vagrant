@@ -33,12 +33,12 @@ default[:pelias][:geonames][:data_dir]                  = "#{node[:pelias][:base
 default[:pelias][:geonames][:revision]                  = 'master'
 default[:pelias][:geonames][:index_data]                = false
 default[:pelias][:geonames][:admin_lookup]              = false
-default[:pelias][:geonames][:alpha2_country_codes]      = %w(IT) # Italy
+default[:pelias][:geonames][:alpha2_country_codes]      = %w(GB)
 default[:pelias][:geonames][:timeout]                   = 7200 # 2 hours
 
 # quattroshapes
-default[:pelias][:quattroshapes][:alpha3_country_codes] = %w(ITA) # Italy
-default[:pelias][:quattroshapes][:data_url]             = 'http://quattroshapes.mapzen.com/quattroshapes/alpha3'
+default[:pelias][:quattroshapes][:alpha3_country_codes] = %w(GBR)
+default[:pelias][:quattroshapes][:data_url]             = 'http://quattroshapes.mapzen.com/quattroshapes'
 default[:pelias][:quattroshapes][:checksum]             = 'e89cd4cb232aaea00d14972247ac8229a74378968901af4661b8aa7fada23bcb'
 default[:pelias][:quattroshapes][:repository]           = 'https://github.com/pelias/quattroshapes-pipeline.git'
 default[:pelias][:quattroshapes][:revision]             = 'master'
