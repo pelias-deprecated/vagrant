@@ -28,6 +28,9 @@ default[:elasticsearch][:plugins]               = {
 }
 
 # java
+default[:java][:ark_retries]                            = 2
+default[:java][:ark_retry_delay]                        = 3
+default[:java][:ark_timeout]                            = 300
 default[:java][:install_flavor]                         = 'oracle'
 default[:java][:jdk_version]                            = '8'
 default[:java][:oracle][:accept_oracle_download_terms]  = true
