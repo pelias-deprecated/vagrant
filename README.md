@@ -1,7 +1,7 @@
 README
 ======
 
-[![Circle CI](https://circleci.com/gh/pelias/vagrant.png?style=badge)](https://circleci.com/gh/pelias/vagrant)
+[![Circle CI](https://circleci.com/gh/pelias/vagrant.svg?style=svg)](https://circleci.com/gh/pelias/vagrant)
 
 Requirements
 ------------
