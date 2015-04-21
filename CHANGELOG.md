@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.6.0
+-----
+* numerous bug fixes
+* readme updates
+* node 0.12.2
+
 0.5.0
 -----
 * lots 'o modifications, bug fixes and improvements
