@@ -31,5 +31,5 @@ default[:java][:ark_timeout]                            = 300
 default[:java][:install_flavor]                         = 'oracle'
 default[:java][:jdk_version]                            = '8'
 default[:java][:oracle][:accept_oracle_download_terms]  = true
-default[:java][:jdk][:'8'][:x86_64][:url]               = 'http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jre-8u45-linux-x64.tar.gz'
 default[:java][:jdk][:'8'][:x86_64][:checksum]          = '6cb35916c59762c1ea6acdb275f93a94'
+default[:java][:jdk][:'8'][:x86_64][:url]               = 'http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jre-8u45-linux-x64.tar.gz'
