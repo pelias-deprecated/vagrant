@@ -133,7 +133,7 @@ Tweaking things
 Bugs/Issues
 -----------
 * there is presently a bug resulting in the OSM process not exiting on completion of data load for certain extracts
-* there is a [bug](https://github.com/mitchellh/vagrant/issues/5199) in vagrant that prevents re-provisioning if the the system is halted 
+* there is a [bug](https://github.com/mitchellh/vagrant/issues/5199) in vagrant that prevents re-provisioning if the the system is halted
   * as a workaround, `rm .vagrant/machines/default/virtualbox/synced_folders` and `vagrant reload --provision`
 
 Contributing
