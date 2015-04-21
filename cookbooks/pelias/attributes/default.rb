@@ -30,6 +30,7 @@ default[:pelias][:api][:shutdown_timeout]               = 30
 # geonames
 default[:pelias][:geonames][:repository]                = 'https://github.com/pelias/geonames.git'
 default[:pelias][:geonames][:data_dir]                  = "#{node[:pelias][:basedir]}/data/geonames"
+default[:pelias][:geonames][:data_url]                  = 'http://download.geonames.org/export/dump'
 default[:pelias][:geonames][:revision]                  = 'master'
 default[:pelias][:geonames][:index_data]                = false
 default[:pelias][:geonames][:admin_lookup]              = false

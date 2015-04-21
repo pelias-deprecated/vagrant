@@ -8,8 +8,6 @@ default[:nodejs][:dir]                          = '/usr'
 
 # elasticsearch
 default[:elasticsearch][:version]               = '1.5.1'
-default[:elasticsearch][:filename]              = "elasticsearch-#{node[:elasticsearch][:version]}.tar.gz"
-default[:elasticsearch][:download_url]          = [node[:elasticsearch][:host], node[:elasticsearch][:repository], node[:elasticsearch][:filename]].join('/')
 default[:elasticsearch][:skip_restart]          = true
 default[:elasticsearch][:bootstrap][:mlockall]  = false
 default[:elasticsearch][:allocated_memory]      = "#{(node[:memory][:total].to_i * 0.6).floor / 1024}m"
@@ -34,5 +32,7 @@ default[:java][:ark_timeout]                            = 300
 default[:java][:install_flavor]                         = 'oracle'
 default[:java][:jdk_version]                            = '8'
 default[:java][:oracle][:accept_oracle_download_terms]  = true
-default[:java][:jdk][:'8'][:x86_64][:url]               = 'http://download.oracle.com/otn-pub/java/jdk/8u40-b26/jdk-8u40-linux-x64.tar.gz'
-default[:java][:jdk][:'8'][:x86_64][:checksum]          = '3b3f74589539b8bbe5d78005e52f4f78'
+#default[:java][:jdk][:'8'][:x86_64][:url]               = 'http://download.oracle.com/otn-pub/java/jdk/8u40-b26/jdk-8u40-linux-x64.tar.gz'
+#default[:java][:jdk][:'8'][:x86_64][:checksum]          = '3b3f74589539b8bbe5d78005e52f4f78'
+default[:java][:jdk][:'8'][:x86_64][:url]               = 'http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jre-8u45-linux-x64.tar.gz'
+default[:java][:jdk][:'8'][:x86_64][:checksum]          = '6cb35916c59762c1ea6acdb275f93a94'

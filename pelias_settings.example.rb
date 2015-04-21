@@ -1,6 +1,18 @@
-# Manipulate the chef run by copying this file to a location of your choosing
-# and setting the environment variable PELIAS_VAGRANTFILE=/path/to/your/file.
-# This default config will be loaded if you don't set this value.
+#   Manipulate the chef run by copying this file to a location of your choosing
+#   and setting the environment variable PELIAS_VAGRANTFILE=/path/to/your/file.
+#   This default config will be loaded if you don't set this value.
+#
+#   Note that on subsequent provisioning runs, the behavior will be as follows:
+#   No action will be taken to re-index data if the index exists and all the specified
+#   data files exist.
+#   If a request is made to index data that does not exist, the system will attempt to load
+#   it into the existing index.
+#
+#   If you want to rebuild the index from scratch, simply destroy the index:
+#   curl -XDELETE localhost:9200/pelias
+#   Or, add a drop_index => true key and re-run the provisioner to accomplish the same thing.
+#   This will have the additional effect of wiping all the existing data, forcing it to
+#   be downloaded again.
 
 Vagrant.configure('2') do |config|
   config.vm.provision :chef_solo do |chef|

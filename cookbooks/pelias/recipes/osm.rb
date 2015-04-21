@@ -45,7 +45,7 @@ node[:pelias][:osm][:extracts].map do |name, url|
     backup    false
     notifies  :write, "log[log osm load #{name}]", :immediately
     notifies  :run,   "execute[load osm #{name}]", :immediately
-    only_if { node[:pelias][:osm][:index_data] == true }
+    only_if   { node[:pelias][:osm][:index_data] == true }
   end
 
   log "log osm load #{name}" do

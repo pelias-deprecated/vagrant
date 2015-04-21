@@ -24,22 +24,15 @@ execute 'npm install geonames' do
   environment('HOME' => node[:pelias][:user][:home])
 end
 
-# download and load, using the downloaded file
-#   as an additional guard against a re-load.
-#
 node[:pelias][:geonames][:alpha2_country_codes].each do |country|
-  execute "download geonames for #{country}" do
-    user    node[:pelias][:user][:name]
-    command "./bin/pelias-geonames -d #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.out 2>#{node[:pelias][:basedir]}/logs/geonames_#{country}.err"
-    cwd     "#{node[:pelias][:basedir]}/geonames/current"
-    timeout node[:pelias][:geonames][:timeout]
-    environment(
-      'HOME' => node[:pelias][:user][:home],
-      'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}"
-    )
-    notifies :write, "log[log geonames load for #{country}]", :immediately
-    notifies :run,   "execute[load geonames for #{country}]", :immediately
-    only_if { node[:pelias][:geonames][:index_data] == true }
+  remote_file "#{node[:pelias][:geonames][:data_dir]}/#{country}" do
+    action    :create_if_missing
+    source    "#{node[:pelias][:geonames][:data_url]}/#{country}.zip"
+    mode      0644
+    backup    false
+    notifies  :write, "log[log geonames load for #{country}]", :immediately
+    notifies  :run,   "execute[load geonames for #{country}]", :immediately
+    only_if   { node[:pelias][:geonames][:index_data] == true }
   end
 
   log "log geonames load for #{country}" do

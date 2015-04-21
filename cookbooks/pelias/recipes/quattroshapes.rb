@@ -30,7 +30,7 @@ remote_file "#{node[:pelias][:quattroshapes][:data_dir]}/quattroshapes-simplifie
   mode      0644
   backup    false
   notifies  :run, 'execute[extract quattroshapes]', :immediately
-  only_if { node[:pelias][:quattroshapes][:index_data] == true }
+  only_if   { node[:pelias][:quattroshapes][:index_data] == true }
 end
 
 execute 'extract quattroshapes' do
