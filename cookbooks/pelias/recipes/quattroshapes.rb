@@ -44,7 +44,11 @@ node[:pelias][:quattroshapes][:alpha3_country_codes].each do |country|
     execute "load quattroshapes for #{country} #{type}" do
       action      :nothing
       user        node[:pelias][:user][:name]
-      command     "node example/runme.js #{type} #{country} >#{node[:pelias][:basedir]}/logs/quattroshapes_#{country}_#{type}.out 2>#{node[:pelias][:basedir]}/logs/quattroshapes_#{country}_#{type}.err"
+      command     <<-EOH
+        node example/runme.js #{type} #{country} \
+          >#{node[:pelias][:basedir]}/logs/quattroshapes_#{country}_#{type}.out \
+          2>#{node[:pelias][:basedir]}/logs/quattroshapes_#{country}_#{type}.err
+      EOH
       cwd         "#{node[:pelias][:basedir]}/quattroshapes-pipeline/current"
       timeout     node[:pelias][:quattroshapes][:timeout]
       subscribes  :run, 'execute[extract quattroshapes]', :immediately

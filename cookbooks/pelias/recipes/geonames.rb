@@ -42,7 +42,11 @@ node[:pelias][:geonames][:alpha2_country_codes].each do |country|
   execute "load geonames for #{country}" do
     action  :nothing
     user    node[:pelias][:user][:name]
-    command "./bin/pelias-geonames -i #{country} >#{node[:pelias][:basedir]}/logs/geonames_#{country}.out 2>#{node[:pelias][:basedir]}/logs/geonames_#{country}.err"
+    command <<-EOH
+      ./bin/pelias-geonames -i #{country} \
+        >#{node[:pelias][:basedir]}/logs/geonames_#{country}.out \
+        2>#{node[:pelias][:basedir]}/logs/geonames_#{country}.err
+    EOH
     cwd     "#{node[:pelias][:basedir]}/geonames/current"
     timeout node[:pelias][:geonames][:timeout]
     environment(
