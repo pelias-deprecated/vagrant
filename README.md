@@ -1,6 +1,8 @@
 README
 ======
 
+Build Status
+------------
 [![Circle CI](https://circleci.com/gh/pelias/vagrant.svg?style=svg)](https://circleci.com/gh/pelias/vagrant)
 
 Requirements
