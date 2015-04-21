@@ -23,14 +23,12 @@ include_recipe 'pelias::user'
 
 # base/logs
 directory node[:pelias][:basedir] do
-  action    :create
   recursive true
   mode      0755
   owner     node[:pelias][:user][:name]
 end
 
 directory "#{node[:pelias][:basedir]}/logs" do
-  action  :create
   mode    0755
   owner   node[:pelias][:user][:name]
 end

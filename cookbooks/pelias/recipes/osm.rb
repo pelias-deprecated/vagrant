@@ -10,7 +10,6 @@ deploy "#{node[:pelias][:basedir]}/osm" do
   migrate     false
 
   symlink_before_migrate.clear
-  create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :run, 'execute[npm install osm]', :immediately
   only_if { node[:pelias][:osm][:index_data] == true }

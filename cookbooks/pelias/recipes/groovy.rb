@@ -17,7 +17,6 @@ deploy "#{node[:pelias][:elasticsearch_groovy][:basedir]}/pelias-scripts" do
   migrate     false
 
   symlink_before_migrate.clear
-  create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :create, "link[#{node[:elasticsearch][:path][:conf]}/scripts]", :immediately
 end

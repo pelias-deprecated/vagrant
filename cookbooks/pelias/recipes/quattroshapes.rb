@@ -10,7 +10,6 @@ deploy "#{node[:pelias][:basedir]}/quattroshapes-pipeline" do
   migrate     false
 
   symlink_before_migrate.clear
-  create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :run, 'execute[npm install quattroshapes-pipeline]', :immediately
   only_if { node[:pelias][:quattroshapes][:index_data] == true }

@@ -10,7 +10,6 @@ deploy "#{node[:pelias][:basedir]}/geonames" do
   migrate     false
 
   symlink_before_migrate.clear
-  create_dirs_before_symlink %w(tmp public config deploy)
 
   notifies :run, 'execute[npm install geonames]', :immediately
   only_if { node[:pelias][:geonames][:index_data] == true }
