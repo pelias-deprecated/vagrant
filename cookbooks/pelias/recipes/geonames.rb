@@ -24,7 +24,7 @@ execute 'npm install geonames' do
 end
 
 node[:pelias][:geonames][:alpha2_country_codes].each do |country|
-  remote_file "#{node[:pelias][:geonames][:data_dir]}/#{country}" do
+  remote_file "#{node[:pelias][:geonames][:data_dir]}/#{country}.zip" do
     action    :create_if_missing
     source    "#{node[:pelias][:geonames][:data_url]}/#{country}.zip"
     mode      0644
