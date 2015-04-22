@@ -40,6 +40,7 @@ node[:pelias][:osm][:extracts].map do |name, url|
   remote_file "#{node[:pelias][:osm][:data_dir]}/#{data_file}" do
     action    :create_if_missing
     source    url
+    owner     node[:pelias][:user][:name]
     mode      0644
     backup    false
     notifies  :write, "log[log osm load #{name}]", :immediately

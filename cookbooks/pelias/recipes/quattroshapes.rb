@@ -26,6 +26,7 @@ end
 remote_file "#{node[:pelias][:quattroshapes][:data_dir]}/quattroshapes-simplified.tar.gz" do
   action    :create_if_missing
   source    "#{node[:pelias][:quattroshapes][:data_url]}/quattroshapes-simplified.tar.gz"
+  owner     node[:pelias][:user][:name]
   mode      0644
   backup    false
   notifies  :run, 'execute[extract quattroshapes]', :immediately

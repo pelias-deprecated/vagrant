@@ -27,6 +27,7 @@ node[:pelias][:geonames][:alpha2_country_codes].each do |country|
   remote_file "#{node[:pelias][:geonames][:data_dir]}/#{country}.zip" do
     action    :create_if_missing
     source    "#{node[:pelias][:geonames][:data_url]}/#{country}.zip"
+    owner     node[:pelias][:user][:name]
     mode      0644
     backup    false
     notifies  :write, "log[log geonames load for #{country}]", :immediately
