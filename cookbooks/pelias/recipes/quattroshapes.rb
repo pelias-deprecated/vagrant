@@ -3,7 +3,7 @@
 # Recipe:: quattroshapes
 #
 
-deploy "#{node[:pelias][:basedir]}/quattroshapes-pipeline" do
+deploy "#{node[:pelias][:basedir]}/quattroshapes" do
   user        node[:pelias][:user][:name]
   repository  node[:pelias][:quattroshapes][:repository]
   revision    node[:pelias][:quattroshapes][:revision]
@@ -11,15 +11,15 @@ deploy "#{node[:pelias][:basedir]}/quattroshapes-pipeline" do
 
   symlink_before_migrate.clear
 
-  notifies :run, 'execute[npm install quattroshapes-pipeline]', :immediately
+  notifies :run, 'execute[npm install quattroshapes]', :immediately
   only_if { node[:pelias][:quattroshapes][:index_data] == true }
 end
 
-execute 'npm install quattroshapes-pipeline' do
+execute 'npm install quattroshapes' do
   action  :nothing
   user    node[:pelias][:user][:name]
   command 'npm install'
-  cwd     "#{node[:pelias][:basedir]}/quattroshapes-pipeline/current"
+  cwd     "#{node[:pelias][:basedir]}/quattroshapes/current"
   environment('HOME' => node[:pelias][:user][:home])
 end
 
@@ -49,7 +49,7 @@ node[:pelias][:quattroshapes][:alpha3_country_codes].each do |country|
           >#{node[:pelias][:basedir]}/logs/quattroshapes_#{country}_#{type}.out \
           2>#{node[:pelias][:basedir]}/logs/quattroshapes_#{country}_#{type}.err
       EOH
-      cwd         "#{node[:pelias][:basedir]}/quattroshapes-pipeline/current"
+      cwd         "#{node[:pelias][:basedir]}/quattroshapes/current"
       timeout     node[:pelias][:quattroshapes][:timeout]
       subscribes  :run, 'execute[extract quattroshapes]', :immediately
       environment(
