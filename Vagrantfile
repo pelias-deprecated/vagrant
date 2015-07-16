@@ -4,8 +4,26 @@
 Vagrant.configure('2') do |config|
   config.omnibus.chef_version = '11.12.8'
   config.vm.hostname          = 'pelias'
-  config.vm.box               = 'ubuntu-14.04-opscode'
-  config.vm.box_url           = 'http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box'
+
+  if ENV['PELIAS_AWS']
+    # for this to work, please follow the instructions here: https://github.com/mitchellh/vagrant-aws
+    #   and update the values as appropriate for your env.
+    config.vm.box = 'dummy'
+
+    config.vm.provider :aws do |aws, override|
+      aws.access_key_id     = ENV['AWS_ACCESS_KEY_ID']
+      aws.secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
+      aws.keypair_name      = ENV['PELIAS_AWS_KEYPAIR_NAME']
+      aws.ami               = ENV['PELIAS_AWS_AMI'] || 'ami-7747d01e'
+      aws.tags              = { 'vagrant' => 'true', 'role' => 'pelias' }
+
+      override.ssh.username         = ENV['PELIAS_AWS_SSH_USERNAME']      || 'ubuntu'
+      override.ssh.private_key_path = ENV['PELIAS_AWS_PRIVATE_KEY_PATH']  || '~/.ssh/id_rsa'
+    end
+  else
+    config.vm.box     = 'ubuntu-14.04-opscode'
+    config.vm.box_url = 'http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box'
+  end
 
   config.vm.provider 'virtualbox' do |v|
     v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
