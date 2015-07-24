@@ -9,6 +9,7 @@
   groovy
   api
   schema
+  openaddresses
   geonames
   quattroshapes
   osm

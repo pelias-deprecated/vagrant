@@ -27,6 +27,21 @@ default[:pelias][:api][:revision]                       = 'master'
 default[:pelias][:api][:restart_wait]                   = 60
 default[:pelias][:api][:shutdown_timeout]               = 30
 
+# address-deduper
+default[:pelias][:address_deduper][:repository]         = 'https://github.com/openvenues/address_deduper'
+default[:pelias][:address_deduper][:revision]           = 'master'
+default[:pelias][:address_deduper][:leveldb_dir]        = '/leveldb/address_dedup/db'
+
+# openaddresses
+default[:pelias][:openaddresses][:repository] = 'https://github.com/pelias/openaddresses'
+default[:pelias][:openaddresses][:revision]   = nil
+default[:pelias][:openaddresses][:data_files] = [] # will load all OA
+default[:pelias][:openaddresses][:data_url]   = 'http://data.openaddresses.io/openaddresses-complete.zip'
+default[:pelias][:openaddresses][:file_name]  = node[:pelias][:openaddresses][:data_url].split('/').last
+default[:pelias][:openaddresses][:data_dir]   = "#{node[:pelias][:basedir]}/data/openaddresses"
+default[:pelias][:openaddresses][:index_data] = true
+default[:pelias][:openaddresses][:timeout]    = 172_800 # 48 hours
+
 # geonames
 default[:pelias][:geonames][:repository]                = 'https://github.com/pelias/geonames.git'
 default[:pelias][:geonames][:data_dir]                  = "#{node[:pelias][:basedir]}/data/geonames"
