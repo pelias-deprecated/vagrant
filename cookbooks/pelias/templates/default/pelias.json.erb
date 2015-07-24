@@ -27,6 +27,10 @@
     "level": "verbose"
   },
   "imports": {
+    "openaddresses": {
+      "datapath": "<%= node[:pelias][:openaddresses][:data_dir] %>",
+      "adminLookup": "true"
+    },
     "geonames": {
       "datapath": "<%= node[:pelias][:geonames][:data_dir] %>",
       "adminLookup": <%= node[:pelias][:geonames][:admin_lookup] %>

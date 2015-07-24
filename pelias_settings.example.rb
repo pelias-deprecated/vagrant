@@ -23,6 +23,12 @@ Vagrant.configure('2') do |config|
         'schema' => {
           'create_index' => true
         },
+        'openaddresses' => {
+          'index_data' => true,
+          'data_files' => [
+            'us-ny-nyc'
+          ]
+        },
         'geonames' => {
           'index_data' => true,
           'alpha2_country_codes' => [
