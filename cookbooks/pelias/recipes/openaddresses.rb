@@ -43,23 +43,46 @@ execute 'npm install openaddresses' do
   )
 end
 
-remote_file "#{node[:pelias][:openaddresses][:data_dir]}/#{node[:pelias][:openaddresses][:file_name]}" do
-  action      :create
-  backup      false
-  source      node[:pelias][:openaddresses][:data_url]
-  owner       node[:pelias][:user][:name]
-  retries     2
-  retry_delay 60
-  notifies    :run, 'execute[extract openaddresses data]', :immediately
-  only_if     { node[:pelias][:openaddresses][:index_data] == true }
-end
+if node[:pelias][:openaddresses][:data_files] == []
+  remote_file "#{node[:pelias][:openaddresses][:data_dir]}/#{node[:pelias][:openaddresses][:full_file_name]}" do
+    action      :create
+    backup      false
+    source      node[:pelias][:openaddresses][:full_data_url]
+    owner       node[:pelias][:user][:name]
+    retries     2
+    retry_delay 60
+    notifies    :run, 'execute[extract openaddresses data]', :immediately
+    only_if     { node[:pelias][:openaddresses][:index_data] == true }
+  end
 
-execute 'extract openaddresses data' do
-  action  :nothing
-  user    node[:pelias][:user][:name]
-  cwd     node[:pelias][:openaddresses][:data_dir]
-  command "unzip -o #{node[:pelias][:openaddresses][:file_name]} -d #{node[:pelias][:openaddresses][:data_dir]}"
-  notifies    :run, 'execute[import openaddresses data]', :immediately
+  execute 'extract openaddresses data' do
+    action  :nothing
+    user    node[:pelias][:user][:name]
+    cwd     node[:pelias][:openaddresses][:data_dir]
+    command "unzip -o #{node[:pelias][:openaddresses][:full_file_name]} -d #{node[:pelias][:openaddresses][:data_dir]}"
+    notifies    :run, 'execute[import openaddresses data]', :immediately
+  end
+else
+  node[:pelias][:openaddresses][:data_files].each do |data_file|
+    remote_file "#{node[:pelias][:openaddresses][:data_dir]}/#{data_file}.zip" do
+      action    :create_if_missing
+      source    "#{node[:pelias][:openaddresses][:data_path]}/#{data_file}.zip"
+      owner     node[:pelias][:user][:name]
+      retries     2
+      retry_delay 60
+      backup    false
+      notifies    :run, "execute[extract openaddresses data for #{data_file}]", :immediately
+      only_if     { node[:pelias][:openaddresses][:index_data] == true }
+    end
+
+    execute "extract openaddresses data for #{data_file}" do
+      action  :nothing
+      user    node[:pelias][:user][:name]
+      cwd     node[:pelias][:openaddresses][:data_dir]
+      command "unzip -o #{data_file}.zip -d #{node[:pelias][:openaddresses][:data_dir]}"
+      notifies    :run, 'execute[import openaddresses data]', :delayed
+    end
+  end
 end
 
 execute 'import openaddresses data' do
