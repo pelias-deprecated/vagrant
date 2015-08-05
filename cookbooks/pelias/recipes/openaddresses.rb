@@ -30,7 +30,7 @@ end
 execute 'purge address deduper datastore' do
   action  :nothing
   user    node[:pelias][:user][:name]
-  command "find #{node[:pelias][:address_deduper][:leveldb_dir]} -type f -exec rm {} \\; || true"
+  command "find #{node[:pelias][:address_deduper][:leveldb]} -type f -exec rm {} \\; || true"
 end
 
 execute 'npm install openaddresses' do

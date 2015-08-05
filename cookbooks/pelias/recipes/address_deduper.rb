@@ -5,15 +5,8 @@
 
 include_recipe 'pelias::_address_deduper_service'
 
-directory node[:pelias][:address_deduper][:leveldb_dir] do
-  recursive true
-  owner     node[:pelias][:user][:name]
-  group     node[:pelias][:user][:name]
-  mode      0755
-end
-
 execute 'chown leveldb dir' do
-  command "chown -R #{node[:pelias][:user][:name]}:#{node[:pelias][:user][:name]} /leveldb"
+  command "chown -R #{node[:pelias][:user][:name]}:#{node[:pelias][:user][:name]} #{node[:pelias][:basedir]}/leveldb"
 end
 
 # requirements

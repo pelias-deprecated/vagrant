@@ -58,3 +58,10 @@ directory node[:pelias][:osm][:leveldb] do
   owner  node[:pelias][:user][:name]
   mode   0755
 end
+
+# address deduper
+directory [:pelias][:address_deduper][:leveldb] do
+  recursive true
+  owner     node[:pelias][:user][:name]
+  mode      0755
+end
