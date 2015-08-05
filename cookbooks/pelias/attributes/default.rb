@@ -30,18 +30,18 @@ default[:pelias][:api][:shutdown_timeout]               = 30
 # address-deduper
 default[:pelias][:address_deduper][:repository]         = 'https://github.com/openvenues/address_deduper'
 default[:pelias][:address_deduper][:revision]           = 'master'
-default[:pelias][:address_deduper][:leveldb_dir]        = '/leveldb/address_dedup/db'
+default[:pelias][:address_deduper][:leveldb]            = "#{node[:pelias][:basedir]}/leveldb/address_dedup/db"
 
 # openaddresses
-default[:pelias][:openaddresses][:repository] = 'https://github.com/pelias/openaddresses'
-default[:pelias][:openaddresses][:revision]   = nil
-default[:pelias][:openaddresses][:data_files] = [] # will load all OA
-default[:pelias][:openaddresses][:full_data_url]   = 'http://data.openaddresses.io/openaddresses-complete.zip'
-default[:pelias][:openaddresses][:data_path]   = 'http://data.openaddresses.io.s3.amazonaws.com'
-default[:pelias][:openaddresses][:full_file_name]  = node[:pelias][:openaddresses][:full_data_url].split('/').last
-default[:pelias][:openaddresses][:data_dir]   = "#{node[:pelias][:basedir]}/data/openaddresses"
-default[:pelias][:openaddresses][:index_data] = true
-default[:pelias][:openaddresses][:timeout]    = 172_800 # 48 hours
+default[:pelias][:openaddresses][:repository]           = 'https://github.com/pelias/openaddresses'
+default[:pelias][:openaddresses][:revision]             = 'master'
+default[:pelias][:openaddresses][:data_files]           = [] # will load all OA
+default[:pelias][:openaddresses][:full_data_url]        = 'http://data.openaddresses.io/openaddresses-complete.zip'
+default[:pelias][:openaddresses][:data_path]            = 'http://data.openaddresses.io.s3.amazonaws.com'
+default[:pelias][:openaddresses][:full_file_name]       = node[:pelias][:openaddresses][:full_data_url].split('/').last
+default[:pelias][:openaddresses][:data_dir]             = "#{node[:pelias][:basedir]}/data/openaddresses"
+default[:pelias][:openaddresses][:index_data]           = true
+default[:pelias][:openaddresses][:timeout]              = 172_800 # 48 hours
 
 # geonames
 default[:pelias][:geonames][:repository]                = 'https://github.com/pelias/geonames.git'
@@ -72,7 +72,7 @@ default[:pelias][:osm][:revision]                       = 'master'
 default[:pelias][:osm][:index_data]                     = false
 default[:pelias][:osm][:admin_lookup]                   = false
 default[:pelias][:osm][:timeout]                        = 14_400 # 4 hours
-default[:pelias][:osm][:leveldb]                        = "#{node[:pelias][:basedir]}/leveldb"
+default[:pelias][:osm][:leveldb]                        = "#{node[:pelias][:basedir]}/leveldb/osm"
 default[:pelias][:osm][:extracts]                       = {}
 
 # schema
