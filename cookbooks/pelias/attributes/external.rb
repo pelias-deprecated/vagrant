@@ -6,7 +6,7 @@ default[:nodejs][:version]                      = '0.12.2'
 default[:nodejs][:checksum_linux_x64]           = '4e1578efc2a2cc67651413a05ccc4c5d43f6b4329c599901c556f24d93cd0508'
 
 # elasticsearch
-default[:elasticsearch][:version]               = '1.5.2'
+default[:elasticsearch][:version]               = '1.7.0'
 default[:elasticsearch][:skip_restart]          = true
 default[:elasticsearch][:bootstrap][:mlockall]  = false
 default[:elasticsearch][:allocated_memory]      = "#{(node[:memory][:total].to_i * 0.6).floor / 1024}m"
