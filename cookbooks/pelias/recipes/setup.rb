@@ -55,6 +55,7 @@ directory node[:pelias][:osm][:data_dir] do
 end
 
 directory node[:pelias][:osm][:leveldb] do
+  recursive true
   owner  node[:pelias][:user][:name]
   mode   0755
 end
