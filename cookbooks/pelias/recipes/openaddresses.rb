@@ -3,7 +3,6 @@
 # Recipe:: openaddresses
 #
 
-include_recipe 'pelias::_quattroshapes_data' if node[:pelias][:openaddresses][:index_data] == true
 include_recipe 'pelias::address_deduper'
 
 directory node[:pelias][:openaddresses][:data_dir] do
