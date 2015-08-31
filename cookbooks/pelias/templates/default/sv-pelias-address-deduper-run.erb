@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd <%= node[:pelias][:basedir] %>/address_deduper
+exec 2>&1
+exec chpst -u <%= node[:pelias][:user][:name] %> -e /etc/sv/pelias-address-deduper/env python app.py serve

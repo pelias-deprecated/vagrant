@@ -52,7 +52,7 @@ node[:pelias][:quattroshapes][:alpha3_country_codes].each do |country|
       EOH
       cwd         "#{node[:pelias][:basedir]}/quattroshapes/current"
       timeout     node[:pelias][:quattroshapes][:timeout]
-      subscribes  :run, 'execute[extract quattroshapes]', :immediately
+      subscribes  :run, 'execute[extract quattroshapes]', :delayed
       environment(
         'PELIAS_CONFIG' => "#{node[:pelias][:cfg_dir]}/#{node[:pelias][:cfg_file]}"
       )
