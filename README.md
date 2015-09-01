@@ -55,7 +55,7 @@ eval "$(rbenv init -)"
 export PATH=/opt/chefdk/bin:$PATH
 ```
 
-* copy the included pelias_settings.example.rb to a location of your choice, then export the environment variable `PELIAS_VAGRANTFILE` to reference it: `export PELIAS_VAGRANTFILE=/path/to/the/file`
+* copy the included pelias_settings.example.rb to a location of your choice, then export the environment variable `PELIAS_VAGRANT_CFG` to reference it: `export PELIAS_VAGRANT_CFG=/path/to/the/file`
   * you can leave the defaults in place until you get familiar with things, or if you're feeling up to it, edit away
   * you can override anything found in `attributes/default.rb`, but typically what you'll want access to is referenced in the example config: `pelias_settings.example.rb`
 * from the repository root run `vagrant up`, which will:
@@ -85,12 +85,12 @@ How long will this take?
 Tweaking things
 ---------------
 * the `pelias_settings.example.rb` file shows some ways you can define/override values in the provisioning process
-* you can copy this file to a location of your choice and reference it via an environment variable: `PELIAS_VAGRANTFILE`
+* you can copy this file to a location of your choice and reference it via an environment variable: `PELIAS_VAGRANT_CFG`
   * if the environment variable is set, vagrant will attempt to load the contents of the file it references
   * if the environment variable is not set, vagrant will load pelias_settings.example.rb provided in the repository
 * let's suppose you want to load osm data for locations in Germany and Italy:
   * from the repo root: `cp pelias_settings.example.rb ~/.pelias_settings.rb`
-  * in your profile, `export PELIAS_VAGRANTFILE=${HOME}/.pelias_settings.rb`
+  * in your profile, `export PELIAS_VAGRANT_CFG=${HOME}/.pelias_settings.rb`
     * this file is now your means of manipulating the vagrant chef run going forward
 
 #### geonames
@@ -130,7 +130,7 @@ Tweaking things
   }
 ```
 
-* now that you've edited `PELIAS_VAGRANTFILE`, run `vagrant up` to start loading data, or `vagrant provision` if you'd previously started the instance
+* now that you've edited `PELIAS_VAGRANT_CFG`, run `vagrant up` to start loading data, or `vagrant provision` if you'd previously started the instance
 
 Bugs/Issues
 -----------
