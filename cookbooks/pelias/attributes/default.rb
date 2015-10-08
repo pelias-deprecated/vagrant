@@ -83,8 +83,3 @@ default[:pelias][:schema][:create_index]                = false
 default[:pelias][:schema][:replicas]                    = 0
 default[:pelias][:schema][:shards]                      = 1
 default[:pelias][:schema][:concurrency]                 = 24
-
-# groovy es scripts
-default[:pelias][:elasticsearch_groovy][:basedir]       = '/opt/pelias/groovy'
-default[:pelias][:elasticsearch_groovy][:repository]    = 'https://github.com/pelias/scripts.git'
-default[:pelias][:elasticsearch_groovy][:revision]      = 'master'
