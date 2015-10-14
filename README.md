@@ -93,6 +93,17 @@ Tweaking things
   * in your profile, `export PELIAS_VAGRANT_CFG=${HOME}/.pelias_settings.rb`
     * this file is now your means of manipulating the vagrant chef run going forward
 
+### openaddresses
+* import data from openaddresses with an array of data files from the default data directory in `default.rb` (remove `data_files` object for global collection):
+```
+  'openaddresses' => {
+    'index_data' => true,
+    'data_files' => [
+      'us-ny-nyc'
+    ]
+  },
+```
+
 #### geonames
 * multiple geoname countries can be loaded by editing the geonames alpha2 array of [country codes](http://www.geonames.org/countries/) (or you can specify 'all'):
 ```
