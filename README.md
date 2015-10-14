@@ -21,7 +21,7 @@ Goals
 
 Access points
 -------------
-* API: `curl http://localhost:3100`
+* API: `curl http://localhost:3100/v1`
 * [Angular Demo](http://rawgit.com/pelias/demo/vagrant/index.html#loc=12,51.5049,-0.1239): references the API on localhost:3100 so you can see a visual representation of the data you're loading
 * `vagrant ssh && sudo su -` and you've got free reign in a sandboxed environment
 * You can also share both access to your vagrant environment via ssh, or just share the API endpoint:
@@ -67,9 +67,9 @@ export PATH=/opt/chefdk/bin:$PATH
     * required Pelias repositories
     * other system dependencies
   * create the Elasticsearch 'pelias' index
-  * run the Pelias API server, which you can interact with locally via your browser, curl, etc thanks to the magic of port forwarding: [example query](http://localhost:3100/search?input=tower&lat=51.508079&lon=-0.076131)
+  * run the Pelias API server, which you can interact with locally via your browser, curl, etc thanks to the magic of port forwarding: [example query](http://localhost:3100/v1/search?text=London)
     * as soon as the geonames data load starts, you'll be able to start querying the index via the API
-    * more details on the API can be found here: [Pelias API](https://github.com/pelias/api)
+    * more details on the API can be found here: [Pelias API](https://github.com/pelias/pelias-doc)
     * in addition, you can access our [Demo](http://rawgit.com/pelias/demo/vagrant/index.html#loc=7,41.857,13.217) which will let you visualize the data you're loading, run searches, etc.
   * load Geonames data for England into Elasticsearch
   * load an OSM extract for London into Elasticsearch
