@@ -94,7 +94,7 @@ Tweaking things
     * this file is now your means of manipulating the vagrant chef run going forward
 
 #### openaddresses
-* import data from openaddresses with an array of data files from the default data directory in `default.rb` (remove `data_files` object for global collection):
+* import data from openaddresses with an array of data files from the default data directory in `default.rb` (remove `data_files` hash for the entire global collection):
 ```
   'openaddresses' => {
     'index_data' => true,
