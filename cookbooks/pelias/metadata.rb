@@ -3,7 +3,7 @@ maintainer       'Mapzen'
 maintainer_email 'grant@mapzen.com'
 license          'GPL'
 description      'Installs/configures Pelias in a vagrant environment. Intended for education and development.'
-version          '0.6.0'
+version          '0.6.1'
 
 %w(
   apt

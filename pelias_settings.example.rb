@@ -46,6 +46,10 @@ Vagrant.configure('2') do |config|
           'extracts' => {
             'london' => 'https://s3.amazonaws.com/metro-extracts.mapzen.com/london_england.osm.pbf'
           }
+        },
+        'gtfs' => {
+          'index_data' => true,
+          'stops_url' => 'http://<ip_address>/otp/routers/default/index/stops/'
         }
       }
     }

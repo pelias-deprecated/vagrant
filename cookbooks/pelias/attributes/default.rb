@@ -75,6 +75,12 @@ default[:pelias][:osm][:timeout]                        = 14_400 # 4 hours
 default[:pelias][:osm][:leveldb]                        = "#{node[:pelias][:basedir]}/leveldb/osm"
 default[:pelias][:osm][:extracts]                       = {}
 
+# gtfs
+default[:pelias][:gtfs][:repository]                    = 'https://github.com/rmaceissoft/pelias-gtfs'
+default[:pelias][:gtfs][:revision]                      = 'master'
+default[:pelias][:gtfs][:stops_url]                     = 'http://<ip_address>/otp/routers/default/index/stops/'
+default[:pelias][:gtfs][:index_data]                    = false
+
 # schema
 default[:pelias][:schema][:repository]                  = 'https://github.com/pelias/schema.git'
 default[:pelias][:schema][:revision]                    = 'master'

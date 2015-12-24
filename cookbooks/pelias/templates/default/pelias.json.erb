@@ -47,6 +47,9 @@
         "type": { "node": "osmnode", "way": "osmway" },
         "filename": "<%= @osm_data_file %>"
       }]
+    },
+    "gtfs": {
+      "stopsurl": "<%= node[:pelias][:gtfs][:stops_url] %>"
     }
   },
   "elasticsearch": {
