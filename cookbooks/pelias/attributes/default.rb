@@ -80,6 +80,7 @@ default[:pelias][:gtfs][:repository]                    = 'https://github.com/rm
 default[:pelias][:gtfs][:revision]                      = 'master'
 default[:pelias][:gtfs][:stops_url]                     = 'http://<ip_address>/otp/routers/default/index/stops/'
 default[:pelias][:gtfs][:index_data]                    = false
+default[:pelias][:gtfs][:admin_lookup]                  = true
 
 # schema
 default[:pelias][:schema][:repository]                  = 'https://github.com/pelias/schema.git'
