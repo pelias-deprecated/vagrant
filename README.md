@@ -22,7 +22,7 @@ Goals
 Access points
 -------------
 * API: `curl http://localhost:3100/v1`
-* [Leaflet Demo](http://pelias.github.io/leaflet-geocoder/#12/51.5049/-0.1239): references the API on search.mapzen.com, change url to localhost:3100 so you can see a visual representation of the data you're loading
+* [Leaflet Demo](https://mapzen.github.io/leaflet-geocoder/#12/40.7258/-73.9804): references the API on search.mapzen.com, change url to localhost:3100 so you can see a visual representation of the data you're loading
 * `vagrant ssh && sudo su -` and you've got free reign in a sandboxed environment
 * You can also share both access to your vagrant environment via ssh, or just share the API endpoint:
   * `vagrant share --ssh` will accomplish both
@@ -70,7 +70,7 @@ export PATH=/opt/chefdk/bin:$PATH
   * run the Pelias API server, which you can interact with locally via your browser, curl, etc thanks to the magic of port forwarding: [example query](http://localhost:3100/v1/search?text=London)
     * as soon as the geonames data load starts, you'll be able to start querying the index via the API
     * more details on the API can be found here: [Pelias API](https://github.com/pelias/pelias-doc)
-    * in addition, you can access our [Demo](http://pelias.github.io/leaflet-geocoder/#12/51.5049/-0.1239) which will let you visualize the data you're loading, run searches, etc.
+    * in addition, you can access our [Demo](https://mapzen.github.io/leaflet-geocoder/#12/40.7258/-73.9804) which will let you visualize the data you're loading, run searches, etc.
     * the demo by default uses the endpoint API search.mapzen.com, clone the project and change URL to localhost:3100 to query your local instance
   * load Geonames data for England into Elasticsearch
   * load an OSM extract for London into Elasticsearch
