@@ -37,10 +37,11 @@ export PELIAS_VAGRANT_CPUS=3
 export PELIAS_VAGRANT_MB=6144
 ```
 
-* you can alter the default settings in pelias_settings.example.rb by using a local config, which can in fact be used to override any value set in the chef run:
+* you can alter the default settings in pelias_settings.example.rb by using a local config, 
+which can in fact be used to override any value set in the chef run:
 
 ```bash
-export PELIAS_VAGRANT_CFG=${HOME}/.pelias_settings.rb
+export PELIAS_VAGRANT_CFG=${PWD}/pelias_settings.rb
 ```
 
 Getting started
