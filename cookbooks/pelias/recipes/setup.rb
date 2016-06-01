@@ -40,13 +40,6 @@ directory node[:pelias][:geonames][:data_dir] do
   mode      0755
 end
 
-# quattroshapes
-directory node[:pelias][:quattroshapes][:data_dir] do
-  recursive true
-  owner     node[:pelias][:user][:name]
-  mode      0755
-end
-
 # osm
 directory node[:pelias][:osm][:data_dir] do
   recursive true

@@ -1,15 +1,3 @@
-include_attribute 'pelias::external'
-
-# env
-default[:pelias][:basedir]                              = '/opt/pelias'
-default[:pelias][:cfg_dir]                              = '/etc/pelias'
-default[:pelias][:cfg_file]                             = 'pelias.json'
-default[:pelias][:node_env]                             = 'dev'
-
-# user
-default[:pelias][:user][:name]                          = 'pelias'
-default[:pelias][:user][:home]                          = '/home/pelias'
-
 # esclient
 default[:pelias][:esclient][:logdir]                    = '/var/log/esclient'
 default[:pelias][:esclient][:keepalive]                 = true
@@ -52,18 +40,6 @@ default[:pelias][:geonames][:index_data]                = false
 default[:pelias][:geonames][:admin_lookup]              = false
 default[:pelias][:geonames][:alpha2_country_codes]      = %w(GB)
 default[:pelias][:geonames][:timeout]                   = 7200 # 2 hours
-
-# quattroshapes
-default[:pelias][:quattroshapes][:alpha3_country_codes] = %w(GBR)
-default[:pelias][:quattroshapes][:data_url]             = 'http://quattroshapes.mapzen.com/quattroshapes'
-default[:pelias][:quattroshapes][:checksum]             = 'e89cd4cb232aaea00d14972247ac8229a74378968901af4661b8aa7fada23bcb'
-default[:pelias][:quattroshapes][:repository]           = 'https://github.com/pelias/quattroshapes.git'
-default[:pelias][:quattroshapes][:revision]             = 'production'
-default[:pelias][:quattroshapes][:admin_lookup]         = false
-default[:pelias][:quattroshapes][:data_dir]             = "#{node[:pelias][:basedir]}/data/quattroshapes"
-default[:pelias][:quattroshapes][:index_data]           = false
-default[:pelias][:quattroshapes][:types]                = %w(admin0 admin1 admin2 local_admin locality neighborhood)
-default[:pelias][:quattroshapes][:timeout]              = 3600 # 1 hour per type
 
 # osm
 default[:pelias][:osm][:data_dir]                       = "#{node[:pelias][:basedir]}/data/osm"

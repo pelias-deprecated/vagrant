@@ -81,7 +81,7 @@ export PATH=/opt/chefdk/bin:$PATH
 
 How long will this take?
 ------------------------
-* presently, to load the defaults (geonames for GB, quattroshapes for GBR and London OSM data): ~30 minutes, not including initial build time of the VM, which is a one time event
+* presently, to load the defaults (all of Great Britain from Geonames, and London from OSM): ~30 minutes, not including initial build time of the VM, which is a one time event
 * larger countries with more data, e.g. the US and most countries in Western Europe, will take longer
 
 Tweaking things
@@ -114,18 +114,6 @@ Tweaking things
     'alpha2_country_codes' => [
       'IT',
       'DE'
-    ]
-  },
-```
-
-#### quattroshapes
-* multiple quattroshapes can be loaded by modifying the quattroshapes alpha3 array of [country codes](http://www.geonames.org/countries/):
-```
-  'quattroshapes' => {
-    'index_data' => true,
-    'alpha3_country_codes' => [
-      'ITA',
-      'DEU'
     ]
   },
 ```

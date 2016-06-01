@@ -35,12 +35,6 @@ Vagrant.configure('2') do |config|
             'GB'
           ]
         },
-        'quattroshapes' => {
-          'index_data' => true,
-          'alpha3_country_codes' => [
-            'GBR'
-          ]
-        },
         'osm' => {
           'index_data' => true,
           'extracts' => {

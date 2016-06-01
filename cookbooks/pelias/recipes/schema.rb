@@ -52,7 +52,6 @@ execute 'wipe data' do
   command <<-EOH
     rm -rf #{node[:pelias][:osm][:data_dir]}/* \
       #{node[:pelias][:geonames][:data_dir]}/* \
-      #{node[:pelias][:quattroshapes][:data_dir]}/* \
       #{node[:pelias][:osm][:leveldb]}/*
   EOH
 end
