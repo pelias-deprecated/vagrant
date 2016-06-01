@@ -26,7 +26,7 @@ Vagrant.configure('2') do |config|
         'openaddresses' => {
           'index_data' => true,
           'data_files' => [
-            'us-ny-nyc'
+            'us/ny/city_of_new_york.csv'
           ]
         },
         'geonames' => {
