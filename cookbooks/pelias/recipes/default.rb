@@ -10,7 +10,6 @@
   schema
   openaddresses
   geonames
-  quattroshapes
   osm
 ).each do |r|
   include_recipe "pelias::#{r}"
