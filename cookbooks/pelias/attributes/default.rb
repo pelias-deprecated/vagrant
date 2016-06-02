@@ -1,3 +1,15 @@
+include_attribute 'pelias::external'
+
+# env
+default[:pelias][:basedir]                              = '/opt/pelias'
+default[:pelias][:cfg_dir]                              = '/etc/pelias'
+default[:pelias][:cfg_file]                             = 'pelias.json'
+default[:pelias][:node_env]                             = 'dev'
+
+# user
+default[:pelias][:user][:name]                          = 'pelias'
+default[:pelias][:user][:home]                          = '/home/pelias'
+
 # esclient
 default[:pelias][:esclient][:logdir]                    = '/var/log/esclient'
 default[:pelias][:esclient][:keepalive]                 = true
