@@ -1,3 +1,9 @@
+------
+
+Warning: due to a major dependency upgrade from elasticsearch version `1.7.2` to `2.3.3` the vagrant image may be out-of-date.
+
+------
+
 README
 ======
 
