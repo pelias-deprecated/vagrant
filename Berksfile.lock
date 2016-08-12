@@ -2,7 +2,7 @@ DEPENDENCIES
   apt (= 2.7.0)
   elasticsearch (= 0.3.13)
   java (= 1.31.0)
-  nodejs (= 2.4.0)
+  nodejs (= 2.4.4)
   pelias
     path: cookbooks/pelias
   runit (= 1.5.18)
@@ -23,11 +23,11 @@ GRAPH
     java (>= 0.0.0)
     monit (>= 0.0.0)
     xml (>= 0.0.0)
-  homebrew (1.12.0)
+  homebrew (2.1.0)
     build-essential (>= 2.1.2)
   java (1.31.0)
   monit (0.7.5)
-  nodejs (2.4.0)
+  nodejs (2.4.4)
     apt (>= 0.0.0)
     ark (>= 0.0.0)
     build-essential (>= 0.0.0)
