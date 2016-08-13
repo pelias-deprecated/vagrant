@@ -3,20 +3,10 @@
 
 # nodejs
 default[:nodejs][:version]                      = '4.4.7'
+default[:nodejs][:binary][:checksum]            = '5ad10465cc9d837c1fda8db0fd1bdc1a4ce823dd6afbc533ac2127e6a9a64133'
 
 # elasticsearch
-default[:elasticsearch][:version]               = '1.7.3'
-default[:elasticsearch][:skip_restart]          = true
-default[:elasticsearch][:bootstrap][:mlockall]  = false
-default[:elasticsearch][:allocated_memory]      = "#{(node[:memory][:total].to_i * 0.6).floor / 1024}m"
-default[:elasticsearch][:plugin][:mandatory]    = %w()
-default[:elasticsearch][:custom_config]         = {
-  'threadpool.bulk.type'      => 'fixed',
-  'threadpool.bulk.size'      => '4',
-  'threadpool.bulk.wait_time' => '10s',
-  'threadpool.bulk.queue'     => '1000',
-  'index.refresh_interval'    => '30s'
-}
+default[:elasticsearch][:version]               = '2.3.3'
 
 # java
 default[:java][:ark_retries]                            = 2
