@@ -11,6 +11,7 @@
   openaddresses
   geonames
   osm
+  gtfs
 ).each do |r|
   include_recipe "pelias::#{r}"
 end
