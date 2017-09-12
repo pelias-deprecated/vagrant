@@ -1,7 +1,7 @@
 ------
+This repository holds an archive of the Pelias Vagrant image, which was once used to help set up Pelias, but is now out of date.
 
-Warning: due to a major dependency upgrade from elasticsearch version `1.7.2` to `2.3.3` the vagrant image may be out-of-date.
-
+For the new, fancy way to set up Pelias please see our [Dockerfiles!](https://github.com/pelias/dockerfiles)
 ------
 
 README
