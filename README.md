@@ -1,7 +1,7 @@
 ------
 This repository holds an archive of the Pelias Vagrant image, which was once used to help set up Pelias, but is now out of date.
 
-For the new, fancy way to set up Pelias please see our [Dockerfiles!](https://github.com/pelias/dockerfiles)
+For the new, fancy way to set up Pelias please see our [Docker setup!](https://github.com/pelias/docker)
 ------
 
 README
